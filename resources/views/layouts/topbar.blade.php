@@ -3,8 +3,10 @@
         <i class="fas fa-swimming-pool"></i><h2>Recanto Vô Pedro</h2>
     </div>
     <div class="search">
-        <input type="text" id="search" placeholder="Pesquisa">
-        <label for="search"><i class="fas fa-search"></i></label>
+        <form action="{{ route('reservas') }}" method="GET">
+            <input type="text" id="search" placeholder="Pesquisa">
+            <label for="search"><i class="fas fa-search"></i></label>
+        </form>
     </div>
     
     <div class="dp-menu">

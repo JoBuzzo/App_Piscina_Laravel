@@ -13,7 +13,7 @@
             </a>
         </li>
         <li>
-            <a href="{{route('adicionar')}}">
+            <a href="{{route('reservas.adicionar')}}">
                 <i class="fas fa-calendar-plus"></i>
                 <div>Adicionar Reservas</div>
             </a>

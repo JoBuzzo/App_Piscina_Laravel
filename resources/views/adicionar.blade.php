@@ -10,17 +10,17 @@
 
             <div class="card-container">
 
-                <div class="top"></div>
                 <div class="bottom">
-                    <form action="#">
-                        <label for="name">Nome do Cliente</label>
-                        <input type="text" placeholder="Informe o nome">
+                    <form action="{{ route('reservas.store') }}" method="POST">
+                        @csrf
+                        <label for="nome">Nome do Cliente</label>
+                        <input  type="text" placeholder="Informe o nome" name="nome">
 
                         <label for="data">Primeiro Dia de Reserva</label>
-                        <input type="date">
+                        <input type="date" name="primeiro_dia" value="{{ old('primeiro_dia') }}">
 
                         <label for="data">Último Dia de Reserva</label>
-                        <input type="date">
+                        <input type="date" name="ultimo_dia" value="{{ old('ultimo_dia') }}">
 
                         <label for="pagamento">Pagamento</label>
 
@@ -31,12 +31,23 @@
                         </select>
 
                         <label for="valor">Valor pago</label>
-                        <input type="text" placeholder="Informe o valor pago">
+                        <input  type="text" name="valor" placeholder="Informe o valor pago">
                         
                         <button type="submit">Adicionar</button>
                     </form>
 
                 </div>
+
+
+                <center>
+                    @if ($errors->any())
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li style="color: red"> {{ $error }}</li>
+                        @endforeach
+                    </ul>
+                    @endif
+                </center>
 
             </div>
 

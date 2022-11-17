@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ReservaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::delete('/reservas/{id}', [ReservaController::class, 'destroy'])->name('reservas.destroy');
+Route::get('/reservas/adicionar', [ReservaController::class, 'adicionar'])->name('reservas.adicionar');
+Route::post('/reservas', [ReservaController::class, 'store'])->name('reservas.store');
+Route::get('/reservas/{id}', [ReservaController::class, 'edit'])->name('reservas.ver');
+Route::put('/reservas/{id}', [ReservaController::class, 'update'])->name('reservas.update');
+Route::get('/reservas', [ReservaController::class, 'reservas'])->name('reservas');
 
 
 Route::get('/', function () {
@@ -23,17 +30,6 @@ Route::get('/perfil', function () {
     return view('perfil');
 })->name('perfil');
 
-Route::get('/reservas', function () {
-    return view('reservas');
-})->name('reservas');
-
-Route::get('/ver', function () {
-    return view('ver');
-})->name('ver');
-
-Route::get('/adicionar', function () {
-    return view('adicionar');
-})->name('adicionar');
 
 Route::get('/login', function () {
     return view('login');
