@@ -67,6 +67,9 @@
     cursor: pointer;
 }
 
+.search-button{
+    display: none;
+}
 
 .fa-user-circle{
     position: absolute;

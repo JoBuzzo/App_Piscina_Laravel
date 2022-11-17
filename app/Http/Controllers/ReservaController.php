@@ -9,10 +9,14 @@ class ReservaController extends Controller
 {
     public function reservas(Request $request){
 
+        
         $search = $request->search;
+
+
         $reservas = Reserva::where(function ($query) use ($search) {
             if($search){
-                $query->where('primeiro_dia','LIKE', "%{$search}%");
+
+                $query->where("primeiro_dia",'LIKE', "%{$search}%");
                 $query->orWhere('ultimo_dia', 'LIKE', "%{$search}%");
             }
         })->get();

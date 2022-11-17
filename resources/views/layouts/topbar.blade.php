@@ -4,8 +4,8 @@
     </div>
     <div class="search">
         <form action="{{ route('reservas') }}" method="GET">
-            <input type="text" id="search" placeholder="Pesquisa">
-            <label for="search"><i class="fas fa-search"></i></label>
+            <input type="date" id="search" placeholder="Pesquisa" name="search">
+            <label for="search"><button class="search-button"><i class="fas fa-search"></i></button></label>
         </form>
     </div>
     
