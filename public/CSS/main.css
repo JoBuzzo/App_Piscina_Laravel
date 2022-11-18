@@ -1,14 +1,13 @@
 .main-secundaria {
     position: absolute;
-    top: 190px;
+    top: 80px;
     width: calc(100% - 260px);
     left: 260px;
-    height: calc(100% - 320px);
+    height: 500px;
     background: var(--segundacor);
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
@@ -37,6 +36,11 @@
     background: #fff;
     padding: 15px;
     padding-top: 100px;
+    text-align: left;
+}
+#bottom{
+    background: #fff;
+    padding: 15px;
     text-align: left;
 }
 
@@ -132,6 +136,10 @@ button:hover{
 
 .delete:hover{
    background: rgb(255, 85, 85);
+}
+
+.table{
+    height: 100%;
 }
 
 table{

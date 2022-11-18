@@ -10,7 +10,7 @@
 
             <div class="card-container">
 
-                <div class="bottom">
+                <div id="bottom">
                     <form action="{{ route('reservas.store') }}" method="POST">
                         @csrf
                         <label for="nome">Nome do Cliente</label>

@@ -198,7 +198,7 @@
     width: 100%;
     padding: 35px 20px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     grid-gap: 20px;
 }
 .cards .card{
@@ -208,6 +208,7 @@
     justify-content: space-between;
     background: var(--segundacor);
     border-radius: 10px;
+    width: 100%;
     box-shadow: 1px 4px 8px 2px rgb(0, 0, 0, 0.08);
 }
 .cards .card:hover{
@@ -252,13 +253,12 @@
     background: var(--segundacor);
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgb(0, 0, 0, 0.08);
+    box-shadow: 1px 4px 8px 2px rgb(0, 0, 0, 0.08);
     width: 100%;
 }
 
 .chart h2{
     margin-bottom: 5px;
-    font-size: 18px;
     color: var(--primeiracor);
     text-align: left;
 }

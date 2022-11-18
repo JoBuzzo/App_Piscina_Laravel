@@ -8,6 +8,115 @@ use Illuminate\Http\Request;
 
 class ReservaController extends Controller
 {
+    public function index(){
+
+        $reservas = Reserva::all();
+        $nao_pago = 0;
+        $entrada = 0;
+        $completo = 0;
+        $datas = 0;
+        $totalTodos = 0;
+
+        $janeiro = 0;
+        $fevereiro = 0;
+        $marco = 0;
+        $abril = 0;
+        $maio = 0;
+        $junho = 0;
+        $julho = 0;
+        $agosto = 0;
+        $setembro = 0;
+        $outubro = 0;
+        $novembro = 0;
+        $dezembro = 0;
+        $totalAno = 0;
+
+        $ano = date('Y');
+
+        foreach ($reservas as $reserva) {
+            if($reserva->pagamento === "Não-Pago"){
+                $nao_pago ++;
+                $totalTodos+=$reserva->valor;
+            }
+            if($reserva->pagamento === "Entrada"){
+                $entrada ++;
+                $totalTodos+=$reserva->valor;
+            }
+            if($reserva->pagamento === "Completo"){
+                $completo ++;
+                $totalTodos+=$reserva->valor;
+            }
+            if($reserva->primeiro_dia){
+                $datas ++;
+            }
+            if($reserva->ultimo_dia){
+                $datas ++;
+            }
+
+            switch($reserva->primeiro_dia){
+                case ((date('m', strtotime($reserva->primeiro_dia)) == 1) && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
+                    $janeiro+= $reserva->valor;
+                    $totalAno+= $reserva->valor;
+                break;
+                case ((date('m', strtotime($reserva->primeiro_dia)) == 2)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
+                    $fevereiro+= $reserva->valor;
+                    $totalAno+= $reserva->valor;
+                break;
+                case ((date('m', strtotime($reserva->primeiro_dia)) == 3)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
+                    $marco+= $reserva->valor;
+                    $totalAno+= $reserva->valor;
+                break;
+                case ((date('m', strtotime($reserva->primeiro_dia)) == 4)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
+                    $abril+= $reserva->valor;
+                    $totalAno+= $reserva->valor;
+                break;
+                case ((date('m', strtotime($reserva->primeiro_dia)) == 5)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
+                    $maio+= $reserva->valor;
+                    $totalAno+= $reserva->valor;
+                break;
+                case ((date('m', strtotime($reserva->primeiro_dia)) == 6)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
+                    $junho+= $reserva->valor;
+                    $totalAno+= $reserva->valor;
+                break;
+                case ((date('m', strtotime($reserva->primeiro_dia)) == 7)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
+                    $julho+= $reserva->valor;
+                    $totalAno+= $reserva->valor;
+                break;
+                case ((date('m', strtotime($reserva->primeiro_dia)) == 8)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
+                    $agosto+= $reserva->valor;
+                    $totalAno+= $reserva->valor;
+                break;
+                case ((date('m', strtotime($reserva->primeiro_dia)) == 9)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
+                    $setembro+= $reserva->valor;
+                    $totalAno+= $reserva->valor;
+                break;
+                case ((date('m', strtotime($reserva->primeiro_dia)) == 10)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
+                    $outubro+= $reserva->valor;
+                    $totalAno+= $reserva->valor;
+                break;
+                case ((date('m', strtotime($reserva->primeiro_dia)) == 11)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
+                    $novembro+= $reserva->valor;
+                    $totalAno+= $reserva->valor;
+                break;
+                case ((date('m', strtotime($reserva->primeiro_dia)) == 12)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
+                    $dezembro+= $reserva->valor;
+                    $totalAno+= $reserva->valor;
+                break;
+            }
+        }
+        
+        $reservas = count($reservas);
+
+
+        return 
+        view('index',compact(
+            'reserva','totalTodos', 'totalAno','datas','nao_pago','entrada', 'completo',
+            'janeiro','fevereiro','marco','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro',
+            'ano'
+        ));
+    }
+
+
     public function reservas(Request $request){
         
         $search = $request->search;
@@ -71,6 +180,17 @@ class ReservaController extends Controller
     public function update(ReservaFormRequest $request, $id){
         if(!$reserva = Reserva::find($id)){
             return redirect()->route('reservas');
+        }
+
+
+        if(($request->valor >200 && $request->valor <=400) || ($request->valor >400 && $request->valor <=700)){
+            $request->pagamento = "Completo";
+        }
+        if($request->valor >=200 && $request->valor <=350){
+            $request->pagamento = "Entrada";
+        }
+        if($request->valor === 0){
+            $request->pagamento = "Não-Pago";
         }
 
         $reserva->update([
