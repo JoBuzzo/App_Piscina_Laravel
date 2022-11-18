@@ -20,7 +20,7 @@ class ReservaController extends Controller
         })->get();
 
         if(!$search){
-            $reservas = Reserva::orderBy('primeiro_dia', 'asc')->get();
+            $reservas = Reserva::orderBy('primeiro_dia', 'asc')->paginate(8)->withQueryString();
         }
 
         return view('reservas', compact('reservas','search'));

@@ -11,7 +11,6 @@
         <title>Painel de Administrador</title>
     </head>
 <body>
-
     <div class="container">
         @yield('content')
     </div>
