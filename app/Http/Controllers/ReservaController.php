@@ -8,18 +8,19 @@ use Illuminate\Http\Request;
 class ReservaController extends Controller
 {
     public function reservas(Request $request){
-
         
         $search = $request->search;
 
-
         $reservas = Reserva::where(function ($query) use ($search) {
             if($search){
-
                 $query->where("primeiro_dia",'LIKE', "%{$search}%");
                 $query->orWhere('ultimo_dia', 'LIKE', "%{$search}%");
             }
         })->get();
+
+        if(!$search){
+            $reservas = Reserva::orderBy('primeiro_dia', 'asc')->get();
+        }
 
         return view('reservas', compact('reservas','search'));
     }
