@@ -187,11 +187,31 @@
 
 .main {
     position: absolute;
-    top: 60px;
+    top: 70px;
     width: calc(100% - 260px);
     left: 260px;
     min-height: calc(100vh - 60px);
     background: var(--segundacor);
+}
+.title{
+    text-align: center;
+}
+#cards{
+    width: 100%;
+    padding: 35px 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+}
+
+#card{
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--segundacor);
+    border-radius: 10px;
+    box-shadow: 1px 4px 8px 2px rgb(0, 0, 0, 0.08);
 }
 
 .cards{
@@ -201,7 +221,7 @@
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 20px;
 }
-.cards .card{
+.card{
     padding: 20px;
     display: flex;
     align-items: center;
@@ -210,18 +230,6 @@
     border-radius: 10px;
     width: 100%;
     box-shadow: 1px 4px 8px 2px rgb(0, 0, 0, 0.08);
-}
-.cards .card:hover{
-    background: var(--primeiracor);
-}
-.cards .card:hover .number{
-    color: var(--segundacor);
-}
-.cards .card:hover .card-name{
-    color: var(--segundacor);
-}
-.cards .card:hover .icon-box i{
-    color: var(--segundacor);
 }
 
 .number {
@@ -276,12 +284,12 @@
         left: 60px;
         width: calc(100% - 60px);
     }
-    
 }
 
 @media (max-width:880px){
     /* <main> */
-    .cards{
+
+    #cards{
         grid-template-columns: repeat(2, 1fr);
     }
     .charts {
@@ -325,7 +333,7 @@
     /* </topbar> */
 
     /* <main> */
-    .cards{
+    #cards{
         grid-template-columns: 1fr;
     }
     #doughnut-chart{

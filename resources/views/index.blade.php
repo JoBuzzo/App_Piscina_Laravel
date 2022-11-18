@@ -31,6 +31,53 @@
             </div>
 
         </div>
+        <br>
+        <h2 class="title">Configurações de preço</h2>
+        <div id="cards">
+            <div id="card">
+                <div class="card-content">
+                    <div class="number">R$ {{ $config->entrada_um }}</div>
+                    <div class="card-name">Preço entrada (1 dia)</div>
+                </div>
+                <div class="icon-box">
+                    <i class="fas fa-cog"></i>
+                </div>
+            </div>
+
+            <div id="card">
+                <div class="card-content">
+                    <div class="number">R$ {{ $config->entrada_dois }}</div>
+                    <div class="card-name">Preço entrada (2 dias)</div>
+                </div>
+                <div class="icon-box">
+                    <i class="fas fa-cog"></i>
+                </div>
+            </div>
+
+            <div id="card">
+                <div class="card-content">
+                    <div class="number">R$ {{ $config->completo_um }}</div>
+                    <div class="card-name">Preço completo (1 dia)</div>
+                </div>
+                <div class="icon-box">
+                    <i class="fas fa-cog"></i>
+                </div>
+            </div>
+
+            <div id="card">
+                <div class="card-content">
+                    <div class="number">R$ {{ $config->completo_dois }}</div>
+                    <div class="card-name">Preço completo (2 dias)</div>
+                </div>
+                <div class="icon-box">
+                    <i class="fas fa-cog"></i>
+                </div>
+            </div>
+
+            
+            
+
+        </div>
         <div class="charts">
 
             <div class="chart">

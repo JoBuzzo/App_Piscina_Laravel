@@ -240,7 +240,7 @@ table .show:hover{
 @media (max-width:1115px){
     .main-secundaria {  
         left: 65px;
-        top: 130px;
+        top: 100px;
         width: calc(100% - 60px);
         height: 550px;
     }
@@ -264,7 +264,7 @@ table .show:hover{
     }
 
     table{
-        width: 700px;
+        width: 600px;
     }
     
 }

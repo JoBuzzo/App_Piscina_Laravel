@@ -12,12 +12,17 @@ class ReservaController extends Controller
     public function index(){
 
         $reservas = Reserva::all();
+        $config = Config::find(1);
+
+        // quantidades de opções de paamento (Gráfico de pizza)
         $nao_pago = 0;
         $entrada = 0;
         $completo = 0;
-        $datas = 0;
-        $totalTodos = 0;
 
+        $datas = 0; //todas datas reservadas (card)
+        $totalTodos = 0; //total de ganhos de todos os anos (card)
+
+        //total de ganhos em cada mes (grafico de barras)
         $janeiro = 0;
         $fevereiro = 0;
         $marco = 0;
@@ -30,23 +35,13 @@ class ReservaController extends Controller
         $outubro = 0;
         $novembro = 0;
         $dezembro = 0;
-        $totalAno = 0;
 
-        $ano = date('Y');
+        $totalAno = 0; //total de ganhos do ano atual
+
+        $ano = date('Y'); //ano atual
 
         foreach ($reservas as $reserva) {
-            if($reserva->pagamento === "Não-Pago"){
-                $nao_pago ++;
-                $totalTodos+=$reserva->valor;
-            }
-            if($reserva->pagamento === "Entrada"){
-                $entrada ++;
-                $totalTodos+=$reserva->valor;
-            }
-            if($reserva->pagamento === "Completo"){
-                $completo ++;
-                $totalTodos+=$reserva->valor;
-            }
+            // Quantidade de datas reservadas
             if($reserva->primeiro_dia){
                 $datas ++;
             }
@@ -54,6 +49,20 @@ class ReservaController extends Controller
                 $datas ++;
             }
 
+            // quantidades de opções de paamento (Gráfico de pizza)
+            if($reserva->pagamento === "Não-Pago"){
+                $nao_pago ++;
+            }
+            if($reserva->pagamento === "Entrada"){
+                $entrada ++;
+                $totalTodos+=$reserva->valor; //total de ganhos de todos os anos
+            }
+            if($reserva->pagamento === "Completo"){
+                $completo ++;
+                $totalTodos+=$reserva->valor; //total de ganhos de todos os anos
+            }
+
+            //total de ganhos em cada mes (grafico de barras) //total de ganhos do ano atual
             switch($reserva->primeiro_dia){
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 1) && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
                     $janeiro+= $reserva->valor;
@@ -105,13 +114,9 @@ class ReservaController extends Controller
                 break;
             }
         }
-        
-        $reservas = count($reservas);
-
-
+       
         return 
-        view('index',compact(
-            'reservas','totalTodos', 'totalAno','datas','nao_pago','entrada', 'completo',
+        view('index',compact('totalTodos', 'totalAno','datas','nao_pago','entrada', 'completo','config',
             'janeiro','fevereiro','marco','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro',
             'ano'
         ));
@@ -160,7 +165,7 @@ class ReservaController extends Controller
         })->paginate(8)->withQueryString();
 
         if(!$search){
-            $reservas = Reserva::orderBy('primeiro_dia', 'asc')->paginate(8)->withQueryString();
+            $reservas = Reserva::orderBy('primeiro_dia', 'asc')->paginate(10)->withQueryString();
         }
 
         return view('reservas', compact('reservas','search'));
