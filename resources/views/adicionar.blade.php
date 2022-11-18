@@ -29,9 +29,6 @@
                             <option value="Entrada">Entrada</option>
                             <option value="Completo">Completo</option>
                         </select>
-
-                        <label for="valor">Valor pago</label>
-                        <input  type="text" name="valor" placeholder="Informe o valor pago" value="{{ old('valor') }}">
                         
                         <button type="submit">Adicionar</button>
                     </form>

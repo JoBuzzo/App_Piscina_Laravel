@@ -137,7 +137,7 @@ class ReservaController extends Controller
         if(!$config = Config::find(1)){
             Config::create([
                 'nao_pago' => $nao_pago = 0,
-                'entrada_um' => $primeiro_dia = 200 ,
+                'entrada_um' => $entrada_um = 200 ,
                 'entrada_dois' => $entrada_dois = 350,
                 'completo_um' => $completo_um = 400,
                 'completo_dois' => $completo_dois = 700,
@@ -173,21 +173,22 @@ class ReservaController extends Controller
 
     public function store(ReservaFormRequest $request){
 
+        $config = Config::find(1);
 
-        if(($request->pagamento === "Não-Pago") && ($request->valor === null)){
-            $request->valor = 00.00;
+        if($request->pagamento === "Não-Pago"){
+            $valor = $config->nao_pago;
         }
 
-        if(($request->pagamento === "Entrada") && ($request->valor === null) && ($request->ultimo_dia === null)){
-            $request->valor = 200.00;
-        }else if(($request->pagamento === "Entrada") && ($request->valor === null) && !($request->ultimo_dia === null)){
-            $request->valor = 350.00;
+        if(($request->pagamento === "Entrada") && ($request->ultimo_dia === null)){
+            $valor = $config->entrada_um;
+        }else if(($request->pagamento === "Entrada") && !($request->ultimo_dia === null)){
+            $valor = $config->entrada_dois;
         }
 
-        if(($request->pagamento === "Completo") && ($request->valor === null) && ($request->ultimo_dia === null)){
-            $request->valor = 400.00;
-        }else if(($request->pagamento === "Completo") && ($request->valor === null) && !($request->ultimo_dia === null)){
-            $request->valor = 700.00;
+        if(($request->pagamento === "Completo") && ($request->ultimo_dia === null)){
+            $valor = $config->completo_um;
+        }else if(($request->pagamento === "Completo") && !($request->ultimo_dia === null)){
+            $valor = $config->completo_dois;
         }
         
         Reserva::create([
@@ -195,7 +196,7 @@ class ReservaController extends Controller
             'primeiro_dia' => $request->primeiro_dia,
             'ultimo_dia' => $request->ultimo_dia,
             'pagamento' => $request->pagamento,
-            'valor' => $request->valor,
+            'valor' => $valor,
         ]);
 
         return redirect()->route('reservas');
@@ -209,35 +210,28 @@ class ReservaController extends Controller
     }
 
     public function update(ReservaFormRequest $request, $id){
+
+        
         if(!$reserva = Reserva::find($id)){
             return redirect()->route('reservas');
         }
 
+        $config = Config::find(1);
 
-        if(($request->valor >200 && $request->valor <=400) || ($request->valor >400 && $request->valor <=700)){
-            $request->pagamento = "Completo";
-        }
-        if($request->valor >=200 && $request->valor <=350){
-            $request->pagamento = "Entrada";
-        }
-        if($request->valor === 0){
-            $request->pagamento = "Não-Pago";
+        if($request->pagamento === "Não-Pago"){
+            $valor = $config->nao_pago;
         }
 
-        if(($request->pagamento === "Não-Pago") && ($request->valor === null)){
-            $request->valor = 00.00;
+        if(($request->pagamento === "Entrada") && ($request->ultimo_dia === null)){
+            $valor = $config->entrada_um;
+        }else if(($request->pagamento === "Entrada") && !($request->ultimo_dia === null)){
+            $valor = $config->entrada_dois;
         }
 
-        if(($request->pagamento === "Entrada") && ($request->valor === null) && ($request->ultimo_dia === null)){
-            $request->valor = 200.00;
-        }else if(($request->pagamento === "Entrada") && ($request->valor === null) && !($request->ultimo_dia === null)){
-            $request->valor = 350.00;
-        }
-
-        if(($request->pagamento === "Completo") && ($request->valor === null) && ($request->ultimo_dia === null)){
-            $request->valor = 400.00;
-        }else if(($request->pagamento === "Completo") && ($request->valor === null) && !($request->ultimo_dia === null)){
-            $request->valor = 700.00;
+        if(($request->pagamento === "Completo") && ($request->ultimo_dia === null)){
+            $valor = $config->completo_um;
+        }else if(($request->pagamento === "Completo") && !($request->ultimo_dia === null)){
+            $valor = $config->completo_dois;
         }
 
         $reserva->update([
@@ -245,7 +239,7 @@ class ReservaController extends Controller
             'primeiro_dia' => $request->primeiro_dia,
             'ultimo_dia' => $request->ultimo_dia,
             'pagamento' => $request->pagamento,
-            'valor' => $request->valor,
+            'valor' => $valor,
         ]);
 
         return redirect()->route('reservas');   
