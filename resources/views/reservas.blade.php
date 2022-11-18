@@ -19,7 +19,7 @@
                 @foreach ($reservas as $reserva)
                     <tr>
 
-                        @if ($reserva->primeiro_dia == $reserva->ultimo_dia)
+                        @if ($reserva->ultimo_dia === null)
                             <td class="datas">{{ date('d/m/Y', strtotime($reserva->primeiro_dia)) }}</td>
                         @else
                             <td class="datas">

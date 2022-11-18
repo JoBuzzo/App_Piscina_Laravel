@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ReservaFormRequest;
 use App\Models\Reserva;
 use Illuminate\Http\Request;
 
@@ -30,10 +31,23 @@ class ReservaController extends Controller
         return view('adicionar');
     }
 
-    public function store(Request $request){
+    public function store(ReservaFormRequest $request){
 
-        if($request->ultimo_dia == null){
-            $request->ultimo_dia = $request->primeiro_dia;
+
+        if(($request->pagamento === "Não-Pago") && ($request->valor === null)){
+            $request->valor = 00.00;
+        }
+
+        if(($request->pagamento === "Entrada") && ($request->valor === null) && ($request->ultimo_dia === null)){
+            $request->valor = 200.00;
+        }else if(($request->pagamento === "Entrada") && ($request->valor === null) && !($request->ultimo_dia === null)){
+            $request->valor = 350.00;
+        }
+
+        if(($request->pagamento === "Completo") && ($request->valor === null) && ($request->ultimo_dia === null)){
+            $request->valor = 400.00;
+        }else if(($request->pagamento === "Completo") && ($request->valor === null) && !($request->ultimo_dia === null)){
+            $request->valor = 700.00;
         }
         
         Reserva::create([
@@ -54,7 +68,7 @@ class ReservaController extends Controller
         return view('ver' ,compact('reserva'));
     }
 
-    public function update(Request $request, $id){
+    public function update(ReservaFormRequest $request, $id){
         if(!$reserva = Reserva::find($id)){
             return redirect()->route('reservas');
         }

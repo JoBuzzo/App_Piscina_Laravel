@@ -14,7 +14,7 @@
                     <form action="{{ route('reservas.store') }}" method="POST">
                         @csrf
                         <label for="nome">Nome do Cliente</label>
-                        <input  type="text" placeholder="Informe o nome" name="nome">
+                        <input  type="text" placeholder="Informe o nome" name="nome" value="{{ old('nome') }}">
 
                         <label for="data">Primeiro Dia de Reserva</label>
                         <input type="date" name="primeiro_dia" value="{{ old('primeiro_dia') }}">
@@ -31,7 +31,7 @@
                         </select>
 
                         <label for="valor">Valor pago</label>
-                        <input  type="text" name="valor" placeholder="Informe o valor pago">
+                        <input  type="text" name="valor" placeholder="Informe o valor pago" value="{{ old('valor') }}">
                         
                         <button type="submit">Adicionar</button>
                     </form>
@@ -41,7 +41,7 @@
 
                 <center>
                     @if ($errors->any())
-                    <ul>
+                    <ul style="list-style: none">
                         @foreach ($errors->all() as $error)
                         <li style="color: red"> {{ $error }}</li>
                         @endforeach
