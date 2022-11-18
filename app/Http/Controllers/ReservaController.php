@@ -17,7 +17,7 @@ class ReservaController extends Controller
                 $query->where("primeiro_dia",'LIKE', "%{$search}%");
                 $query->orWhere('ultimo_dia', 'LIKE', "%{$search}%");
             }
-        })->get();
+        })->paginate(8)->withQueryString();
 
         if(!$search){
             $reservas = Reserva::orderBy('primeiro_dia', 'asc')->paginate(8)->withQueryString();

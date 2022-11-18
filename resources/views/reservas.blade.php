@@ -37,9 +37,7 @@
 
         <script src="https://cdn.tailwindcss.com"></script> {{-- Para a Paginação --}}
         <div style="margin-top: 24px;">
-            {{ $reservas->appends([
-                'search' => request()->get('search', '')
-            ])->links() }}
+            {{ $reservas->links() }}
         </div>
 
     </div>
