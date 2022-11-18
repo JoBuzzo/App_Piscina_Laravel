@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ReservaFormRequest;
+use App\Models\Config;
 use App\Models\Reserva;
 use Illuminate\Http\Request;
 
@@ -110,12 +111,42 @@ class ReservaController extends Controller
 
         return 
         view('index',compact(
-            'reserva','totalTodos', 'totalAno','datas','nao_pago','entrada', 'completo',
+            'reservas','totalTodos', 'totalAno','datas','nao_pago','entrada', 'completo',
             'janeiro','fevereiro','marco','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro',
             'ano'
         ));
     }
 
+    public function config(Request $request){
+        if(!$config = Config::find(1)){
+            return redirect()->back('reservas');
+        }
+            
+        $config->update([
+            'nao_pago' => $request->nao_pago = 0,
+            'entrada_um' => $request->entrada_um,
+            'entrada_dois' => $request->entrada_dois,
+            'completo_um' => $request->completo_um,
+            'completo_dois' => $request->completo_dois,
+        ]);
+        return redirect()->route('viewConfig');
+
+    }
+
+    public function viewConfig(){
+        if(!$config = Config::find(1)){
+            Config::create([
+                'nao_pago' => $nao_pago = 0,
+                'entrada_um' => $primeiro_dia = 200 ,
+                'entrada_dois' => $entrada_dois = 350,
+                'completo_um' => $completo_um = 400,
+                'completo_dois' => $completo_dois = 700,
+            ]);
+        return redirect()->route('viewConfig');
+        
+        }
+        return view('config' ,compact('config'));
+    }
 
     public function reservas(Request $request){
         
@@ -191,6 +222,22 @@ class ReservaController extends Controller
         }
         if($request->valor === 0){
             $request->pagamento = "Não-Pago";
+        }
+
+        if(($request->pagamento === "Não-Pago") && ($request->valor === null)){
+            $request->valor = 00.00;
+        }
+
+        if(($request->pagamento === "Entrada") && ($request->valor === null) && ($request->ultimo_dia === null)){
+            $request->valor = 200.00;
+        }else if(($request->pagamento === "Entrada") && ($request->valor === null) && !($request->ultimo_dia === null)){
+            $request->valor = 350.00;
+        }
+
+        if(($request->pagamento === "Completo") && ($request->valor === null) && ($request->ultimo_dia === null)){
+            $request->valor = 400.00;
+        }else if(($request->pagamento === "Completo") && ($request->valor === null) && !($request->ultimo_dia === null)){
+            $request->valor = 700.00;
         }
 
         $reserva->update([

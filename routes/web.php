@@ -20,7 +20,8 @@ Route::post('/reservas', [ReservaController::class, 'store'])->name('reservas.st
 Route::get('/reservas/{id}', [ReservaController::class, 'edit'])->name('reservas.ver');
 Route::put('/reservas/{id}', [ReservaController::class, 'update'])->name('reservas.update');
 Route::get('/reservas', [ReservaController::class, 'reservas'])->name('reservas');
-
+Route::post('/config', [ReservaController::class, 'config'])->name('config');
+Route::get('/config', [ReservaController::class, 'viewConfig'])->name('viewConfig');
 Route::get('/', [ReservaController::class, 'index'])->name('index');
 
 

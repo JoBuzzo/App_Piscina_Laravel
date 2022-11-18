@@ -12,7 +12,7 @@
         <div class="card-container">
 
             
-            <div class="bottom">
+            <div id="bottom">
                 <form action="{{ route('reservas.update', ['id' => $reserva->id]) }}" method="POST">
                     @csrf
                     @method('PUT')
