@@ -32,7 +32,7 @@
 
         </div>
         <br>
-        <h2 class="title">Configurações de preço</h2>
+        <a class="config" href="{{ route('config') }}"><i class="fas fa-cog"></i> Configurações de Preços</a>
         <div id="cards">
             <div id="card">
                 <div class="card-content">
@@ -40,17 +40,7 @@
                     <div class="card-name">Preço entrada (1 dia)</div>
                 </div>
                 <div class="icon-box">
-                    <i class="fas fa-cog"></i>
-                </div>
-            </div>
-
-            <div id="card">
-                <div class="card-content">
-                    <div class="number">R$ {{ $config->entrada_dois }}</div>
-                    <div class="card-name">Preço entrada (2 dias)</div>
-                </div>
-                <div class="icon-box">
-                    <i class="fas fa-cog"></i>
+                    <i class="fas fa-hand-holding-usd"></i>
                 </div>
             </div>
 
@@ -60,9 +50,20 @@
                     <div class="card-name">Preço completo (1 dia)</div>
                 </div>
                 <div class="icon-box">
-                    <i class="fas fa-cog"></i>
+                    <i class="fas fa-hand-holding-usd"></i>
                 </div>
             </div>
+
+            <div id="card">
+                <div class="card-content">
+                    <div class="number">R$ {{ $config->entrada_dois }}</div>
+                    <div class="card-name">Preço entrada (2 dias)</div>
+                </div>
+                <div class="icon-box">
+                    <i class="fas fa-hand-holding-usd"></i>
+                </div>
+            </div>
+
 
             <div id="card">
                 <div class="card-content">
@@ -70,7 +71,7 @@
                     <div class="card-name">Preço completo (2 dias)</div>
                 </div>
                 <div class="icon-box">
-                    <i class="fas fa-cog"></i>
+                    <i class="fas fa-hand-holding-usd"></i>
                 </div>
             </div>
 
@@ -83,7 +84,7 @@
             <div class="chart">
 
                 <h2><i class="fas fa-chart-bar"></i> Ganhos ({{$ano}})</h2>
-                <h2>Total : {{$totalAno}} </h2>
+                <h2>Total : ${{$totalAno}} </h2>
 
                 <canvas id="barChart"></canvas>
                 <script>

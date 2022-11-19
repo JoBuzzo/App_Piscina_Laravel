@@ -65,11 +65,11 @@
                 </form>
                 <center>
                     @if ($errors->any())
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li style="color: red"> {{ $error }}</li>
-                            @endforeach
-                        </ul>
+                    <ul style="list-style: none">
+                        @foreach ($errors->all() as $error)
+                        <li style="color: red"> {{ $error }}</li>
+                        @endforeach
+                    </ul>
                     @endif
                 </center>
 

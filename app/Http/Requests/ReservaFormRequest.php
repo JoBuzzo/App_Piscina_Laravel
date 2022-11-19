@@ -27,7 +27,7 @@ class ReservaFormRequest extends FormRequest
         return [
                 'nome' => 'required|string|min:4|max:30',        
                 'primeiro_dia' => "required|date|unique:reservas,primeiro_dia,{$id},id",        
-                'primeiro_dia' => "required|date|unique:reservas,ultimo_dia,{$id},id",        
+                // 'primeiro_dia' => "required|date|unique:reservas,ultimo_dia,{$id},id",        
                 'ultimo_dia' => "nullable|date|unique:reservas,primeiro_dia,{$id},id",        
                 'pagamento' => 'required',        
                 'valor' => 'nullable|numeric',        

@@ -31,6 +31,8 @@
 }
 
 .logo h2{
+    font-weight: bold;
+    font-size: 20px;
     color: var(--primeiracor);
     white-space: nowrap;
 }
@@ -193,14 +195,21 @@
     min-height: calc(100vh - 60px);
     background: var(--segundacor);
 }
-.title{
-    text-align: center;
+.config{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
 }
 #cards{
     width: 100%;
     padding: 35px 20px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     grid-gap: 20px;
 }
 
@@ -288,13 +297,6 @@
 
 @media (max-width:880px){
     /* <main> */
-
-    #cards{
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .charts {
-        grid-template-columns: 1fr;
-    }
     .chart h2{
         text-align: left;
         font-size: 14px;
@@ -334,6 +336,9 @@
 
     /* <main> */
     #cards{
+        grid-template-columns: 1fr;
+    }
+    .cards{
         grid-template-columns: 1fr;
     }
     #doughnut-chart{
