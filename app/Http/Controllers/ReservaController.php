@@ -143,7 +143,7 @@ class ReservaController extends Controller
             'completo_um' => $request->completo_um,
             'completo_dois' => $request->completo_dois,
         ]);
-        return redirect()->route('viewConfig');
+        return redirect()->route('viewConfig')->with('mensagem', 'Editado com Sucesso!');
 
     }
 
@@ -197,13 +197,21 @@ class ReservaController extends Controller
             $valor = $config->completo_dois;
         }
         
-        Reserva::create([
-            'nome' => $request->nome,
-            'primeiro_dia' => $request->primeiro_dia,
-            'ultimo_dia' => $request->ultimo_dia,
-            'pagamento' => $request->pagamento,
-            'valor' => $valor,
-        ]);
+
+        $data = $request->only('nome', 'primeiro_dia', 'ultimo_dia', 'pagamento');
+
+        if($request->valor){
+            $data['valor'] = $request->valor;
+            Reserva::create($data);
+        }else{
+            Reserva::create([
+                'nome' => $request->nome,
+                'primeiro_dia' => $request->primeiro_dia,
+                'ultimo_dia' => $request->ultimo_dia,
+                'pagamento' => $request->pagamento,
+                'valor' => $valor,
+            ]);
+        }
 
         return redirect()->route('reservas');
     }
@@ -240,13 +248,21 @@ class ReservaController extends Controller
             $valor = $config->completo_dois;
         }
 
-        $reserva->update([
-            'nome' => $request->nome,
-            'primeiro_dia' => $request->primeiro_dia,
-            'ultimo_dia' => $request->ultimo_dia,
-            'pagamento' => $request->pagamento,
-            'valor' => $valor,
-        ]);
+        $data = $request->only('nome', 'primeiro_dia', 'ultimo_dia','pagamento');
+
+        if($request->valor){
+            $data['valor'] = $request->valor;
+            $reserva->update($data);
+        }else{
+            $reserva->update([
+                'nome' => $request->nome,
+                'primeiro_dia' => $request->primeiro_dia,
+                'ultimo_dia' => $request->ultimo_dia,
+                'pagamento' => $request->pagamento,
+                'valor' => $valor,
+            ]);
+        }
+
 
         return redirect()->route('reservas');   
     }

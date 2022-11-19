@@ -65,6 +65,6 @@ class UserController extends Controller
 
         $user->update($data);
 
-        return redirect()->route('perfil');
+        return redirect()->route('perfil')->with('mensagem', 'Editado com Sucesso!');
     }
 }

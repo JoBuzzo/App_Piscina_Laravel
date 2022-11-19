@@ -12,7 +12,8 @@
             <table>
                 <tr>
                     <th class="datas">Datas</th>
-                    <th class="nome">Nomes</th>
+                    <th class="nao-importante">Nomes</th>
+                    <th class="nao-importante">Pagamento</th>
                     <th>Consultar</th>
                 </tr>
 
@@ -27,7 +28,14 @@
                             </td>
                         @endif
 
-                        <td class="nome">{{ $reserva->nome }}</td>
+                        <td class="nao-importante">{{ $reserva->nome }}</td>
+                        
+                        @if ($reserva->pagamento != 'Não-Pago')
+                            <td class="nao-importante">{{ $reserva->pagamento }}: R${{ $reserva->valor }}</td>
+                        @else
+                            <td class="nao-importante">{{ $reserva->pagamento }}</td>
+                        @endif
+
                         <td><a href="{{ route('reservas.ver', ['id' => $reserva->id]) }}" class="show">Ver mais</a></td>
                     </tr>
                 @endforeach

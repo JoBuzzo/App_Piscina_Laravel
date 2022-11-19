@@ -29,14 +29,16 @@
 
                     <button type="submit">Editar</button>
                 </form>
-                
+                @if (session('mensagem'))
+                        <p>{{ session('mensagem') }}</p>
+                @endif
                 <center>
                     @if ($errors->any())
-                    <ul style="list-style: none">
-                        @foreach ($errors->all() as $error)
-                        <li style="color: red"> {{ $error }}</li>
-                        @endforeach
-                    </ul>
+                        <ul style="list-style: none">
+                            @foreach ($errors->all() as $error)
+                                <li style="color: red"> {{ $error }}</li>
+                            @endforeach
+                        </ul>
                     @endif
                 </center>
             </div>

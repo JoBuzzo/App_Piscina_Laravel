@@ -308,6 +308,10 @@
     #doughnut {
         padding: 50px;
     }
+    .charts{
+        grid-template-columns: 1fr;
+
+    }
     /* </main> */
 
 }
@@ -315,7 +319,7 @@
 
     /* <topbar> */
     .topbar{
-        grid-template-columns: 1fr 5fr 0.4fr 1fr;
+        grid-template-columns: 0.4fr 5fr 0.4fr 3fr;
     }
     .logo h2{
         font-size: 16px;
@@ -327,7 +331,7 @@
         width: 80%;
     }
     .search input{
-        padding: 0 20px;
+        padding: 0 10px;
     }
     .dp-menu ul li a{
         font-size: 10px;

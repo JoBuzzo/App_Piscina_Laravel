@@ -29,7 +29,10 @@
                             <option value="Entrada">Entrada</option>
                             <option value="Completo">Completo</option>
                         </select>
-                        
+
+                        <label for="valor">Valor</label>
+                        <input type="text" name="valor" value="{{ old('valor') }}" placeholder="informe um valor caso não queira um padrão">
+
                         <button type="submit">Adicionar</button>
                     </form>
 
