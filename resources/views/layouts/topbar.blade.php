@@ -16,7 +16,7 @@
                 <ul>
                     <li><a href="{{ route('perfil')}} "><i class="fa fa-user"></i> Perfil</a></li>
                     <li><a href="{{ route('viewConfig') }}"><i class="fas fa-cog"></i> Configurações</a></li>
-                    <li><a href="{{ route('login') }}"><i class="fas fa-sign-out-alt"></i> Log-out</a></li>
+                    <li><a href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i> Log-out</a></li>
                 </ul>
             </li>
         </ul>

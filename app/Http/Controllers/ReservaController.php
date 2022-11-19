@@ -13,7 +13,14 @@ class ReservaController extends Controller
 
         $reservas = Reserva::all();
         if(!$config = Config::find(1)){
-            return redirect()->route('viewConfig');
+            Config::create([
+                'nao_pago' => 0,
+                'entrada_um' => 200,
+                'entrada_dois' => 350,
+                'completo_um' => 400,
+                'completo_dois' => 700,
+            ]);
+            return redirect()->route('index');
         }
 
         // quantidades de opções de paamento (Gráfico de pizza)
@@ -142,15 +149,7 @@ class ReservaController extends Controller
 
     public function viewConfig(){
         if(!$config = Config::find(1)){
-            Config::create([
-                'nao_pago' => 0,
-                'entrada_um' => 200 ,
-                'entrada_dois' => 350,
-                'completo_um' => 400,
-                'completo_dois' => 700,
-            ]);
-            return redirect()->route('viewConfig');
-        
+            return redirect()->route('reservas');
         }
         return view('config' ,compact('config'));
     }

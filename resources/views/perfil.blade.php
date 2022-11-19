@@ -18,19 +18,27 @@
 
             </div>
             <div class="bottom">
-                <form action="#">
+                <form action="{{ route('update.user') }}" method="POST">
+                    @method('PUT')
+                    @csrf
                     <label for="name">Nome</label>
-                    <input type="text" value="Administrador">
-
-                    <label for="email">Email</label>
-                    <input type="email" value="admin@gmail.com">
+                    <input type="text" value="{{ $user->name }}" name="name">
 
                     <label for="email">Senha</label>
-                    <input type="password" placeholder="Informe sua senha...">
+                    <input type="password" placeholder="Informe sua senha..." name="password">
 
                     <button type="submit">Editar</button>
                 </form>
-
+                
+                <center>
+                    @if ($errors->any())
+                    <ul style="list-style: none">
+                        @foreach ($errors->all() as $error)
+                        <li style="color: red"> {{ $error }}</li>
+                        @endforeach
+                    </ul>
+                    @endif
+                </center>
             </div>
 
         </div>
