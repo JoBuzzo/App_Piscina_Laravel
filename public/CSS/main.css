@@ -136,6 +136,7 @@ button:hover{
 
 .delete:hover{
    background: rgb(255, 85, 85);
+   color: var(--segundacor);
 }
 
 .table{

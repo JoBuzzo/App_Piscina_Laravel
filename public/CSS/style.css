@@ -199,6 +199,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.config a{
     font-weight: bold;
     font-size: 20px;
     cursor: pointer;

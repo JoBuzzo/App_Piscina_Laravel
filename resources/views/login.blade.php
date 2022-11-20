@@ -19,7 +19,6 @@
                 <input type="password" name="password" placeholder="Digite aqui..." class="input">
                 <center><button type="submit">Entrar</button></center>
             </form>
-            <a href="#">Esqueceu a Senha?</a>
 
             @if ($errors->all())
                 <ul style="list-style: none">

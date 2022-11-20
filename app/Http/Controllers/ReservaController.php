@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ConfigFormRequest;
 use App\Http\Requests\ReservaFormRequest;
 use App\Models\Config;
 use App\Models\Reserva;
@@ -131,7 +132,7 @@ class ReservaController extends Controller
         ));
     }
 
-    public function config(Request $request){
+    public function config(ConfigFormRequest $request){
         if(!$config = Config::find(1)){
             return redirect()->back('reservas');
         }
@@ -166,7 +167,7 @@ class ReservaController extends Controller
         })->paginate(8)->withQueryString();
 
         if(!$search){
-            $reservas = Reserva::orderBy('primeiro_dia', 'asc')->paginate(10)->withQueryString();
+            $reservas = Reserva::orderBy('primeiro_dia', 'desc')->paginate(10)->withQueryString();
         }
 
         return view('reservas', compact('reservas','search'));
@@ -250,7 +251,7 @@ class ReservaController extends Controller
 
         $data = $request->only('nome', 'primeiro_dia', 'ultimo_dia','pagamento');
 
-        if($request->valor){
+        if($request->valor && $request->valor != $reserva->valor){
             $data['valor'] = $request->valor;
             $reserva->update($data);
         }else{

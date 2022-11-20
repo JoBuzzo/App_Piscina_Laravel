@@ -32,7 +32,9 @@
 
         </div>
         <br>
-        <a class="config" href="{{ route('config') }}"><i class="fas fa-cog"></i> Configurações de Preços</a>
+        <div class="config" >
+            <a href="{{ route('config') }}"><i class="fas fa-cog"></i> Configurações de Preços</a>
+        </div>
         <div id="cards">
             <div id="card">
                 <div class="card-content">

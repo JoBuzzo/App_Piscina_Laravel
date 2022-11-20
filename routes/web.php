@@ -29,7 +29,7 @@ Route::put('/perfil', [UserController::class, 'update'])->name('update.user')->m
 
 Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::post('/auth', [UserController::class, 'auth'])->name('auth');
-Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+Route::get('/logout', [UserController::class, 'logout'])->name('logout')->middleware('admin');
 
 
 
