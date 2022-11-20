@@ -61,8 +61,18 @@
                     <label for="valor">Valor pago</label>
                     <input type="text" placeholder="Informe o valor pago" value="{{ $reserva->valor }}" name="valor">
 
-                    <button type="submit">Editar</button>
+                    <button id="button" type="submit">Editar</button>
                 </form>
+
+                
+                <form action="{{ route('reservas.destroy', ['id' => $reserva->id]) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="delete">Excluir</button>
+                </form>
+                @if (session('mensagem'))
+                        <p>{{ session('mensagem') }}</p>
+                @endif
                 <center>
                     @if ($errors->any())
                     <ul style="list-style: none">
@@ -72,14 +82,8 @@
                     </ul>
                     @endif
                 </center>
-
-                <form action="{{ route('reservas.destroy', ['id' => $reserva->id]) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button class="delete">Excluir</button>
-                </form>
-
-
+                
+                
             </div>
 
         </div>

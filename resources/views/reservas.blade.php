@@ -43,7 +43,6 @@
             </table>
         </div>
 
-        <script src="https://cdn.tailwindcss.com"></script> {{-- Para a Paginação --}}
         <div style="margin-top: 24px;">
             {{ $reservas->links() }}
         </div>

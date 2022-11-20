@@ -13,7 +13,7 @@
             <div class="top">
 
                 <div class="image-container">
-                    <img src="/IMG/user.png" alt="user">
+                    <i class="fas fa-user-alt"></i>
                 </div>
 
             </div>

@@ -8,6 +8,7 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
         <link rel="stylesheet" href="/CSS/style.css">
         <link rel="stylesheet" href="/CSS/main.css">
+        <script src="https://cdn.tailwindcss.com"></script> {{-- Para a Paginação --}}
         <title>Painel de Administrador</title>
     </head>
 <body>

@@ -50,17 +50,15 @@
     height: 100px;
     border-radius: 50%;
     margin-top: 40px;
-    padding: 52px;
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 2px solid var(--primeiracor);
 }
 
 
-.image-container img{
-    background: #fff;
-    width: 100px;
-    border-radius: 50%;
+.image-container .fa-user-alt{
+    font-size: 60px;
 }
 
 label{
@@ -98,8 +96,6 @@ select{
     border: 2px solid black;
 }
 
-
-
 button{
     margin-bottom: 20px;
     width: 100%;
@@ -135,8 +131,8 @@ button:hover{
 
 
 .delete:hover{
-   background: rgb(255, 85, 85);
-   color: var(--segundacor);
+    background: rgb(255, 85, 85);
+    color: var(--segundacor);
 }
 
 .table{

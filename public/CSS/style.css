@@ -51,7 +51,7 @@
 .search input{
     width: 100%;
     height: 40px;
-    padding: 0 10px;
+    padding-left: 30px;
     font-size: 16px;
     outline: none;
     border: none;
@@ -64,13 +64,19 @@
 
 .search i{
     position: absolute;
-    right: 15px;
-    top: 12px;
+    right: 100%;
+    top: 5px;
     cursor: pointer;
+    color: var(--primeiracor);
 }
 
-.search-button{
-    display: none;
+.lupa{
+    position: absolute;
+    right: calc(100% - 30px);
+    top: 6px;
+    cursor: pointer;
+    width: 1px;
+    border: none;
 }
 
 .fa-user-circle{
@@ -303,7 +309,9 @@
         text-align: left;
         font-size: 14px;
     }
-
+    .lupa{
+        display: none;
+    }
     #doughnut-chart {
         padding: 50px;
     }

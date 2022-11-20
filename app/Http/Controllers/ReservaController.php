@@ -157,14 +157,22 @@ class ReservaController extends Controller
 
     public function reservas(Request $request){
         
+        // $reservas = Reserva::whereMonth('primeiro_dia', '11')->get();
+        // dd($reservas);
+
+
         $search = $request->search;
 
         $reservas = Reserva::where(function ($query) use ($search) {
             if($search){
-                $query->where("primeiro_dia",'LIKE', "%{$search}%");
-                $query->orWhere('ultimo_dia', 'LIKE', "%{$search}%");
+
+                $query->where("nome",'LIKE', "%{$search}%");
+                $query->orwhere("pagamento",'LIKE', "%{$search}%");
+                $query->orwhere("valor",'LIKE', "%{$search}%");
+                $query->orwhereDate("primeiro_dia",'LIKE', "%{$search}%");
+                $query->orwhereDate("ultimo_dia",'LIKE', "%{$search}%");
             }
-        })->paginate(8)->withQueryString();
+        })->paginate(10)->withQueryString();
 
         if(!$search){
             $reservas = Reserva::orderBy('primeiro_dia', 'desc')->paginate(10)->withQueryString();
@@ -265,7 +273,7 @@ class ReservaController extends Controller
         }
 
 
-        return redirect()->route('reservas');   
+        return redirect()->route('reservas.ver', ['id'=> $id]  )->with('mensagem', 'Editado com Sucesso!');   
     }
 
     public function destroy($id){

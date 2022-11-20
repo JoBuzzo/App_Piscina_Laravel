@@ -2,13 +2,19 @@
     <div class="logo">
         <i class="fas fa-swimming-pool"></i><h2>Recanto Vô Pedro</h2>
     </div>
+
+
     <div class="search">
         <form action="{{ route('reservas') }}" method="GET">
-            <input type="date" id="search" placeholder="Pesquisa" name="search">
-            <label for="search"><button class="search-button"></button></label>
+            <button type="submit" class="lupa"><i class="fas fa-search"></i></button>
+
+            <input type="search" id="search" placeholder="Pesquisa" name="search"
+            @if(isset($search))value="{{ $search }}"@endif>
+            
         </form>
     </div>
     
+
     <div class="dp-menu">
         <ul>
             <li>
