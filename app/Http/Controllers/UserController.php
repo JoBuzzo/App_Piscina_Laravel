@@ -68,3 +68,4 @@ class UserController extends Controller
         return redirect()->route('perfil')->with('mensagem', 'Editado com Sucesso!');
     }
 }
+

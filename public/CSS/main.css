@@ -11,14 +11,27 @@
     align-items: center;
 }
 
+.main-login{
+    position: absolute;
+    top: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
 
 .card-container{
     border-radius: 6px;
     width: 900px;
     height: 530px;
     background: #fff;
+    box-shadow: 1px 4px 8px 2px rgb(0, 0, 0, 0.08);
 }
-
+.title{
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
 .top {
     height: 80px;
     border-radius: 6px;
@@ -35,13 +48,15 @@
 .bottom{
     background: #fff;
     padding: 15px;
-    padding-top: 100px;
-    text-align: left;
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
 }
 #bottom{
     background: #fff;
     padding: 15px;
-    text-align: left;
+    display: flex;
+    justify-content: center;
 }
 
 .image-container{
@@ -61,64 +76,66 @@
     font-size: 60px;
 }
 
+
+.form-group{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 450px;
+}
+
+.input-label{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
 label{
     font-weight: bold;
 }
 
 .card-container input{
-    width: 100%;
     height: 40px;
-    padding: 0 5px;
+    padding: 0 10px;
     font-size: 16px;
     outline: none;
     border-radius: 5px;
-    margin-bottom: 15px;
-    margin-top: 15px;
     border: 1px solid gray;
 }
 
 .card-container input:focus{
     border: 2px solid black;
 }
+
+input[type=submit]{
+    background: var(--primeiracor);
+    color: var(--segundacor);
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+input[type=submit]:hover {
+    border: 2px solid var(--segundacor);
+    background: #33333d;
+    cursor: pointer;
+}
+
+
 select{
-    width: 100%;
     height: 40px;
-    padding: 0 5px;
     font-size: 16px;
     outline: none;
     border-radius: 5px;
-    margin-bottom: 15px;
-    margin-top: 15px;
     border: 1px solid gray;
-}
+    text-indent: 10px;
+    appearance: none;
+}    
 
 .card-container select:focus{
     border: 2px solid black;
 }
 
-button{
-    margin-bottom: 20px;
-    width: 100%;
-    font-size: 20px;
-    font-weight: bold;
-    border: 0;
-    border-radius: 10px;
-    padding: 5px;
-    background: var(--primeiracor);
-    color: var(--segundacor);
-    cursor: pointer;
-    border: 1px solid black;
-}
-
-button:hover{
-    background: var(--segundacor);
-    color: var(--primeiracor);
-
-}
-
 .delete{
-    margin-bottom: 20px;
-    width: 100%;
     font-size: 20px;
     font-weight: bold;
     border: 0;
@@ -134,6 +151,47 @@ button:hover{
     background: rgb(255, 85, 85);
     color: var(--segundacor);
 }
+
+
+/* <mensagens> */
+
+
+.success{
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 14px;
+    position: absolute;
+    color: green;
+}
+
+
+.msg{
+    font-size: 18px;
+}
+.is-invalid{
+    display: flex;
+    align-items: center;
+    color: red;
+    font-weight: bold;
+    font-size: 14px;
+    position: absolute;
+}
+.card-container .error{
+    border: 1px solid red;
+    background: rgb(245, 245, 245);
+}
+
+.card-container .error:focus{
+    border: 2px solid red;
+}
+.card-container input:focus .error{
+    border: 2px solid red;
+}
+
+/* </mensagens> */
+
+
 
 .table{
     height: 100%;
@@ -177,101 +235,43 @@ table .show:hover{
 }
 
 .datas{
-
     white-space: nowrap;
 }
 
-.main-login {
-    width: calc(100% - 260px);
-    min-height: 100vh;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.card-login{
-    border: 1px solid black;
-    position: absolute;
-    padding: 80px;
-    border-radius: 10px;
-    color: var(--primeiracor);
-    text-align: left;
-    width: 450px;
-    height: 450px;
-}
-
-.card-login h2 {
-    text-align: center;
-}
-
-.card-login label {
-    font-weight: bold;
-}
-
-.card-login a{
-    color: black;
-}
-
-.card-login a:hover {
-    color: gray;
-}
-
-.card-login .input {
-    width: 100%;
-    height: 40px;
-    padding: 0 5px;
-    font-size: 16px;
-    outline: none;
-    border: none;
-    border-radius: 5px;
-    margin-bottom: 15px;
-    margin-top: 15px;
-    border: 1px solid gray;
-}
-
-.card-login .input:focus {
-    border: 2px solid black;
-}
 
 @media (max-width:1115px){
     .main-secundaria {  
-        left: 65px;
+        left: 80px;
         top: 100px;
         width: calc(100% - 60px);
-        height: 550px;
-    }
-    .main-login {
-        width: calc(100% - 260px);
         height: 550px;
     }
 }
 
 @media (max-width:880px){
 
-    .card-login{
-        padding: 25px;
-        width: 300px;
-        height: 320px;
-    }
-
     .card-container{
         width: 600px;
         height: 300px;
     }
-
+    .form-group{
+        width: 250px;
+    }
     table{
         width: 600px;
     }
-    
+    .image-container{
+        width: 50px;
+        height: 50px;
+        margin-top: 50px;
+    }
+
+    .image-container .fa-user-alt{
+        font-size: 30px;
+    }
 }
 
 @media (max-width:500px){
-    .card-login{
-        padding: 20px;
-        width: 300px;
-        height: 350px;
-    }
 
     .card-container{
         width: 330px;

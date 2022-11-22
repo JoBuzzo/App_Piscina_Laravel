@@ -58,7 +58,7 @@ class ReservaController extends Controller
             if($reserva->ultimo_dia){
                 $datas ++;
             }
-
+            
             // quantidades de opções de paamento (Gráfico de pizza)
             if($reserva->pagamento === "Não-Pago"){
                 $nao_pago ++;
@@ -175,7 +175,7 @@ class ReservaController extends Controller
         })->paginate(10)->withQueryString();
 
         if(!$search){
-            $reservas = Reserva::orderBy('primeiro_dia', 'desc')->paginate(10)->withQueryString();
+            $reservas = Reserva::orderBy('primeiro_dia', 'desc')->paginate(8)->withQueryString();
         }
 
         return view('reservas', compact('reservas','search'));

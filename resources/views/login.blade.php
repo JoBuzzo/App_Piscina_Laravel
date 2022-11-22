@@ -6,29 +6,44 @@
 
     <div class="main-login">
 
+        <div class="card-container">
+            <div class="bottom">
+                @if ($errors->all())
+                    @foreach ($errors->all() as $error)@endforeach 
+                @endif
 
-        <div class="card-login">
+                <form action="{{ route('auth') }}" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <div class="title">
+                            <h1>Login</h1>
+                        </div>
+                        <div class="input-label">
+                            <label for="name">Nome</label>
+                            <input type="text" name="name" placeholder="Digite aqui..."
+                            class="@if (isset($error)) error @endif">
+                        </div>
+                        <div class="input-label">
+                            <label for="password">Senha</label>
+                            <input type="password" name="password" placeholder="Digite aqui..."
+                            class="@if (isset($error)) error @endif">
+                        </div>
+                        <div class="input-label">
+                            <input type="submit" value="Entrar">
+                            <div>
+                                @if(isset($error))
+                                    <div class="is-invalid">
+                                            {{ $error }}
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </form>
 
-
-            <form action="{{ route('auth') }}" method="POST">
-                @csrf
-                <h2>Login</h2>
-                <label for="name">Nome</label>
-                <input type="text" name="name" placeholder="Digite aqui..." class="input">
-                <label for="password">Senha</label>
-                <input type="password" name="password" placeholder="Digite aqui..." class="input">
-                <center><button type="submit">Entrar</button></center>
-            </form>
-
-            @if ($errors->all())
-                <ul style="list-style: none">
-                    @foreach ($errors->all() as $error)
-                        <li style="color: red"> {{ $error }}</li>
-                    @endforeach
-                </ul>
-            @endif
-            
+            </div>
         </div>
+
     </div>
 
 @endsection

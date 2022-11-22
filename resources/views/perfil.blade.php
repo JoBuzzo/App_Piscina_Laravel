@@ -10,6 +10,8 @@
 
         <div class="card-container">
 
+
+
             <div class="top">
 
                 <div class="image-container">
@@ -18,29 +20,57 @@
 
             </div>
             <div class="bottom">
+
                 <form action="{{ route('update.user') }}" method="POST">
                     @method('PUT')
                     @csrf
-                    <label for="name">Nome</label>
-                    <input type="text" value="{{ $user->name }}" name="name">
+                    <div class="form-group">
+                        <div class="input-label">
+                            <label for="name">Nome</label>
+                            <input type="text" value="{{ $user->name }}" name="name"
+                                class="@if ($errors->has('name')) error @endif">
 
-                    <label for="email">Senha</label>
-                    <input type="password" placeholder="Informe sua senha..." name="password">
+                            <div>
+                                @if ($errors->has('name'))
+                                    <div class="is-invalid">
+                                        @foreach ($errors->get('name') as $error)
+                                            {{ $error }}
+                                        @endforeach
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
 
-                    <button type="submit">Editar</button>
+                        <div class="input-label">
+                            <label for="password">Senha</label>
+                            <input type="password" placeholder="Informe sua senha..." name="password"
+                                class="@if ($errors->has('password')) error @endif">
+                            <div>
+                                @if ($errors->has('password'))
+                                    <div class="is-invalid">
+                                        @foreach ($errors->get('password') as $error)
+                                            {{ $error }}
+                                        @endforeach
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="input-label">
+                            <input type="submit" value="Salvar">
+                            <div>
+                                @if (session('mensagem'))
+                                    <div class="success">
+                                        <span class="msg">{{ session('mensagem') }}</span>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
                 </form>
-                @if (session('mensagem'))
-                        <p>{{ session('mensagem') }}</p>
-                @endif
-                <center>
-                    @if ($errors->any())
-                        <ul style="list-style: none">
-                            @foreach ($errors->all() as $error)
-                                <li style="color: red"> {{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    @endif
-                </center>
+
+
+
             </div>
 
         </div>
