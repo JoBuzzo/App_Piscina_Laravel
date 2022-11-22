@@ -10,16 +10,21 @@
 
         <div class="table">
             <table>
-                <tr>
-                    <th class="datas">Datas</th>
-                    <th class="nao-importante">Nomes</th>
-                    <th class="nao-importante">Pagamento</th>
-                    <th>Consultar</th>
-                </tr>
+                @if((count($reservas) > 0 ))
+                    <tr>
+                        <th class="datas">Datas</th>
+                        <th class="nao-importante">Nomes</th>
+                        <th class="nao-importante">Pagamento</th>
+                        <th>Consultar</th>
+                    </tr>
+                @else
+                <div class="title">
+                    <h1>Não possui reservas</h1>
+                </div>
+                @endif
 
                 @foreach ($reservas as $reserva)
                     <tr>
-
                         @if ($reserva->ultimo_dia === null)
                             <td class="datas">{{ date('d/m/Y', strtotime($reserva->primeiro_dia)) }}</td>
                         @else

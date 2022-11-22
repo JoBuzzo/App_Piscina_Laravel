@@ -175,7 +175,7 @@ class ReservaController extends Controller
         })->paginate(10)->withQueryString();
 
         if(!$search){
-            $reservas = Reserva::orderBy('primeiro_dia', 'desc')->paginate(8)->withQueryString();
+            $reservas = Reserva::orderBy('primeiro_dia', 'asc')->paginate(8)->withQueryString();
         }
 
         return view('reservas', compact('reservas','search'));
@@ -241,37 +241,38 @@ class ReservaController extends Controller
 
         $config = Config::find(1);
 
-        if($request->pagamento === "Não-Pago"){
-            $valor = $config->nao_pago;
-        }
 
-        if(($request->pagamento === "Entrada") && ($request->ultimo_dia === null)){
-            $valor = $config->entrada_um;
-        }else if(($request->pagamento === "Entrada") && !($request->ultimo_dia === null)){
-            $valor = $config->entrada_dois;
-        }
+        $data = $request->only('nome', 'primeiro_dia', 'ultimo_dia');
 
-        if(($request->pagamento === "Completo") && ($request->ultimo_dia === null)){
-            $valor = $config->completo_um;
-        }else if(($request->pagamento === "Completo") && !($request->ultimo_dia === null)){
-            $valor = $config->completo_dois;
-        }
+        
+        if($request->pagamento != $reserva->pagamento){
+            $data['pagamento'] = $request->pagamento;
 
-        $data = $request->only('nome', 'primeiro_dia', 'ultimo_dia','pagamento');
+            if($request->pagamento === "Não-Pago"){
+                $data['valor'] = $config->nao_pago;
+            }
 
-        if($request->valor && $request->valor != $reserva->valor){
-            $data['valor'] = $request->valor;
-            $reserva->update($data);
+            if(($request->pagamento === "Entrada") && ($request->ultimo_dia === null)){
+                $data['valor'] = $config->entrada_um;
+            }else if(($request->pagamento === "Entrada") && !($request->ultimo_dia === null)){
+                $data['valor'] = $config->entrada_dois;
+            }
+
+            if(($request->pagamento === "Completo") && ($request->ultimo_dia === null)){
+                $data['valor'] = $config->completo_um;
+            }else if(($request->pagamento === "Completo") && !($request->ultimo_dia === null)){
+                $data['valor'] = $config->completo_dois;
+            }
+
+            if($request->valor != $reserva->valor){
+                $data['valor'] = $request->valor;
+            }
+
         }else{
-            $reserva->update([
-                'nome' => $request->nome,
-                'primeiro_dia' => $request->primeiro_dia,
-                'ultimo_dia' => $request->ultimo_dia,
-                'pagamento' => $request->pagamento,
-                'valor' => $valor,
-            ]);
+            $data['valor'] = $request->valor;
         }
-
+        
+        $reserva->update($data);
 
         return redirect()->route('reservas.ver', ['id'=> $id]  )->with('mensagem', 'Editado com Sucesso!');   
     }
