@@ -7,10 +7,21 @@
 
 
     <div class="main-secundaria">
-
         <div class="table">
             <table>
-                @if((count($reservas) > 0 ))
+                <form action="{{ route('reservas') }}" method="GET">
+                    
+                        <div class="select-rerservas">
+                            <select name="select" id="select" id="search">
+                                <option value="andamento"> {{date('d/m/Y')}}</option>
+                                <option value="todos">Todas reservas</option>
+                            </select>
+                            <button type="submit"><i class="fas fa-search"></i></button>
+                        </div>
+                    
+                </form>
+
+                @if (count($reservas) > 0)
                     <tr>
                         <th class="datas">Datas</th>
                         <th class="nao-importante">Nomes</th>
@@ -18,9 +29,9 @@
                         <th>Consultar</th>
                     </tr>
                 @else
-                <div class="title">
-                    <h1>Não possui reservas</h1>
-                </div>
+                    <div class="title">
+                        <h1>Não possui reservas</h1>
+                    </div>
                 @endif
 
                 @foreach ($reservas as $reserva)
@@ -29,12 +40,13 @@
                             <td class="datas">{{ date('d/m/Y', strtotime($reserva->primeiro_dia)) }}</td>
                         @else
                             <td class="datas">
-                                {{ date('d/m/Y', strtotime($reserva->primeiro_dia)) }} - {{ date('d/m/Y', strtotime($reserva->ultimo_dia)) }}
+                                {{ date('d/m/Y', strtotime($reserva->primeiro_dia)) }} -
+                                {{ date('d/m/Y', strtotime($reserva->ultimo_dia)) }}
                             </td>
                         @endif
 
                         <td class="nao-importante">{{ $reserva->nome }}</td>
-                        
+
                         @if ($reserva->pagamento != 'Não-Pago')
                             <td class="nao-importante">{{ $reserva->pagamento }}: R${{ $reserva->valor }}</td>
                         @else
@@ -44,7 +56,6 @@
                         <td><a href="{{ route('reservas.ver', ['id' => $reserva->id]) }}" class="show">Ver mais</a></td>
                     </tr>
                 @endforeach
-
             </table>
         </div>
 
