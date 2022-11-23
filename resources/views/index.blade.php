@@ -1,7 +1,6 @@
 @extends('layouts.template')
 
 @section('content')
-
     @include('layouts.topbar')
 
     @include('layouts.sidebar')
@@ -18,11 +17,11 @@
                     <i class="far fa-calendar-alt"></i>
                 </div>
             </div>
-            
+
 
             <div class="card">
                 <div class="card-content">
-                    <div class="number">${{$totalTodos}}</div>
+                    <div class="number">${{ $totalTodos }}</div>
                     <div class="card-name">Total de Ganhos (Todos os Anos)</div>
                 </div>
                 <div class="icon-box">
@@ -32,7 +31,7 @@
 
         </div>
         <br>
-        <div class="config" >
+        <div class="config">
             <a href="{{ route('config') }}"><i class="fas fa-cog"></i> Configurações de Preços</a>
         </div>
         <div id="cards">
@@ -77,73 +76,87 @@
                 </div>
             </div>
 
-            
-            
-
         </div>
-        <div class="charts">
+        
+        <div class="chart">
 
-            <div class="chart">
+            <div class="charts">
 
-                <h2><i class="fas fa-chart-bar"></i> Ganhos ({{$ano}})</h2>
-                <h2>Total : ${{$totalAno}} </h2>
+                <div class="chart">
+                    
+                    
+                    <div class="search-ano">
+                        <h2><i class="fas fa-chart-bar"></i> Ganhos ({{ $ano }})</h2>
+                        <h2>Total : ${{ $totalAno }} </h2>
+                        <div class="search">
+                            <form action="{{ route('index') }}" method="GET">
+            
+                                <button type="submit" class="lupa"><i class="fas fa-search"></i></button>
+                                <input type="search" name="ano" placeholder="Pesquisar ano" @if($ano != date('Y') )value="{{ $ano }}" @endif>
+            
+                            </form>
+                        </div>
+                    </div>
 
-                <canvas id="barChart"></canvas>
-                <script>
-                    new Chart(document.getElementById("barChart"), {
-                        type: 'bar',
-                        data: {
-                            labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-                            datasets: [{
-                                label: 'Ganhos em $',
-                                data: [{{$janeiro}}, {{$fevereiro}}, {{$marco}}, {{$abril}}, {{$maio}}, {{$junho}}, {{$julho}}, {{$agosto}}, {{$setembro}}, {{$outubro}}, {{$novembro}}, {{$dezembro}}],
-                                backgroundColor: [
-                                    'green',
-                                ],
-                                borderColor: [
-                                    'rgb(41, 155, 99, 1)',
-                                ],
-                                borderWidth: 5
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                        }
-                    });
-                </script>
+                    <canvas id="barChart"></canvas>
+                    <script>
+                        new Chart(document.getElementById("barChart"), {
+                            type: 'bar',
+                            data: {
+                                labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                                datasets: [{
+                                    label: 'Ganhos em $',
+                                    data: [{{ $janeiro }}, {{ $fevereiro }}, {{ $marco }},
+                                        {{ $abril }}, {{ $maio }}, {{ $junho }},
+                                        {{ $julho }}, {{ $agosto }}, {{ $setembro }},
+                                        {{ $outubro }}, {{ $novembro }}, {{ $dezembro }}
+                                    ],
+                                    backgroundColor: [
+                                        'green',
+                                    ],
+                                    borderColor: [
+                                        'rgb(41, 155, 99, 1)',
+                                    ],
+                                    borderWidth: 5
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                            }
+                        });
+                    </script>
+                </div>
+
+                <div class="chart" id="doughnut-chart">
+                    <h2><i class="fas fa-chart-pie"></i> Reservas</h2>
+                    <canvas id="doughnut"></canvas>
+
+                    <script>
+                        var m1 =
+                            new Chart(document.getElementById("doughnut"), {
+                                type: 'doughnut',
+                                data: {
+                                    labels: ['Não-Pago', 'Entrada', 'Completo', ],
+                                    datasets: [{
+                                        label: 'Employess',
+                                        data: [{{ $nao_pago }}, {{ $entrada }}, {{ $completo }}],
+                                        backgroundColor: [
+                                            "orange",
+                                            "green",
+                                            "indigo",
+                                        ],
+
+                                    }]
+                                },
+                                options: {
+                                    responsive: true,
+                                }
+                            });
+                    </script>
+
+                </div>
+
             </div>
 
-            <div class="chart" id="doughnut-chart">
-                <h2><i class="fas fa-chart-pie"></i> Reservas</h2>
-                <canvas id="doughnut"></canvas>
-
-                <script>
-                    var m1 = 
-                    new Chart(document.getElementById("doughnut"), {
-                        type: 'doughnut',
-                        data: {
-                            labels: ['Não-Pago', 'Entrada', 'Completo', ],
-                            datasets: [{
-                                label: 'Employess',
-                                data: [{{$nao_pago}} , {{ $entrada }}, {{$completo}}],
-                                backgroundColor: [
-                                    "orange",
-                                    "green",
-                                    "indigo",
-                                ],
-
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                        }
-                    });
-                </script>
-
-            </div>
-
         </div>
-
-    </div>
-
-@endsection
+    @endsection

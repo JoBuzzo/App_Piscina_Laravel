@@ -263,7 +263,22 @@
     color: var(--primeiracor);
 }
 
+.search-ano{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
+.search-ano .search input{
+    width: 200px;
+    height: 40px;
+    padding-left: 30px;
+    font-size: 18px;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    background: #ededed;
+}
 /* <charts> */
 .charts {
     display: grid;
@@ -286,6 +301,9 @@
     margin-bottom: 5px;
     color: var(--primeiracor);
     text-align: left;
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: 10px;
 }
 /* </charts> */
 
@@ -305,8 +323,10 @@
 
 @media (max-width:880px){
     /* <main> */
+    .search-ano{
+        display: block;
+    }
     .chart h2{
-        text-align: left;
         font-size: 14px;
     }
     .lupa{

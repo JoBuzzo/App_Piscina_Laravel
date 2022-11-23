@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class ReservaController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
 
         $reservas = Reserva::all();
         if(!$config = Config::find(1)){
@@ -50,6 +50,10 @@ class ReservaController extends Controller
 
         $ano = date('Y'); //ano atual
 
+        if($request->ano){
+            $ano = $request->ano;
+        }
+        
         foreach ($reservas as $reserva) {
             // Quantidade de datas reservadas
             if($reserva->primeiro_dia){
