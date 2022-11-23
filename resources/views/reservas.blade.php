@@ -59,7 +59,7 @@
             </table>
         </div>
 
-        <div style="margin-top: 24px;">
+        <div class="form-group">
             {{ $reservas->links() }}
         </div>
 
