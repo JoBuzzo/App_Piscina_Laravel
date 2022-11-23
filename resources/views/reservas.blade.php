@@ -12,7 +12,6 @@
                 <form action="{{ route('reservas') }}" method="GET">
                         <div class="select-rerservas">
                             <select name="select" id="select" id="search">
-                                <option>Selecione aqui</option>
                                 <option value="andamento">Em andamento</option>
                                 <option value="expiradas">Reservas expiradas</option>
                                 <option value="todos">Todos</option>
@@ -37,20 +36,20 @@
                 @foreach ($reservas as $reserva)
                     <tr>
                         @if ($reserva->ultimo_dia === null)
-                            <td class="datas">{{ date('d/m/Y', strtotime($reserva->primeiro_dia)) }}</td>
+                            <td class="datas" style="@if (date('Y-m-d') == $reserva->primeiro_dia) font-weight:bold  @endif">{{ date('d/m/Y', strtotime($reserva->primeiro_dia)) }}</td>
                         @else
-                            <td class="datas">
+                            <td class="datas" style="@if (date('Y-m-d') == $reserva->primeiro_dia) font-weight:bold  @endif">
                                 {{ date('d/m/Y', strtotime($reserva->primeiro_dia)) }} -
                                 {{ date('d/m/Y', strtotime($reserva->ultimo_dia)) }}
                             </td>
                         @endif
 
-                        <td class="nao-importante">{{ $reserva->nome }}</td>
+                        <td class="nao-importante" style="@if (date('Y-m-d') == $reserva->primeiro_dia) font-weight:bold  @endif">{{ $reserva->nome }}</td>
 
                         @if ($reserva->pagamento != 'Não-Pago')
-                            <td class="nao-importante">{{ $reserva->pagamento }}: R${{ $reserva->valor }}</td>
+                            <td class="nao-importante" style="@if (date('Y-m-d') == $reserva->primeiro_dia) font-weight:bold  @endif">{{ $reserva->pagamento }}: R${{ $reserva->valor }}</td>
                         @else
-                            <td class="nao-importante">{{ $reserva->pagamento }}</td>
+                            <td class="nao-importante" style="@if (date('Y-m-d') == $reserva->primeiro_dia) font-weight:bold  @endif">{{ $reserva->pagamento }}</td>
                         @endif
 
                         <td><a href="{{ route('reservas.ver', ['id' => $reserva->id]) }}" class="show">Ver mais</a></td>

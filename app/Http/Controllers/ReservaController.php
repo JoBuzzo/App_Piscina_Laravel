@@ -172,7 +172,7 @@ class ReservaController extends Controller
 
         $date = date('Y-m-d');
         if(!$search){
-            $reservas = Reserva::orderBy('primeiro_dia', 'asc')->where('primeiro_dia', '>', "$date")->paginate(12)->withQueryString();
+            $reservas = Reserva::orderBy('primeiro_dia', 'asc')->where('primeiro_dia', '>=', "$date")->paginate(12)->withQueryString();
         }
 
         if( $select === "expiradas"){
