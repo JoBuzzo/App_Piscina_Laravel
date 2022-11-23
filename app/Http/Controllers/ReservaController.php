@@ -71,7 +71,6 @@ class ReservaController extends Controller
                 $completo ++;
                 $totalTodos+=$reserva->valor; //total de ganhos de todos os anos
             }
-
             //total de ganhos em cada mes (grafico de barras) //total de ganhos do ano atual
             switch($reserva->primeiro_dia){
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 1) && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
@@ -184,7 +183,7 @@ class ReservaController extends Controller
         
 
 
-        return view('reservas', compact('reservas','search'));
+        return view('reservas', compact('reservas','search', 'select'));
     }
 
 

@@ -12,9 +12,30 @@
                 <form action="{{ route('reservas') }}" method="GET">
                     <div class="select-rerservas">
                         <select name="select" id="select" id="search">
-                            <option value="andamento">Em andamento</option>
-                            <option value="expiradas">Reservas expiradas</option>
-                            <option value="todos">Todos</option>
+                            @switch($select)
+                                @case($select === 'andamento')
+                                    <option value="andamento" selected="selected">Proximas Datas</option>
+                                    <option value="expiradas">Datas Vencidas</option>
+                                    <option value="todos">Todas Datas</option>
+                                @break
+
+                                @case($select === 'expiradas')
+                                    <option value="andamento">Proximas Datas</option>
+                                    <option value="expiradas" selected="selected">Datas Vencidas</option>
+                                    <option value="todos">Todas Datas</option>
+                                @break
+
+                                @case($select === 'todos')
+                                    <option value="andamento">Proximas Datas</option>
+                                    <option value="expiradas">Datas Vencidas</option>
+                                    <option value="todos" selected="selected">Todas Datas</option>
+                                @break
+
+                                @default
+                                    <option value="andamento">Proximas Datas</option>
+                                    <option value="expiradas">Datas Vencidas</option>
+                                    <option value="todos">Todas Datas</option>
+                            @endswitch
                         </select>
                         <button type="submit"><i class="fas fa-search"></i></button>
                     </div>
@@ -46,7 +67,6 @@
                         @else
                             <td class="datas" style="@if (date('Y-m-d') == $reserva->primeiro_dia) font-weight:bold @endif">
                                 @if (date('Y-m-d') == $reserva->primeiro_dia)
-
                                     Hoje e {{ date('d/m/Y', strtotime($reserva->ultimo_dia)) }}
                                 @else
                                     {{ date('d/m/Y', strtotime($reserva->primeiro_dia)) }} -
