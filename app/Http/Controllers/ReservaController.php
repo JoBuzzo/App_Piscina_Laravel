@@ -162,24 +162,24 @@ class ReservaController extends Controller
         $select = $request->select;
         $reservas = Reserva::where(function ($query) use ($search) {
             if($search){
-                
                 $query->where("nome",'LIKE', "%{$search}%");
                 $query->orwhere("pagamento",'LIKE', "%{$search}%");
                 $query->orwhere("valor",'LIKE', "%{$search}%");
                 $query->orwhereDate("primeiro_dia",'LIKE', "%{$search}%");
                 $query->orwhereDate("ultimo_dia",'LIKE', "%{$search}%");
-
-                
             }
-        })->paginate(10)->withQueryString();
+        })->paginate(8)->withQueryString();
+
         $date = date('Y-m-d');
         if(!$search){
             $reservas = Reserva::orderBy('primeiro_dia', 'asc')->where('primeiro_dia', '>', "$date")->paginate(8)->withQueryString();
         }
+
+        if( $select === "expiradas"){
+            $reservas = Reserva::orderBy('primeiro_dia', 'asc')->where('primeiro_dia', '<', "$date")->paginate(8)->withQueryString();
+        }
         if( $select === "todos"){
             $reservas = Reserva::orderBy('primeiro_dia', 'asc')->paginate(8)->withQueryString();
-        }else{
-            $reservas = Reserva::orderBy('primeiro_dia', 'asc')->where('primeiro_dia', '>', "$date")->paginate(8)->withQueryString();
         }
         
 

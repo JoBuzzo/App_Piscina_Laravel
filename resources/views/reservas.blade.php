@@ -10,15 +10,15 @@
         <div class="table">
             <table>
                 <form action="{{ route('reservas') }}" method="GET">
-                    
                         <div class="select-rerservas">
                             <select name="select" id="select" id="search">
-                                <option value="andamento"> {{date('d/m/Y')}}</option>
-                                <option value="todos">Todas reservas</option>
+                                <option>Selecione aqui</option>
+                                <option value="andamento">Em andamento</option>
+                                <option value="expiradas">Reservas expiradas</option>
+                                <option value="todos">Todos</option>
                             </select>
                             <button type="submit"><i class="fas fa-search"></i></button>
                         </div>
-                    
                 </form>
 
                 @if (count($reservas) > 0)
@@ -30,7 +30,7 @@
                     </tr>
                 @else
                     <div class="title">
-                        <h1>Não possui reservas</h1>
+                        <h1>Reserva não encontrada</h1>
                     </div>
                 @endif
 
