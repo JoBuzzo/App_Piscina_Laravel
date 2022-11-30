@@ -8,7 +8,9 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
         <link rel="stylesheet" href="/CSS/style.css">
         <link rel="stylesheet" href="/CSS/main.css">
-        <script src="https://cdn.tailwindcss.com"></script> {{-- Para a Paginação --}}
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.4/dist/flowbite.min.css" />
+        <script src="https://unpkg.com/flowbite@1.5.4/dist/flowbite.js"></script>
         <title>Painel de Administrador</title>
     </head>
 <body>

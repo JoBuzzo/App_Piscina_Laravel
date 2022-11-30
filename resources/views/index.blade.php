@@ -7,7 +7,6 @@
 
     <div class="main">
         <div class="cards">
-
             <div class="card">
                 <div class="card-content">
                     <div class="number">{{ $datas }}</div>
@@ -18,7 +17,6 @@
                 </div>
             </div>
 
-
             <div class="card">
                 <div class="card-content">
                     <div class="number">${{ $totalTodos }}</div>
@@ -28,54 +26,6 @@
                     <i class="fas fa-dollar-sign"></i>
                 </div>
             </div>
-
-        </div>
-        <br>
-        <div class="config">
-            <a href="{{ route('config') }}"><i class="fas fa-cog"></i> Configurações de Preços</a>
-        </div>
-        <div id="cards">
-            <div id="card">
-                <div class="card-content">
-                    <div class="number">R$ {{ $config->entrada_um }}</div>
-                    <div class="card-name">Preço entrada (1 dia)</div>
-                </div>
-                <div class="icon-box">
-                    <i class="fas fa-hand-holding-usd"></i>
-                </div>
-            </div>
-
-            <div id="card">
-                <div class="card-content">
-                    <div class="number">R$ {{ $config->completo_um }}</div>
-                    <div class="card-name">Preço completo (1 dia)</div>
-                </div>
-                <div class="icon-box">
-                    <i class="fas fa-hand-holding-usd"></i>
-                </div>
-            </div>
-
-            <div id="card">
-                <div class="card-content">
-                    <div class="number">R$ {{ $config->entrada_dois }}</div>
-                    <div class="card-name">Preço entrada (2 dias)</div>
-                </div>
-                <div class="icon-box">
-                    <i class="fas fa-hand-holding-usd"></i>
-                </div>
-            </div>
-
-
-            <div id="card">
-                <div class="card-content">
-                    <div class="number">R$ {{ $config->completo_dois }}</div>
-                    <div class="card-name">Preço completo (2 dias)</div>
-                </div>
-                <div class="icon-box">
-                    <i class="fas fa-hand-holding-usd"></i>
-                </div>
-            </div>
-
         </div>
         
         <div class="chart">
@@ -90,10 +40,8 @@
                         <h2>Total : ${{ $totalAno }} </h2>
                         <div class="search">
                             <form action="{{ route('index') }}" method="GET">
-            
                                 <button type="submit" class="lupa"><i class="fas fa-search"></i></button>
                                 <input type="search" name="ano" placeholder="Pesquisar ano" @if($ano != date('Y') )value="{{ $ano }}" @endif>
-            
                             </form>
                         </div>
                     </div>
