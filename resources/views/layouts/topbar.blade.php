@@ -14,7 +14,7 @@
     </div>
 
 
-        <button id="dropdownUserAvatarButton" data-dropdown-toggle="dropdownAvatar" class="flex mx-3 text-sm rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300" type="button">
+        <button id="dropdownUserAvatarButton" data-dropdown-toggle="dropdownAvatar" class="avatar flex mx-3 text-sm rounded-full focus:ring-4 focus:ring-gray-300" type="button">
             <img class="rounded-full" src="/IMG/user.png" alt="user photo">
         </button>
         <!-- Dropdown menu -->

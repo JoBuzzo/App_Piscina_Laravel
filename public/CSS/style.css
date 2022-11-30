@@ -92,36 +92,8 @@
     background: var(--primeiracor);
     overflow-x: hidden;
 }
-
-.sidebar ul{
-    margin-top: 20px;
-}
-
-.sidebar ul li{
-    width: 100%;
-    list-style: none;
-}
-
-.sidebar ul li:hover{
-    background: var(--segundacor);
-}
-.sidebar ul li:hover a{
-    color: var(--primeiracor);
-}
-
-.sidebar ul li a{
-    width: 100%;
-    text-decoration: none;
-    color: var(--segundacor);
-    height: 60px;
-    display: flex;
-    align-items: center;
-}
-
-.sidebar ul li a i{
-    min-width: 60px;
-    font-size: 24px;
-    text-align: center;
+.mobile{
+    display: none;
 }
 /* </sidebar> */
 
@@ -282,7 +254,7 @@
 
 }
 @media (max-width:500px){
-
+    
     /* <topbar> */
     .topbar{
         grid-template-columns: 0.4fr 5fr 0.4fr 3fr;
@@ -299,6 +271,16 @@
     .search input{
         padding: 0 10px;
     }
+    .avatar{
+        width: 100%;
+    }
+    .desktop{
+        display: none;
+    }
+    .mobile{
+        display: block;
+    }
+    
     /* </topbar> */
 
     /* <main> */
