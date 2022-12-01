@@ -41,7 +41,6 @@
     width: 900px;
     height: 530px;
     background: #fff;
-    box-shadow: 1px 4px 8px 2px rgb(0, 0, 0, 0.08);
 }
 .title{
     text-align: center;
@@ -151,22 +150,6 @@ select{
     border: 2px solid black;
 }
 
-.delete{
-    font-size: 20px;
-    font-weight: bold;
-    border: 0;
-    border-radius: 10px;
-    padding: 5px;
-    background: red;
-    color: var(--segundacor);
-    cursor: pointer;
-}
-
-
-.delete:hover{
-    background: rgb(255, 85, 85);
-    color: var(--segundacor);
-}
 
 
 /* <mensagens> */
@@ -213,7 +196,7 @@ select{
     .main-secundaria {  
         left: 80px;
         top: 100px;
-        width: calc(100% - 60px);
+        width: calc(100% - 80px);
         height: 550px;
     }
 }

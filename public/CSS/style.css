@@ -67,7 +67,7 @@
     right: 100%;
     top: 5px;
     cursor: pointer;
-    color: var(--primeiracor);
+    color: #888;
 }
 
 .lupa{
@@ -79,6 +79,9 @@
     border: none;
 }
 
+.avatar{
+    width: 100%;
+}
 /* </topbar> */
 
 
@@ -219,12 +222,12 @@
 /* ------- Resposividade ------- */
 @media (max-width:1115px){
     .sidebar{
-        width: 60px;
+        width: 55px;
     }
 
     .main {
         left: 60px;
-        width: calc(100% - 60px);
+        width: calc(100% - 70px);
     }
 }
 
@@ -269,9 +272,6 @@
     }
     .search input{
         padding: 0 10px;
-    }
-    .avatar{
-        width: 100%;
     }
     .desktop{
         display: none;

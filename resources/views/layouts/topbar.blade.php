@@ -34,7 +34,7 @@
             </li>
             </ul>
             <div class="py-1">
-            <a href="{{ route('logout') }}" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100"><i class="fas fa-sign-out-alt"></i> Log-out</a>
+            <a href="{{ route('logout') }}" class="block py-2 px-4 text-sm c hover:bg-gray-100"><i class="fas fa-sign-out-alt"></i> Log-out</a>
             </div>
         </div>
         @endauth

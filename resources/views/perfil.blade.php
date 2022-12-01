@@ -11,20 +11,12 @@
         <div class="card-container">
 
 
-
-            <div class="top">
-
-                <div class="image-container">
-                    <i class="fas fa-user-alt"></i>
-                </div>
-
-            </div>
             <div class="bottom">
 
                 <form action="{{ route('update.user') }}" method="POST">
                     @method('PUT')
                     @csrf
-                    <div class="form-group">
+                    <div class="form-group space-y-3">
                         <div class="input-label">
                             <label for="name">Nome</label>
                             <input type="text" value="{{ $user->name }}" name="name"
