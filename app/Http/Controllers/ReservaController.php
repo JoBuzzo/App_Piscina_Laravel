@@ -162,7 +162,7 @@ class ReservaController extends Controller
         
 
         $search = $request->search;
-        $select = $request->select;
+        $filter = $request->filter;
         $reservas = Reserva::where(function ($query) use ($search) {
             if($search){
                 $query->where("nome",'LIKE', "%{$search}%");
@@ -178,16 +178,16 @@ class ReservaController extends Controller
             $reservas = Reserva::orderBy('primeiro_dia', 'asc')->where('primeiro_dia', '>=', "$date")->paginate(12)->withQueryString();
         }
 
-        if( $select === "expiradas"){
+        if( $filter === "Vencidas"){
             $reservas = Reserva::orderBy('primeiro_dia', 'asc')->where('primeiro_dia', '<', "$date")->paginate(12)->withQueryString();
         }
-        if( $select === "todos"){
+        if( $filter === "Todas"){
             $reservas = Reserva::orderBy('primeiro_dia', 'asc')->paginate(12)->withQueryString();
         }
         
 
 
-        return view('reservas', compact('reservas','search', 'select'));
+        return view('reservas', compact('reservas','search', 'filter'));
     }
 
 

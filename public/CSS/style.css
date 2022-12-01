@@ -201,7 +201,6 @@
     background: var(--segundacor);
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 1px 4px 8px 2px rgb(0, 0, 0, 0.08);
     width: 100%;
 }
 
@@ -257,7 +256,7 @@
     
     /* <topbar> */
     .topbar{
-        grid-template-columns: 0.4fr 5fr 0.4fr 3fr;
+        grid-template-columns: 0.4fr 5fr 0.4fr 2fr;
     }
     .logo h2{
         font-size: 16px;

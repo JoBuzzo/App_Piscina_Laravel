@@ -7,7 +7,7 @@
     <div class="search">
         <form action="{{ route('reservas') }}" method="GET">
                 <button type="submit" class="lupa"><i class="fas fa-search"></i></button>
-                <input type="search" id="search" placeholder="Pesquisar reservas" name="search"
+                <input type="search" id="search" placeholder="Pesquisar..." name="search"
                     @if (isset($search)) value="{{ $search }}" @endif>
 
         </form>
@@ -24,7 +24,7 @@
             </div>
             <ul class="py-1 text-sm" aria-labelledby="dropdownUserAvatarButton">
             <li>
-                <a href="" class="block py-2 px-4 hover:bg-gray-100"><i class="fas fa-chart-bar"></i> Dashboard</a>
+                <a href="{{ route('index') }}" class="block py-2 px-4 hover:bg-gray-100"><i class="fas fa-chart-bar"></i> Dashboard</a>
             </li>
             <li>
                 <a href="{{ route('perfil') }} " class="block py-2 px-4 hover:bg-gray-100"><i class="fa fa-user"></i> Perfil</a>
