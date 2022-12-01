@@ -27,21 +27,24 @@
                 </div>
             </div>
         </div>
-        
-        <div class="chart">
+
 
             <div class="charts">
 
-                <div class="chart">
-                    
-                    
+                <div class="chart space-y-5">
+
                     <div class="search-ano">
-                        <h2><i class="fas fa-chart-bar"></i> Ganhos ({{ $ano }})</h2>
-                        <h2>Total : ${{ $totalAno }} </h2>
-                        <div class="search">
+                        <div>
+                            <h2><i class="fas fa-chart-bar"></i> Ganhos ({{ $ano }})</h2>
+                        </div>
+                        <div>
+                            <h2>Total: ${{ $totalAno }} </h2>
+                        </div>
+                        <div class="search-number">
                             <form action="{{ route('index') }}" method="GET">
                                 <button type="submit" class="lupa"><i class="fas fa-search"></i></button>
-                                <input type="search" name="ano" placeholder="Pesquisar ano" @if($ano != date('Y') )value="{{ $ano }}" @endif>
+                                <input type="number" name="ano" placeholder="Pesquisar ano"
+                                    value="{{ $ano }}">
                             </form>
                         </div>
                     </div>
@@ -106,5 +109,4 @@
 
             </div>
 
-        </div>
     @endsection

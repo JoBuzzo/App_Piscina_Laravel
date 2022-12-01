@@ -130,7 +130,6 @@ input[type=submit]{
 }
 
 input[type=submit]:hover {
-    border: 2px solid var(--segundacor);
     background: #33333d;
     cursor: pointer;
 }
@@ -153,7 +152,6 @@ select{
 
 
 /* <mensagens> */
-
 
 .success{
     display: flex;
