@@ -18,22 +18,23 @@ class ReservaController extends Controller
         $nao_pago = 0;
         $entrada = 0;
         $completo = 0;
+
         $datas = 0; //todas datas reservadas (card)
         $totalTodos = 0; //total de ganhos de todos os anos (card)
 
         //total de ganhos em cada mes (grafico de barras)
-        $janeiro = 0;
-        $fevereiro = 0;
-        $marco = 0;
-        $abril = 0;
-        $maio = 0;
-        $junho = 0;
-        $julho = 0;
-        $agosto = 0;
-        $setembro = 0;
-        $outubro = 0;
-        $novembro = 0;
-        $dezembro = 0;
+        $mes['janeiro'] = 0; //1
+        $mes['fevereiro'] = 0; //2
+        $mes['marco'] = 0; //3
+        $mes['abril'] = 0; //4
+        $mes['maio'] = 0; //5
+        $mes['junho'] = 0; //6
+        $mes['julho'] = 0; //7
+        $mes['agosto'] = 0; //8
+        $mes['setembro'] = 0; //9
+        $mes['outubro'] = 0; //10
+        $mes['novembro'] = 0; //11
+        $mes['dezembro'] = 0; //12
 
         $totalAno = 0; //total de ganhos do ano atual
 
@@ -67,61 +68,62 @@ class ReservaController extends Controller
             //total de ganhos em cada mes (grafico de barras) //total de ganhos do ano atual
             switch($reserva->primeiro_dia){
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 1) && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
-                    $janeiro+= $reserva->valor;
+                    $mes['janeiro']+= $reserva->valor;
                     $totalAno+= $reserva->valor;
                 break;
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 2)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
-                    $fevereiro+= $reserva->valor;
+                    $mes['fevereiro']+= $reserva->valor;
                     $totalAno+= $reserva->valor;
                 break;
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 3)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
-                    $marco+= $reserva->valor;
+                    $mes['marco']+= $reserva->valor;
                     $totalAno+= $reserva->valor;
                 break;
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 4)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
-                    $abril+= $reserva->valor;
+                    $mes['abril']+= $reserva->valor;
                     $totalAno+= $reserva->valor;
                 break;
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 5)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
-                    $maio+= $reserva->valor;
+                    $mes['maio']+= $reserva->valor;
                     $totalAno+= $reserva->valor;
                 break;
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 6)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
-                    $junho+= $reserva->valor;
+                    $mes['junho']+= $reserva->valor;
                     $totalAno+= $reserva->valor;
                 break;
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 7)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
-                    $julho+= $reserva->valor;
+                    $mes['julho']+= $reserva->valor;
                     $totalAno+= $reserva->valor;
                 break;
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 8)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
-                    $agosto+= $reserva->valor;
+                    $mes['agosto']+= $reserva->valor;
                     $totalAno+= $reserva->valor;
                 break;
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 9)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
-                    $setembro+= $reserva->valor;
+                    $mes['setembro']+= $reserva->valor;
                     $totalAno+= $reserva->valor;
                 break;
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 10)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
-                    $outubro+= $reserva->valor;
+                    $mes['outubro']+= $reserva->valor;
                     $totalAno+= $reserva->valor;
                 break;
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 11)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
-                    $novembro+= $reserva->valor;
+                    $mes['novembro']+= $reserva->valor;
                     $totalAno+= $reserva->valor;
                 break;
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 12)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
-                    $dezembro+= $reserva->valor;
+                    $mes['dezembro']+= $reserva->valor;
                     $totalAno+= $reserva->valor;
                 break;
             }
-
         }
-       
+
+        $pagamentos['nao_pago'] = $nao_pago;
+        $pagamentos['entrada'] = $entrada;
+        $pagamentos['completo'] = $completo;
+
         return 
-        view('index',compact('totalTodos', 'totalAno','datas','nao_pago','entrada', 'completo',
-            'janeiro','fevereiro','marco','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro',
-            'ano'
+        view('index',compact('totalTodos', 'totalAno','datas','pagamentos','mes','ano'
         ));
     }
 

@@ -48,7 +48,7 @@
                             </form>
                         </div>
                     </div>
-
+                    
                     <canvas id="barChart"></canvas>
                     <script>
                         new Chart(document.getElementById("barChart"), {
@@ -57,10 +57,10 @@
                                 labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
                                 datasets: [{
                                     label: 'Ganhos em $',
-                                    data: [{{ $janeiro }}, {{ $fevereiro }}, {{ $marco }},
-                                        {{ $abril }}, {{ $maio }}, {{ $junho }},
-                                        {{ $julho }}, {{ $agosto }}, {{ $setembro }},
-                                        {{ $outubro }}, {{ $novembro }}, {{ $dezembro }}
+                                    data: [{{ $mes['janeiro'] }}, {{ $mes['fevereiro'] }}, {{ $mes['marco'] }},
+                                        {{ $mes['abril'] }}, {{ $mes['maio'] }}, {{ $mes['junho'] }},
+                                        {{ $mes['julho'] }}, {{ $mes['agosto'] }}, {{ $mes['setembro'] }},
+                                        {{ $mes['outubro'] }}, {{ $mes['novembro'] }}, {{ $mes['dezembro'] }}
                                     ],
                                     backgroundColor: [
                                         'green',
@@ -81,16 +81,15 @@
                 <div class="chart" id="doughnut-chart">
                     <h2><i class="fas fa-chart-pie"></i> Reservas</h2>
                     <canvas id="doughnut"></canvas>
-
+                 
                     <script>
-                        var m1 =
                             new Chart(document.getElementById("doughnut"), {
                                 type: 'doughnut',
                                 data: {
                                     labels: ['Não-Pago', 'Entrada', 'Completo', ],
                                     datasets: [{
                                         label: 'Employess',
-                                        data: [{{ $nao_pago }}, {{ $entrada }}, {{ $completo }}],
+                                        data: [ {{$pagamentos['nao_pago']}}, {{$pagamentos['entrada']}}, {{$pagamentos['completo']}} ],
                                         backgroundColor: [
                                             "orange",
                                             "green",

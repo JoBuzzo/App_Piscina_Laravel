@@ -53,7 +53,7 @@
                             <div>
                                 @if (session('mensagem'))
                                     <div class="success">
-                                        <span class="msg">{{ session('mensagem') }}</span>
+                                        {{ session('mensagem') }}
                                     </div>
                                 @endif
                             </div>

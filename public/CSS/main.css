@@ -156,22 +156,19 @@ select{
 .success{
     display: flex;
     align-items: center;
-    font-weight: bold;
-    font-size: 14px;
-    position: absolute;
     color: green;
+    font-weight: bold;
+    font-size: 16px;
+    position: absolute;
 }
 
 
-.msg{
-    font-size: 18px;
-}
 .is-invalid{
     display: flex;
     align-items: center;
     color: red;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 16px;
     position: absolute;
 }
 .card-container .error{
@@ -216,6 +213,9 @@ select{
 
     .image-container .fa-user-alt{
         font-size: 30px;
+    }
+    table{
+        width: 100%;
     }
 }
 

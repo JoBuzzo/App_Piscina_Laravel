@@ -8,7 +8,7 @@
 
     <div class="main-secundaria">
 
-        <div class="w-3/4 sm:rounded-lg space-y-5">
+        <div class="table w-3/4 sm:rounded-lg space-y-5">
             <div class="flex justify-between items-center pb-4">
                 <div>
                     <button id="dropdownRadioButton" data-dropdown-toggle="dropdownRadio" class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5" type="button">
@@ -70,7 +70,7 @@
                         <th scope="col" class="nao-importante py-3 px-6">
                             Pagamento
                         </th>
-                        <th scope="col" class="py-3 px-6">
+                        <th scope="col" class="py-3 px-2 text-center">
                             Consultar
                         </th>
                     </tr>
@@ -97,8 +97,8 @@
                                 {{ $reserva->pagamento }}
                             @endif
                         </td>
-                        <td class="py-4 px-6">
-                            <a href="{{ route('reservas.ver', ['id' => $reserva->id]) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Ver</a>
+                        <td class="py-4 px-2 text-center">
+                            <a href="{{ route('reservas.ver', ['id' => $reserva->id]) }}" class="font-medium text-blue-600">Ver</a>
                         </td>
                     </tr>
                     @endforeach
