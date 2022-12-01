@@ -247,6 +247,13 @@
 /* </main> */
 
 /* ------- Resposividade ------- */
+@media (max-width:1386px){
+    .main {
+        overflow-x: hidden;
+    }
+}
+
+
 @media (max-width:1115px){
     .sidebar{
         width: 55px;
@@ -255,6 +262,12 @@
     .main {
         left: 60px;
         width: calc(100% - 70px);
+    }
+    .desktop{
+        display: none;
+    }
+    .mobile{
+        display: block;
     }
 }
 
@@ -296,12 +309,7 @@
     .search{
         width: 80%;
     }
-    .desktop{
-        display: none;
-    }
-    .mobile{
-        display: block;
-    }
+    
     
     /* </topbar> */
 
