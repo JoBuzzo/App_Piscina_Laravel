@@ -80,7 +80,7 @@
 }
 
 .avatar{
-    width: 100%;
+    width: 50px;
 }
 /* </topbar> */
 
@@ -272,6 +272,9 @@
 }
 
 @media (max-width:880px){
+    .avatar{
+        width: 30px;
+    }
     /* <main> */
     .search-ano{
         display: block;
