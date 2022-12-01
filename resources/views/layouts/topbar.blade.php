@@ -1,22 +1,23 @@
-@php
-    $nome = explode(' ', Auth::user()->name);
-    $segundo_nome = (isset($nome)) ? $nome[0] . ' ' . end($nome) : $nome[0];
-    $iniciais = strstr($segundo_nome, ' ', true)[0] . trim(strstr($segundo_nome, ' ')[1])
-@endphp
+
 <div class="topbar">
     <div class="logo">
         <i class="fas fa-swimming-pool"></i>
         <h2>Dashboard</h2>
     </div>
     @Auth
-    <div class="search">
-        <form action="{{ route('reservas') }}" method="GET">
-                <button type="submit" class="lupa"><i class="fas fa-search"></i></button>
-                <input type="search" id="search" placeholder="Pesquisar..." name="search"
-                    @if (isset($search)) value="{{ $search }}" @endif>
+    @php
+        $nome = explode(' ', Auth::user()->name);
+        $segundo_nome = (isset($nome)) ? $nome[0] . ' ' . end($nome) : $nome[0];
+        $iniciais = strstr($segundo_nome, ' ', true)[0] . trim(strstr($segundo_nome, ' ')[1])
+    @endphp
+        <div class="search">
+            <form action="{{ route('reservas') }}" method="GET">
+                    <button type="submit" class="lupa"><i class="fas fa-search"></i></button>
+                    <input type="search" id="search" placeholder="Pesquisar..." name="search"
+                        @if (isset($search)) value="{{ $search }}" @endif>
 
-        </form>
-    </div>
+            </form>
+        </div>
 
         <button id="dropdownUserAvatarButton" data-dropdown-toggle="dropdownAvatar" class="inline-flex overflow-hidden relative justify-center items-center w-10 h-10 bg-blue-200 rounded-full" type="button">
             <span class="font-medium text-gray-600 uppercase">{{ $iniciais }}</span>
@@ -41,5 +42,5 @@
             <a href="{{ route('logout') }}" class="block py-2 px-4 text-sm c hover:bg-gray-100"><i class="fas fa-sign-out-alt"></i> Log-out</a>
             </div>
         </div>
-        @endauth
+    @endauth
 </div>
