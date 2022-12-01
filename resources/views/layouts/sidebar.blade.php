@@ -1,3 +1,12 @@
+@php
+   use App\Models\Reserva;
+   $primeiro = Reserva::all()->where('primeiro_dia', '!=', false)->count();
+   $ultimo = Reserva::all()->where('ultimo_dia', '!=', false)->count();
+
+   $quantia = $primeiro + $ultimo;
+@endphp
+
+
 <div class="sidebar">
 
     <aside class="w-64" aria-label="Sidebar">
@@ -29,10 +38,8 @@
                 <ul id="dropdown-example" class="hidden py-2 space-y-2">
                     <li>
                         <a href="{{route('reservas')}}" class="flex items-center p-2 text-base font-normal text-white rounded-lg hover:bg-gray-900">
-                            <span class="flex-1 ml-3 whitespace-nowrap"><i class="far fa-calendar-alt text-gray-500 p-2"></i> Lista de Reservas</span>
-                            @isset($datas)
-                                <span class="inline-flex justify-center items-center p-3 ml-3 w-3 h-3 text-sm font-medium text-blue-600 bg-blue-200 rounded-full">{{ $datas }}</span>
-                            @endisset
+                           <span class="flex-1 ml-3 whitespace-nowrap"><i class="far fa-calendar-alt text-gray-500 p-2"></i> Lista de Reservas</span>
+                           <span class="inline-flex justify-center items-center p-3 ml-3 w-3 h-3 text-sm font-medium text-blue-600 bg-blue-200 rounded-full">{{ $quantia }}</span>
                         </a>
                      </li>
                       <li>
