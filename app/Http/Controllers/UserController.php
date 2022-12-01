@@ -7,22 +7,11 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
 
     public function login(){
-
-        if(!User::find(1)){
-            User::create([
-                'name' => 'Administrador',
-                'admin' => 1,
-                'password' => Hash::make('password'), 
-                'remember_token' => Str::random(10),
-            ]);
-            return redirect()->route('login');
-        }
 
         return view('login');
     }
@@ -44,19 +33,14 @@ class UserController extends Controller
     }
 
     public function perfil(){
-        if(!$user =  User::find(1)){
-            return redirect()->back('reservas');
-        }
+        $user =  User::find(1);
         return view('perfil', compact('user'));
         
     }
 
     public function update(UserFormRequest $request){
 
-        if(!$user = User::find(1)){
-            return redirect()->route('reservas');
-        }
-        
+        $user =  User::find(1);
 
         $data = $request->only('name');
         if($request->password){

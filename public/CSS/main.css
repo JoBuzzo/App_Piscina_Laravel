@@ -176,7 +176,7 @@ select{
 }
 .card-container .error{
     border: 1px solid red;
-    background: rgb(245, 245, 245);
+    background: rgb(248, 238, 238);
 }
 
 .card-container .error:focus{

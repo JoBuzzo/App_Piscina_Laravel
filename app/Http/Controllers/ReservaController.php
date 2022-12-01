@@ -13,22 +13,11 @@ class ReservaController extends Controller
     public function index(Request $request){
 
         $reservas = Reserva::all();
-        if(!$config = Config::find(1)){
-            Config::create([
-                'nao_pago' => 0,
-                'entrada_um' => 200,
-                'entrada_dois' => 350,
-                'completo_um' => 400,
-                'completo_dois' => 700,
-            ]);
-            return redirect()->route('index');
-        }
 
         // quantidades de opções de paamento (Gráfico de pizza)
         $nao_pago = 0;
         $entrada = 0;
         $completo = 0;
-
         $datas = 0; //todas datas reservadas (card)
         $totalTodos = 0; //total de ganhos de todos os anos (card)
 
@@ -126,19 +115,18 @@ class ReservaController extends Controller
                     $totalAno+= $reserva->valor;
                 break;
             }
+
         }
        
         return 
-        view('index',compact('totalTodos', 'totalAno','datas','nao_pago','entrada', 'completo','config',
+        view('index',compact('totalTodos', 'totalAno','datas','nao_pago','entrada', 'completo',
             'janeiro','fevereiro','marco','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro',
             'ano'
         ));
     }
 
     public function config(ConfigFormRequest $request){
-        if(!$config = Config::find(1)){
-            return redirect()->back('reservas');
-        }
+        $config = Config::find(1);
             
         $config->update([
             'nao_pago' => $request->nao_pago = 0,
@@ -152,9 +140,8 @@ class ReservaController extends Controller
     }
 
     public function viewConfig(){
-        if(!$config = Config::find(1)){
-            return redirect()->route('reservas');
-        }
+        $config = Config::find(1);
+        
         return view('config' ,compact('config'));
     }
 
@@ -185,7 +172,6 @@ class ReservaController extends Controller
             $reservas = Reserva::orderBy('primeiro_dia', 'asc')->paginate(12)->withQueryString();
         }
         
-
 
         return view('reservas', compact('reservas','search', 'filter'));
     }
