@@ -147,12 +147,12 @@
                                     <form action="{{ route('reservas.destroy', ['id' => $reserva->id]) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button data-modal-toggle="popup-modal" type="submit" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
-                                            Sim, Excluir
+                                        <button data-modal-toggle="popup-modal" type="submit" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-xl px-5 py-2.5 w-1/2 text-center m-1.5">
+                                            Excluir
                                         </button>
                                     </form>
-                                    <button data-modal-toggle="popup-modal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10">
-                                        Não, cancelar
+                                    <button data-modal-toggle="popup-modal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 rounded-lg border border-gray-200 text-xl font-medium px-5 py-2.5 w-1/2 hover:text-gray-900 focus:z-10 m-1.5">
+                                        Cancelar
                                     </button>
                                 </div>
                             </div>
