@@ -81,13 +81,27 @@
                             <label for="pagamento">Quanto o cliente pagou:</label>
 
                             <select name="valor_pago" id="valor" onchange="mostraCampo1(this);">
-                                <option value="{{ $reserva->valor_pago }}" selected>R${{ $reserva->valor_pago }}</option>
-                                <option value="{{ $config->nao_pago }}">R${{ $config->nao_pago }}</option>
-                                <option value="{{ $config->entrada_um }}">R${{ $config->entrada_um }}</option>
-                                <option value="{{ $config->entrada_dois }}">R${{ $config->entrada_dois }}</option>
-                                <option value="{{ $config->completo_um }}">R${{ $config->completo_um }}</option>
-                                <option value="{{ $config->completo_dois }}">R${{ $config->completo_dois }}</option>
-                                <option value="OUTRO">Outro</option>
+                                <option value="{{ $reserva->valor_pago }}" selected>
+                                    R${{ $reserva->valor_pago }}
+                                </option>
+                                <option value="{{ $config->nao_pago }}">
+                                    R${{ $config->nao_pago }}
+                                </option>
+                                <option value="{{ $config->entrada_um }}">
+                                    R${{ $config->entrada_um }}
+                                </option>
+                                <option value="{{ $config->entrada_dois }}">
+                                    R${{ $config->entrada_dois }}
+                                </option>
+                                <option value="{{ $config->completo_um }}">
+                                    R${{ $config->completo_um }}
+                                </option>
+                                <option value="{{ $config->completo_dois }}"
+                                    >R${{ $config->completo_dois }}
+                                </option>
+                                <option value="OUTRO">
+                                    Outro
+                                </option>
                             </select>
                             <div>
                                 @if ($errors->has('valor_pago'))
@@ -135,10 +149,6 @@
                                 @endif
                             </div>
                             <input type="text" name="outraopcao" id="outraopcao" style="visibility: hidden;">
-
-                            {{-- <label for="valor">Preço Total</label>
-                            <input type="text" name="valor_total" value="{{ old('valor_total') }}" placeholder="informe um valor caso não queira um padrão"
-                            class="@if ($errors->has('valor_total')) error @endif"> --}}
                         </div>
 
                         <div class="input-label">

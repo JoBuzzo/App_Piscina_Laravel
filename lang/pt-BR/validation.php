@@ -166,6 +166,8 @@ return [
     */
 
     'attributes' => [
+        'outrainst' => 'Outra opção',
+        'outraopcao' => 'Outra opção',
         'address'   => 'endereço',
         'age'       => 'idade',
         'body'      => 'conteúdo',

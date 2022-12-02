@@ -167,7 +167,7 @@ class ReservaController extends Controller
     public function store(ReservaFormRequest $request){
 
         $data = $request->only('nome', 'primeiro_dia', 'ultimo_dia', 'valor_pago', 'valor_total');
-        
+
         if($request->valor_pago === "OUTRO"){
             $data['valor_pago'] = $request->outrainst;
         }
@@ -201,7 +201,6 @@ class ReservaController extends Controller
         }
 
         $data = $request->only('nome', 'primeiro_dia', 'ultimo_dia', 'valor_pago', 'valor_total');
-
 
         if($request->valor_pago === "OUTRO"){
             $data['valor_pago'] = $request->outrainst;
