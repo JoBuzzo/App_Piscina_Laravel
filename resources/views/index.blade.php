@@ -89,7 +89,7 @@
                                     labels: ['Não-Pago', 'Entrada', 'Completo', ],
                                     datasets: [{
                                         label: 'Employess',
-                                        data: [ {{$pagamentos['nao_pago']}}, {{$pagamentos['entrada']}}, {{$pagamentos['completo']}} ],
+                                        data: [ ],
                                         backgroundColor: [
                                             "orange",
                                             "green",

@@ -13,8 +13,9 @@ class Reserva extends Model
         'nome',
         'primeiro_dia',
         'ultimo_dia',
-        'pagamento',
-        'valor',
+        'valor_pago',
+        'valor_pendente',
+        'valor_total',
     ];
     
 }

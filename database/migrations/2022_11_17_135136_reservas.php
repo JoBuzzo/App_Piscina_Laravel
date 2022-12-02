@@ -18,8 +18,9 @@ return new class extends Migration
             $table->string('nome');
             $table->string('primeiro_dia');
             $table->string('ultimo_dia')->nullable();
-            $table->string('pagamento');
-            $table->float('valor');
+            $table->float('valor_pago');
+            $table->float('valor_pendente');
+            $table->float('valor_total');
             $table->timestamps();
         });
     }

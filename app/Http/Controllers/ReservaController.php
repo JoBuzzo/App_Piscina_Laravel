@@ -14,11 +14,6 @@ class ReservaController extends Controller
 
         $reservas = Reserva::all();
 
-        // quantidades de opções de paamento (Gráfico de pizza)
-        $nao_pago = 0;
-        $entrada = 0;
-        $completo = 0;
-
         $datas = 0; //todas datas reservadas (card)
         $totalTodos = 0; //total de ganhos de todos os anos (card)
 
@@ -53,78 +48,62 @@ class ReservaController extends Controller
                 $datas ++;
             }
             
-            // quantidades de opções de paamento (Gráfico de pizza)
-            if($reserva->pagamento === "Não-Pago"){
-                $nao_pago ++;
-            }
-            if($reserva->pagamento === "Entrada"){
-                $entrada ++;
-                $totalTodos+=$reserva->valor; //total de ganhos de todos os anos
-            }
-            if($reserva->pagamento === "Completo"){
-                $completo ++;
-                $totalTodos+=$reserva->valor; //total de ganhos de todos os anos
-            }
             //total de ganhos em cada mes (grafico de barras) //total de ganhos do ano atual
             switch($reserva->primeiro_dia){
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 1) && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
-                    $mes['janeiro']+= $reserva->valor;
-                    $totalAno+= $reserva->valor;
+                    $mes['janeiro']+= $reserva->valor_pago;
+                    $totalAno+= $reserva->valor_pago;
                 break;
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 2)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
-                    $mes['fevereiro']+= $reserva->valor;
-                    $totalAno+= $reserva->valor;
+                    $mes['fevereiro']+= $reserva->valor_pago;
+                    $totalAno+= $reserva->valor_pago;
                 break;
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 3)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
-                    $mes['marco']+= $reserva->valor;
-                    $totalAno+= $reserva->valor;
+                    $mes['marco']+= $reserva->valor_pago;
+                    $totalAno+= $reserva->valor_pago;
                 break;
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 4)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
-                    $mes['abril']+= $reserva->valor;
-                    $totalAno+= $reserva->valor;
+                    $mes['abril']+= $reserva->valor_pago;
+                    $totalAno+= $reserva->valor_pago;
                 break;
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 5)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
-                    $mes['maio']+= $reserva->valor;
-                    $totalAno+= $reserva->valor;
+                    $mes['maio']+= $reserva->valor_pago;
+                    $totalAno+= $reserva->valor_pago;
                 break;
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 6)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
-                    $mes['junho']+= $reserva->valor;
-                    $totalAno+= $reserva->valor;
+                    $mes['junho']+= $reserva->valor_pago;
+                    $totalAno+= $reserva->valor_pago;
                 break;
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 7)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
-                    $mes['julho']+= $reserva->valor;
-                    $totalAno+= $reserva->valor;
+                    $mes['julho']+= $reserva->valor_pago;
+                    $totalAno+= $reserva->valor_pago;
                 break;
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 8)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
-                    $mes['agosto']+= $reserva->valor;
-                    $totalAno+= $reserva->valor;
+                    $mes['agosto']+= $reserva->valor_pago;
+                    $totalAno+= $reserva->valor_pago;
                 break;
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 9)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
-                    $mes['setembro']+= $reserva->valor;
-                    $totalAno+= $reserva->valor;
+                    $mes['setembro']+= $reserva->valor_pago;
+                    $totalAno+= $reserva->valor_pago;
                 break;
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 10)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
-                    $mes['outubro']+= $reserva->valor;
-                    $totalAno+= $reserva->valor;
+                    $mes['outubro']+= $reserva->valor_pago;
+                    $totalAno+= $reserva->valor_pago;
                 break;
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 11)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
-                    $mes['novembro']+= $reserva->valor;
-                    $totalAno+= $reserva->valor;
+                    $mes['novembro']+= $reserva->valor_pago;
+                    $totalAno+= $reserva->valor_pago;
                 break;
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 12)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
-                    $mes['dezembro']+= $reserva->valor;
-                    $totalAno+= $reserva->valor;
+                    $mes['dezembro']+= $reserva->valor_pago;
+                    $totalAno+= $reserva->valor_pago;
                 break;
             }
         }
 
-        $pagamentos['nao_pago'] = $nao_pago;
-        $pagamentos['entrada'] = $entrada;
-        $pagamentos['completo'] = $completo;
 
-        return 
-        view('index',compact('totalTodos', 'totalAno','datas','pagamentos','mes','ano'
-        ));
+
+        return view('index',compact('totalTodos', 'totalAno','datas','mes','ano'));
     }
 
     public function config(ConfigFormRequest $request){
@@ -155,8 +134,9 @@ class ReservaController extends Controller
         $reservas = Reserva::where(function ($query) use ($search) {
             if($search){
                 $query->where("nome",'LIKE', "%{$search}%");
-                $query->orwhere("pagamento",'LIKE', "%{$search}%");
-                $query->orwhere("valor",'LIKE', "%{$search}%");
+                $query->orwhere("valor_pago",'LIKE', "%{$search}%");
+                $query->orwhere("valor_pendente",'LIKE', "%{$search}%");
+                $query->orwhere("valor_total",'LIKE', "%{$search}%");
                 $query->orwhereDate("primeiro_dia",'LIKE', "%{$search}%");
                 $query->orwhereDate("ultimo_dia",'LIKE', "%{$search}%");
             }
@@ -180,44 +160,28 @@ class ReservaController extends Controller
 
 
     public function adicionar(){
-        return view('adicionar');
+        $config = Config::find(1);
+        return view('adicionar', compact('config'));
     }
 
     public function store(ReservaFormRequest $request){
 
-        $config = Config::find(1);
-
-        if($request->pagamento === "Não-Pago"){
-            $valor = $config->nao_pago;
+        $data = $request->only('nome', 'primeiro_dia', 'ultimo_dia', 'valor_pago', 'valor_total');
+        
+        if($request->valor_pago === "OUTRO"){
+            $data['valor_pago'] = $request->outrainst;
         }
 
-        if(($request->pagamento === "Entrada") && ($request->ultimo_dia === null)){
-            $valor = $config->entrada_um;
-        }else if(($request->pagamento === "Entrada") && !($request->ultimo_dia === null)){
-            $valor = $config->entrada_dois;
+        if($request->valor_total === "OUTRO"){
+            $data['valor_total'] = $request->outraopcao;
         }
 
-        if(($request->pagamento === "Completo") && ($request->ultimo_dia === null)){
-            $valor = $config->completo_um;
-        }else if(($request->pagamento === "Completo") && !($request->ultimo_dia === null)){
-            $valor = $config->completo_dois;
-        }
+
+        $pendente = $data['valor_total'] - $data['valor_pago'];
+        $data['valor_pendente'] = $pendente;
+        Reserva::create($data);
         
 
-        $data = $request->only('nome', 'primeiro_dia', 'ultimo_dia', 'pagamento');
-
-        if($request->valor){
-            $data['valor'] = $request->valor;
-            Reserva::create($data);
-        }else{
-            Reserva::create([
-                'nome' => $request->nome,
-                'primeiro_dia' => $request->primeiro_dia,
-                'ultimo_dia' => $request->ultimo_dia,
-                'pagamento' => $request->pagamento,
-                'valor' => $valor,
-            ]);
-        }
 
         return redirect()->route('reservas');
     }
@@ -226,49 +190,30 @@ class ReservaController extends Controller
         if(!$reserva =  Reserva::find($id)){
             return redirect()->back('reservas');
         }
-        return view('ver' ,compact('reserva'));
+        $config = Config::find(1);
+        return view('ver' ,compact('reserva','config'));
     }
 
     public function update(ReservaFormRequest $request, $id){
 
-        
         if(!$reserva = Reserva::find($id)){
             return redirect()->route('reservas');
         }
 
-        $config = Config::find(1);
+        $data = $request->only('nome', 'primeiro_dia', 'ultimo_dia', 'valor_pago', 'valor_total');
 
 
-        $data = $request->only('nome', 'primeiro_dia', 'ultimo_dia');
-
-        
-        if($request->pagamento != $reserva->pagamento){
-            $data['pagamento'] = $request->pagamento;
-
-            if($request->pagamento === "Não-Pago"){
-                $data['valor'] = $config->nao_pago;
-            }
-
-            if(($request->pagamento === "Entrada") && ($request->ultimo_dia === null)){
-                $data['valor'] = $config->entrada_um;
-            }else if(($request->pagamento === "Entrada") && !($request->ultimo_dia === null)){
-                $data['valor'] = $config->entrada_dois;
-            }
-
-            if(($request->pagamento === "Completo") && ($request->ultimo_dia === null)){
-                $data['valor'] = $config->completo_um;
-            }else if(($request->pagamento === "Completo") && !($request->ultimo_dia === null)){
-                $data['valor'] = $config->completo_dois;
-            }
-
-            if($request->valor != $reserva->valor){
-                $data['valor'] = $request->valor;
-            }
-
-        }else{
-            $data['valor'] = $request->valor;
+        if($request->valor_pago === "OUTRO"){
+            $data['valor_pago'] = $request->outrainst;
         }
-        
+
+        if($request->valor_total === "OUTRO"){
+            $data['valor_total'] = $request->outraopcao;
+        }
+
+        $pendente = $data['valor_total'] - $data['valor_pago'];
+        $data['valor_pendente'] = $pendente;
+
         $reserva->update($data);
 
         return redirect()->route('reservas.ver', ['id'=> $id]  )->with('mensagem', 'Editado com Sucesso!');   

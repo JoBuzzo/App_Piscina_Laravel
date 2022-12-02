@@ -69,51 +69,76 @@
 
                         </div>
                         <div class="input-label">
-                            <label for="pagamento">Pagamento</label>
-                            <select name="pagamento" id="pagamento">
+                            <script>
+                                function mostraCampo1(obj) {
+                                    var select = document.getElementById('valor');
+                                    var txt = document.getElementById("outrainst");
+                                    txt.style.visibility = (select.value == 'OUTRO') 
+                                        ? "visible" 
+                                        : "hidden";  
+                                }
+                            </script>
+                            <label for="pagamento">Quanto o cliente pagou:</label>
 
-                                @switch($reserva->pagamento)
-                                    @case($reserva->pagamento === 'Não-Pago')
-                                        <option selected="selected">{{ $reserva->pagamento }}</option>
-                                        <option value="Entrada">Entrada</option>
-                                        <option value="Completo">Completo</option>
-                                    @break
-
-                                    @case($reserva->pagamento === 'Entrada')
-                                        <option value="Não-Pago">Não-Pago</option>
-                                        <option selected="selected">{{ $reserva->pagamento }}</option>
-                                        <option value="Completo">Completo</option>
-                                    @break
-
-                                    @case($reserva->pagamento === 'Completo')
-                                        <option value="Não-Pago">Não-Pago</option>
-                                        <option value="Entrada">Entrada</option>
-                                        <option selected="selected">{{ $reserva->pagamento }}</option>
-                                    @break
-
-                                    @default
-                                        <option value="Não-Pago">Não-Pago</option>
-                                        <option value="Entrada">Entrada</option>
-                                        <option value="Completo">Completo</option>
-                                @endswitch
+                            <select name="valor_pago" id="valor" onchange="mostraCampo1(this);">
+                                <option value="{{ $reserva->valor_pago }}" selected>R${{ $reserva->valor_pago }}</option>
+                                <option value="{{ $config->nao_pago }}">R$00,00</option>
+                                <option value="{{ $config->entrada_um }}">R$200,00</option>
+                                <option value="{{ $config->entrada_dois }}">R$350,00</option>
+                                <option value="{{ $config->completo_um }}">R$400,00</option>
+                                <option value="{{ $config->completo_dois }}">R$700,00</option>
+                                <option value="OUTRO">Outro</option>
                             </select>
-                        </div>
-
-                        <div class="input-label">
-                            <label for="valor">Valor pago</label>
-                            <input type="text" placeholder="Informe o valor pago" value="{{ $reserva->valor }}" name="valor"
-                            class="@if ($errors->has('valor')) error @endif">
-
                             <div>
-                                @if ($errors->has('valor'))
+                                @if ($errors->has('valor_pago'))
                                     <div class="is-invalid">
-                                        @foreach ($errors->get('valor') as $error)
+                                        @foreach ($errors->get('valor_pago') as $error)
                                             {{ $error }}
                                         @endforeach
                                     </div>
                                 @endif
                             </div>
+                            <input type="text" name="outrainst" id="outrainst" style="visibility: hidden;">
+                        </div>
 
+                        <div class="input-label">
+                            <label for="valor pendente">Quanto falta</label>
+                            <input type="text" disabled value="R${{ $reserva->valor_pendente }}">
+
+                        </div>
+
+                        <div class="input-label">
+                            <script>
+                                function mostraCampo2(obj) {
+                                    var select = document.getElementById('valor_total');
+                                    var txt = document.getElementById("outraopcao");
+                                    txt.style.visibility = (select.value == 'OUTRO') 
+                                        ? "visible" 
+                                        : "hidden";  
+                                }
+                            </script>
+                            <label for="pagamento">Preço Total:</label>
+                            <select name="valor_total" id="valor_total" onchange="mostraCampo2(this);">
+                                <option value="{{ $reserva->valor_total }}" selected>R${{ $reserva->valor_total }}</option>
+                                <option value="{{ $config->completo_um }}">R$400,00</option>
+                                <option value="{{ $config->completo_dois }}">R$700,00</option>
+                                <option value="OUTRO">Outro</option>
+                            </select>
+
+                            <div>
+                                @if ($errors->has('valor_total'))
+                                    <div class="is-invalid">
+                                        @foreach ($errors->get('valor_total') as $error)
+                                            {{ $error }}
+                                        @endforeach
+                                    </div>
+                                @endif
+                            </div>
+                            <input type="text" name="outraopcao" id="outraopcao" style="visibility: hidden;">
+
+                            {{-- <label for="valor">Preço Total</label>
+                            <input type="text" name="valor_total" value="{{ old('valor_total') }}" placeholder="informe um valor caso não queira um padrão"
+                            class="@if ($errors->has('valor_total')) error @endif"> --}}
                         </div>
 
                         <div class="input-label">

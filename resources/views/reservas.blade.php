@@ -68,7 +68,13 @@
                             Nomes
                         </th>
                         <th scope="col" class="nao-importante py-3 px-6">
-                            Pagamento
+                            Pagou
+                        </th>
+                        <th scope="col" class="nao-importante py-3 px-6">
+                            Quanto falta
+                        </th>
+                        <th scope="col" class="nao-importante py-3 px-6">
+                            Valor Total
                         </th>
                         <th scope="col" class="py-3 px-2 text-center">
                             Consultar
@@ -91,11 +97,13 @@
                             {{$reserva->nome}}
                         </td>
                         <td class="nao-importante py-4 px-6">
-                            @if ($reserva->valor)
-                                {{ $reserva->pagamento }}: R${{ $reserva->valor }}  
-                            @else
-                                {{ $reserva->pagamento }}
-                            @endif
+                            R${{$reserva->valor_pago}}
+                        </td>
+                        <td class="nao-importante py-4 px-6">
+                            R${{$reserva->valor_pendente}}
+                        </td>
+                        <td class="nao-importante py-4 px-6">
+                            R${{$reserva->valor_total}}
                         </td>
                         <td class="py-4 px-2 text-center">
                             <a href="{{ route('reservas.ver', ['id' => $reserva->id]) }}" class="font-medium text-blue-600">Ver</a>
