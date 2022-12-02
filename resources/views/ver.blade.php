@@ -82,11 +82,11 @@
 
                             <select name="valor_pago" id="valor" onchange="mostraCampo1(this);">
                                 <option value="{{ $reserva->valor_pago }}" selected>R${{ $reserva->valor_pago }}</option>
-                                <option value="{{ $config->nao_pago }}">R$00,00</option>
-                                <option value="{{ $config->entrada_um }}">R$200,00</option>
-                                <option value="{{ $config->entrada_dois }}">R$350,00</option>
-                                <option value="{{ $config->completo_um }}">R$400,00</option>
-                                <option value="{{ $config->completo_dois }}">R$700,00</option>
+                                <option value="{{ $config->nao_pago }}">R${{ $config->nao_pago }}</option>
+                                <option value="{{ $config->entrada_um }}">R${{ $config->entrada_um }}</option>
+                                <option value="{{ $config->entrada_dois }}">R${{ $config->entrada_dois }}</option>
+                                <option value="{{ $config->completo_um }}">R${{ $config->completo_um }}</option>
+                                <option value="{{ $config->completo_dois }}">R${{ $config->completo_dois }}</option>
                                 <option value="OUTRO">Outro</option>
                             </select>
                             <div>
@@ -120,8 +120,8 @@
                             <label for="pagamento">Preço Total:</label>
                             <select name="valor_total" id="valor_total" onchange="mostraCampo2(this);">
                                 <option value="{{ $reserva->valor_total }}" selected>R${{ $reserva->valor_total }}</option>
-                                <option value="{{ $config->completo_um }}">R$400,00</option>
-                                <option value="{{ $config->completo_dois }}">R$700,00</option>
+                                <option value="{{ $config->completo_um }}">R${{ $config->completo_um }}</option>
+                                <option value="{{ $config->completo_dois }}">R${{ $config->completo_dois }}</option>
                                 <option value="OUTRO">Outro</option>
                             </select>
 
