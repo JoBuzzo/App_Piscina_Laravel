@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function admins(){
+        $admins = User::all();
+        return view('admins', compact('admins'));
+    }
 
     public function login(){
 
@@ -18,7 +22,7 @@ class UserController extends Controller
 
 
     public function auth(Request $request){
-        if(Auth::attempt(['name' => $request->name, 'password' => $request->password])){
+        if(Auth::attempt(['login' => $request->login, 'password' => $request->password])){
             return redirect()->route('index');
         }
         return redirect()->back()->withInput()->withErrors('Os dados informados não conferem');   
@@ -32,17 +36,18 @@ class UserController extends Controller
         } 
     }
 
-    public function perfil(){
-        $user =  User::find(1);
+    public function perfil($id){
+
+        $user =  User::find($id);
         return view('perfil', compact('user'));
         
     }
 
-    public function update(UserFormRequest $request){
+    public function update(UserFormRequest $request, $id){
 
-        $user =  User::find(1);
+        $user =  User::find($id);
 
-        $data = $request->only('name');
+        $data = $request->only('name','login');
         if($request->password){
             $data['password'] = Hash::make($request->password);
         }

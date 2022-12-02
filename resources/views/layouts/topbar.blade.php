@@ -1,3 +1,10 @@
+@auth
+    @php
+    $nome = explode(' ', Auth::user()->name);
+    $segundo_nome = (isset($nome)) ? $nome[0] . ' ' . end($nome) : $nome[0];
+    $iniciais = strstr($segundo_nome, ' ', true)[0] . trim(strstr($segundo_nome, ' ')[1])
+    @endphp
+@endauth
 
 <div class="topbar">
     <div class="logo">
@@ -5,11 +12,6 @@
         <h2>Dashboard</h2>
     </div>
     @Auth
-    @php
-        $nome = explode(' ', Auth::user()->name);
-        $segundo_nome = (isset($nome)) ? $nome[0] . ' ' . end($nome) : $nome[0];
-        $iniciais = strstr($segundo_nome, ' ', true)[0] . trim(strstr($segundo_nome, ' ')[1])
-    @endphp
         <div class="search">
             <form action="{{ route('reservas') }}" method="GET">
                     <button type="submit" class="lupa"><i class="fas fa-search"></i></button>
@@ -32,7 +34,7 @@
                 <a href="{{ route('index') }}" class="block py-2 px-4 hover:bg-gray-100"><i class="fas fa-chart-bar"></i> Dashboard</a>
             </li>
             <li>
-                <a href="{{ route('perfil') }} " class="block py-2 px-4 hover:bg-gray-100"><i class="fa fa-user"></i> Perfil</a>
+                <a href="{{ route('perfil', ['id' => Auth::user()->id]) }} " class="block py-2 px-4 hover:bg-gray-100"><i class="fa fa-user"></i> Perfil</a>
             </li>
             <li>
                 <a href="{{ route('viewConfig') }}" class="block py-2 px-4 hover:bg-gray-100"><i class="fas fa-cog"></i> Configurações</a>

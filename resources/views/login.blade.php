@@ -19,8 +19,8 @@
                             <h1>Login</h1>
                         </div>
                         <div class="input-label">
-                            <label for="name">Nome</label>
-                            <input type="text" name="name" placeholder="Digite aqui..."
+                            <label for="login">Login</label>
+                            <input type="text" name="login" placeholder="Digite aqui..."
                             class="@if (isset($error)) error @endif">
                         </div>
                         <div class="input-label">

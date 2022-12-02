@@ -13,7 +13,7 @@
 
             <div class="bottom">
                 <div class="form-group space-y-3">
-                    <form action="{{ route('update.user') }}" method="POST">
+                    <form action="{{ route('update.user', ['id' => $user->id]) }}" method="POST">
                         @method('PUT')
                         @csrf
                         <div class="input-label">
@@ -25,6 +25,21 @@
                                 @if ($errors->has('name'))
                                     <div class="is-invalid">
                                         @foreach ($errors->get('name') as $error)
+                                            {{ $error }}
+                                        @endforeach
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="input-label">
+                            <label for="login">Login</label>
+                            <input type="text" value="{{ $user->login }}" name="login"
+                                class="@if ($errors->has('login')) error @endif">
+
+                            <div>
+                                @if ($errors->has('login'))
+                                    <div class="is-invalid">
+                                        @foreach ($errors->get('login') as $error)
                                             {{ $error }}
                                         @endforeach
                                     </div>
@@ -46,8 +61,6 @@
                                 @endif
                             </div>
                         </div>
-
-
 
                         <div id="popup-modal" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
                             <div class="relative w-full h-full max-w-md md:h-auto">
