@@ -34,14 +34,4 @@ class ReservaFormRequest extends FormRequest
                 'outraopcao' => 'required|numeric',        
         ];
     }
-    public function messages()
-    {
-        return [
-            'required' => 'O campo :attribute deve ser preenchido',
-            'unique' => 'O campo :attribute já está reservado',
-            'max' => 'O campo :attribute deve ter no máximo 30 caracteres',
-            'min' => 'O campo :attribute deve ter no mínimo 4 caracteres',
-            'numeric' => 'O campo :attribute deve ser caracteres do tipo números',
-        ];
-    }
 }

@@ -47,18 +47,7 @@
     font-size: 20px;
     font-weight: bold;
 }
-.top {
-    height: 80px;
-    border-radius: 6px;
-    background: var(--primeiracor);
-    display: flex;
-    justify-content: left;
-}
 
-.top h2{
-    padding: 10px;
-    color: var(--segundacor);
-}
 
 .bottom{
     background: #fff;
@@ -73,82 +62,6 @@
     display: flex;
     justify-content: center;
 }
-
-.image-container{
-    background: #fff;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin-top: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid var(--primeiracor);
-}
-
-
-.image-container .fa-user-alt{
-    font-size: 60px;
-}
-
-
-.form-group{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    width: 450px;
-}
-
-.input-label{
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-}
-
-label{
-    font-weight: bold;
-}
-
-.card-container input{
-    height: 40px;
-    padding: 0 10px;
-    font-size: 16px;
-    outline: none;
-    border-radius: 5px;
-    border: 1px solid gray;
-}
-
-.card-container input:focus{
-    border: 2px solid black;
-}
-
-input[type=submit]{
-    background: var(--primeiracor);
-    color: var(--segundacor);
-    font-size: 20px;
-    border-radius: 10px;
-}
-
-input[type=submit]:hover {
-    background: #33333d;
-    cursor: pointer;
-}
-
-
-select{
-    height: 40px;
-    font-size: 16px;
-    outline: none;
-    border-radius: 5px;
-    border: 1px solid gray;
-    text-indent: 10px;
-    appearance: none;
-}    
-
-.card-container select:focus{
-    border: 2px solid black;
-}
-
 
 
 /* <mensagens> */
@@ -168,19 +81,9 @@ select{
     align-items: center;
     color: red;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 14px;
     position: absolute;
-}
-.card-container .error{
-    border: 1px solid red;
-    background: rgb(248, 238, 238);
-}
-
-.card-container .error:focus{
-    border: 2px solid red;
-}
-.card-container input:focus .error{
-    border: 2px solid red;
+    white-space: nowrap;
 }
 
 /* </mensagens> */
@@ -205,17 +108,11 @@ select{
     .form-group{
         width: 250px;
     }
-    .image-container{
-        width: 50px;
-        height: 50px;
-        margin-top: 50px;
-    }
-
-    .image-container .fa-user-alt{
-        font-size: 30px;
-    }
     table{
         width: 100%;
+    }
+    .is-invalid{
+        font-size: 12px;
     }
 }
 
