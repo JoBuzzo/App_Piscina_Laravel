@@ -29,9 +29,9 @@ class ReservaFormRequest extends FormRequest
                 'primeiro_dia' => "required|date|unique:reservas,primeiro_dia,{$id},id|unique:reservas,ultimo_dia,{$id},id",        
                 'ultimo_dia' => "nullable|date|unique:reservas,primeiro_dia,{$id},id|unique:reservas,ultimo_dia,{$id},id",           
                 'valor_pago' => 'required',        
-                'valor_total' => 'required',        
+                'valor_total' => 'required|gte:valor_pago',        
                 'outrainst' => 'nullable|required_if:valor_pago,OUTRO|numeric',        
-                'outraopcao' => 'nullable|required_if:valor_total,OUTRO|numeric',        
+                'outraopcao' => 'nullable|required_if:valor_total,OUTRO|gte:outrainst|numeric',        
         ];
     }
     public function messages()
