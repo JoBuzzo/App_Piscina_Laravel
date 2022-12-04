@@ -27,11 +27,17 @@ class ReservaFormRequest extends FormRequest
         return [
                 'nome' => 'required|string|min:4|max:30',        
                 'primeiro_dia' => "required|date|unique:reservas,primeiro_dia,{$id},id|unique:reservas,ultimo_dia,{$id},id",        
-                'ultimo_dia' => "nullable|date|unique:reservas,primeiro_dia,{$id},id",           
+                'ultimo_dia' => "nullable|date|unique:reservas,primeiro_dia,{$id},id|unique:reservas,ultimo_dia,{$id},id",           
                 'valor_pago' => 'required',        
                 'valor_total' => 'required',        
-                'outrainst' => 'required|numeric',        
-                'outraopcao' => 'required|numeric',        
+                'outrainst' => 'nullable|required_if:valor_pago,OUTRO|numeric',        
+                'outraopcao' => 'nullable|required_if:valor_total,OUTRO|numeric',        
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'required_if' => 'O campo :attribute é obrigatório.',
         ];
     }
 }

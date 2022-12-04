@@ -12,11 +12,11 @@
                 <div class="bottom">
                     <form action="{{ route('reservas.store') }}" method="POST">
                         @csrf
-                    <div class="relative z-0 mb-6 w-full group">
+                    <div class="relative z-0 mb-8 w-full group">
                         <input name="nome" id="nome" type="text" value="{{ old('nome') }}" placeholder=" "
-                        class="block py-2.5 px-0 w-full text-xl bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer
+                        class="block py-2.5 px-0 w-full text-xl bg-transparent border-0 border-b-2 border-gray-300 focus:outline-none focus:border-gray-600 peer
                         @if ($errors->has('nome')) text-red-500 border-red-300  @endif"/>
-                        <label for="nome" class="peer-focus:font-medium absolute text-xl duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8
+                        <label for="nome" class="peer-focus:font-medium absolute text-xl duration-300 transform -translate-y-8 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8
                         @if ($errors->has('nome')) text-red-500 border-red-300  @endif">
                             Nome do Cliente
                         </label>
@@ -31,11 +31,11 @@
                         </div>
                     </div>
                     <div class="grid md:grid-cols-2 md:gap-6">
-                        <div class="relative z-0 mb-6 w-full group">
+                        <div class="relative z-0 mb-8 w-full group">
                             <input type="date" name="primeiro_dia"  value="{{ old('primeiro_dia') }}" placeholder=" "
-                            class="block py-2.5 px-0 w-full text-xl bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer
+                            class="block py-2.5 px-0 w-full text-xl bg-transparent border-0 border-b-2 border-gray-300 focus:outline-none focus:border-gray-600 peer
                             @if ($errors->has('primeiro_dia')) text-red-500 border-red-300 @endif"/>
-                            <label class="peer-focus:font-medium absolute text-xl duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8
+                            <label class="peer-focus:font-medium absolute text-xl duration-300 transform -translate-y-8 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8
                             @if ($errors->has('primeiro_dia')) text-red-500 border-red-300 @endif">
                                 Primeiro Dia de Reserva
                             </label>
@@ -49,11 +49,11 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="relative z-0 mb-6 w-full group">
+                        <div class="relative z-0 mb-8 w-full group">
                             <input type="date" name="ultimo_dia"  value="{{ old('ultimo_dia') }}" placeholder=" "
-                            class="block py-2.5 px-0 w-full text-xl bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer
+                            class="block py-2.5 px-0 w-full text-xl bg-transparent border-0 border-b-2 border-gray-300 focus:outline-none focus:border-gray-600 peer
                             @if ($errors->has('ultimo_dia')) text-red-500 border-red-300 @endif"/>
-                            <label class="peer-focus:font-medium absolute text-xl duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8
+                            <label class="peer-focus:font-medium absolute text-xl duration-300 transform -translate-y-8 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8
                             @if ($errors->has('ultimo_dia')) text-red-500 border-red-300 @endif">
                                 Último Dia de Reserva
                             </label>
@@ -69,7 +69,7 @@
                         </div>
                     </div>
                     <div class="grid md:grid-cols-2 md:gap-6">
-                        <div class="relative z-0 mb-6 w-full group">
+                        <div class="relative z-0 mb-8 w-full group">
                             <script>
                                 function mostraCampo1(obj) {
                                     var select = document.getElementById('valor');
@@ -81,7 +81,7 @@
                             </script>
                             <label class="block mb-2 text-xl font-medium @if ($errors->has('valor_pago'))text-red-500 border-red-300 @endif">Valor pago pelo cliente:</label>
                             <select name="valor_pago" id="valor" onchange="mostraCampo1(this);"
-                            class="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200
+                            class="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:border-gray-200
                             @if ($errors->has('valor_pago'))text-red-500 border-red-300 @endif">
 
                                 <option value="{{ null }}" {{ old('valor_pago') == null ? "selected" : "" }}>
@@ -117,8 +117,8 @@
                                 @endif
                             </div>
 
-                            <input type="text" name="outrainst" id="outrainst" style="visibility: hidden;" value="{{ old('outrainst') ? old('outrainst') : 0 }}" 
-                            class="block py-2.5 px-0 w-full text-xl bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-600
+                            <input type="text" name="outrainst" id="outrainst" style="visibility: hidden;" value="{{ old('outrainst')}}" 
+                            class="block py-2.5 px-0 w-full text-xl bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:border-gray-600
                             @if ($errors->has('outrainst')) text-red-500 border-red-300  @endif">
                             <div>
                                 @if ($errors->has('outrainst'))
@@ -130,7 +130,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="relative z-0 mb-6 w-full group">
+                        <div class="relative z-0 mb-8 w-full group">
                             <script>
                                 function mostraCampo2(obj) {
                                     var select = document.getElementById('valor_total');
@@ -142,7 +142,7 @@
                             </script>
                             <label class="block mb-2 text-xl font-medium @if ($errors->has('valor_total'))text-red-500 border-red-300 @endif">Valor total:</label>
                             <select name="valor_total" id="valor_total" onchange="mostraCampo2(this);"
-                            class="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200
+                            class="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:border-gray-200
                             @if ($errors->has('valor_total'))text-red-500 border-red-300 @endif">
 
                                 <option value="{{ null }}" {{ old('valor_total') == null ? "selected" : "" }}>
@@ -169,8 +169,8 @@
                                 @endif
                             </div>
     
-                            <input type="text" name="outraopcao" id="outraopcao" style="visibility: hidden;" value="{{ old('outraopcao') ? old('outraopcao') : 0 }}" 
-                            class="block py-2.5 px-0 w-full text-xl bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-600
+                            <input type="text" name="outraopcao" id="outraopcao" style="visibility: hidden;" value="{{ old('outraopcao')}}" 
+                            class="block py-2.5 px-0 w-full text-xl bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:border-gray-600
                             @if ($errors->has('outrainst')) text-red-500 border-red-300  @endif">
                             <div>
                                 @if ($errors->has('outraopcao'))
