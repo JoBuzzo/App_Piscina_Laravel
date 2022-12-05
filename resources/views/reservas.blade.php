@@ -5,9 +5,7 @@
 
     @include('layouts.sidebar')
 
-
     <div class="main-secundaria">
-
         <div class="table w-3/4 sm:rounded-lg space-y-5">
             <div class="flex justify-between items-center pb-4">
                 <div>
@@ -26,20 +24,26 @@
                             <ul class="p-3 space-y-1 text-sm text-gray-700" aria-labelledby="dropdownRadioButton">
                                 <li>
                                     <div class="flex items-center p-2 rounded hover:bg-gray-100">
-                                        <input @if ($filter === "Proximas") checked="" @endif  id="filter-radio-example-1" type="radio" value="Proximas" name="filter" class="w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 focus:ring-gray-500">
-                                        <label for="filter-radio-example-1" class="ml-2 w-full text-sm font-medium text-gray-900 rounded">Proximas Datas</label>
+                                        <input @if ($filter === "Proximas") checked="" @endif  id="filter-radio-1" type="radio" value="Proximas" name="filter" class="w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 focus:ring-gray-500">
+                                        <label for="filter-radio-1" class="ml-2 w-full text-sm font-medium text-gray-900 rounded">Proximas Datas</label>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="flex items-center p-2 rounded hover:bg-gray-100">
-                                        <input @if ($filter === "Vencidas") checked="" @endif id="filter-radio-example-2" type="radio" value="Vencidas" name="filter" class="w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 focus:ring-gray-500">
-                                        <label for="filter-radio-example-2" class="ml-2 w-full text-sm font-medium text-gray-900 rounded">Datas Vencidas</label>
+                                        <input @if ($filter === "Vencidas") checked="" @endif id="filter-radio-2" type="radio" value="Vencidas" name="filter" class="w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 focus:ring-gray-500">
+                                        <label for="filter-radio-2" class="ml-2 w-full text-sm font-medium text-gray-900 rounded">Datas Vencidas</label>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="flex items-center p-2 rounded hover:bg-gray-100">
-                                        <input @if ($filter === "Todas") checked="" @endif id="filter-radio-example-3" type="radio" value="Todas" name="filter" class="w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 focus:ring-gray-500">
-                                        <label for="filter-radio-example-3" class="ml-2 w-full text-sm font-medium text-gray-900 rounded">Todas Datas</label>
+                                        <input @if ($filter === "Todas") checked="" @endif id="filter-radio-3" type="radio" value="Todas" name="filter" class="w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 focus:ring-gray-500">
+                                        <label for="filter-radio-3" class="ml-2 w-full text-sm font-medium text-gray-900 rounded">Todas Datas</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="flex items-center p-2 rounded hover:bg-gray-100">
+                                        <input @if ($filter === "Hoje") checked="" @endif id="filter-radio-4" type="radio" value="Hoje" name="filter" class="w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 focus:ring-gray-500">
+                                        <label for="filter-radio-4" class="ml-2 w-full text-sm font-medium text-gray-900 rounded">Hoje</label>
                                     </div>
                                 </li>
                                 <li>
@@ -51,14 +55,29 @@
                         </div>
                     </form>
                 </div>
-                <div class="relative flex uppercase rounded bg-gray-100 p-2">
-                    <svg class="w-6 h-6 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                    {{ date('d/m/Y') }}
+                <div>
+                    <a href="{{route('reservas.adicionar')}}"
+                    class="bg-gray-100 text-gray-500 text-sm font-bold whitespace-nowrap mr-2 px-2.5 py-2 rounded nao-importante">
+                        <i class="fas fa-calendar-plus"></i> Adicionar
+                    </a>
                 </div>
+                <div class="search">
+                    <form action="{{ route('reservas') }}" method="GET">
+                        <button type="submit" class="lupa"><i class="fas fa-search"></i></button>
+                        <input type="search" id="search" placeholder="Pesquisar..." name="search"
+                            @if (isset($search)) value="{{ $search }}" @endif>
+                    </form>
+                </div>
+                
+                <div>
+                    <span class="bg-green-100 text-green-500 text-sm font-bold whitespace-nowrap mr-2 px-2.5 py-1 rounded nao-importante">Pago</span>
+                    <span class="bg-gray-100 text-gray-500 text-sm font-bold whitespace-nowrap mr-2 px-2.5 py-1 rounded nao-importante">Em haver</span>
+                </div>
+
             </div>
             @if (count($reservas) > 0)
                 
-            <table class="w-full text-left text-gray-500">
+            <table class="w-full text-left text-gray-500 font-bold">
                 <thead class="text-white uppercase bg-gray-800">
                     <tr>
                         <th scope="col" class="py-3 px-6">
@@ -68,13 +87,13 @@
                             Nomes
                         </th>
                         <th scope="col" class="nao-importante py-3 px-6">
+                            Valor Total
+                        </th>
+                        <th scope="col" class="nao-importante py-3 px-6">
                             Pagou
                         </th>
                         <th scope="col" class="nao-importante py-3 px-6">
                             Quanto falta
-                        </th>
-                        <th scope="col" class="nao-importante py-3 px-6">
-                            Valor Total
                         </th>
                         <th scope="col" class="py-3 px-2 text-center">
                             Consultar
@@ -83,7 +102,7 @@
                 </thead>
                 <tbody>
                     @foreach ($reservas as $reserva)
-                    <tr class="border-b @if (date('Y-m-d') == $reserva->primeiro_dia) bg-gray-200 hover:bg-gray-100 @else bg-white hover:bg-gray-50 @endif">
+                    <tr class="border-b @if ($reserva->valor_pago === $reserva->valor_total) bg-green-100 @endif bg-white hover:bg-gray-50">
 
                         <td class="py-4 px-6">
                             @if ($reserva->ultimo_dia)
@@ -96,15 +115,16 @@
                         <td class="nao-importante py-4 px-6">
                             {{$reserva->nome}}
                         </td>
-                        <td class="nao-importante py-4 px-6">
-                            R${{$reserva->valor_pago}}
-                        </td>
-                        <td class="nao-importante py-4 px-6">
-                            R${{$reserva->valor_pendente}}
-                        </td>
-                        <td class="nao-importante py-4 px-6">
+                        <td class="nao-importante py-4 px-6 text-green-500">
                             R${{$reserva->valor_total}}
                         </td>
+                        <td class="nao-importante py-4 px-6 @if ($reserva->valor_pago === $reserva->valor_total) text-green-500 @else text-yellow-500 @endif">
+                            R${{$reserva->valor_pago}}
+                        </td>
+                        <td class="nao-importante py-4 px-6 @if ($reserva->valor_pendente > 0) text-red-500 @else text-green-500 @endif">
+                            R${{$reserva->valor_pendente}}
+                        </td>
+                    
                         <td class="py-4 px-2 text-center">
                             <a href="{{ route('reservas.ver', ['id' => $reserva->id]) }}" class="font-medium text-blue-600">Ver</a>
                         </td>

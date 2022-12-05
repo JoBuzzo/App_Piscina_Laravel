@@ -153,7 +153,10 @@ class ReservaController extends Controller
         if( $filter === "Todas"){
             $reservas = Reserva::orderBy('primeiro_dia', 'asc')->paginate(12)->withQueryString();
         }
-        
+        if( $filter === "Hoje"){
+            $reservas = Reserva::where('primeiro_dia', '=', "$date")->orWhere('ultimo_dia', '=', "$date")->paginate() ;
+        }
+
 
         return view('reservas', compact('reservas','search', 'filter'));
     }
@@ -190,8 +193,7 @@ class ReservaController extends Controller
         if(!$reserva =  Reserva::find($id)){
             return redirect()->back('reservas');
         }
-        $config = Config::find(1);
-        return view('ver' ,compact('reserva','config'));
+        return view('ver' ,compact('reserva'));
     }
 
     public function update(ReservaFormRequest $request, $id){

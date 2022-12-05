@@ -12,15 +12,6 @@
         <h2>Dashboard</h2>
     </div>
     @Auth
-        <div class="search">
-            <form action="{{ route('reservas') }}" method="GET">
-                    <button type="submit" class="lupa"><i class="fas fa-search"></i></button>
-                    <input type="search" id="search" placeholder="Pesquisar..." name="search"
-                        @if (isset($search)) value="{{ $search }}" @endif>
-
-            </form>
-        </div>
-
         <button id="dropdownUserAvatarButton" data-dropdown-toggle="dropdownAvatar" class="inline-flex overflow-hidden relative justify-center items-center w-10 h-10 bg-blue-200 rounded-full" type="button">
             <span class="font-medium text-gray-600 uppercase">{{ $iniciais }}</span>
         </button>
