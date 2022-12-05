@@ -74,6 +74,9 @@
 
 @media (max-width:880px){
 
+    .mobile-table{
+        display: none;
+    }
 
     .is-invalid{
         font-size: 12px;
@@ -82,14 +85,18 @@
     }
 }
 
-@media (max-width:500px){
+@media (max-width:600px){
+    .mobile-table-nome{
+        display: none;
+    }
+    .mobile-table-valor{
+        display: none;
+    }
+
     .form-container{
         width: calc(100% - 10px);
         margin-top: 0px;
     }
 
-    .nao-importante{
-        display: none;
-    }
     
 }
