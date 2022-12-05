@@ -118,7 +118,7 @@
                         <td class="mobile-table-valor py-4 px-6 text-green-500">
                             R${{$reserva->valor_total}}
                         </td>
-                        <td class="mobile-table py-4 px-6 @if ($reserva->valor_pago === $reserva->valor_total) text-green-500 @else text-yellow-500 @endif">
+                        <td class="mobile-table py-4 px-6 @if ($reserva->valor_pago === $reserva->valor_total) text-green-500 @else text-orange-400 @endif">
                             R${{$reserva->valor_pago}}
                         </td>
                         <td class="mobile-table-valor py-4 px-6 @if ($reserva->valor_pendente > 0) text-red-500 @else text-green-500 @endif">

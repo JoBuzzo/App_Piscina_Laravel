@@ -14,8 +14,25 @@ class ReservaController extends Controller
 
         $reservas = Reserva::all();
 
-        $datas = 0; //todas datas reservadas (card)
-        $totalTodos = 0; //total de ganhos de todos os anos (card)
+        $primeiro = Reserva::all()->where('primeiro_dia', '!=', false)->count();
+        $ultimo = Reserva::all()->where('ultimo_dia', '!=', false)->count();
+
+        $datas = $primeiro + $ultimo; //todas datas reservadas (card)
+
+        //total de ganhos de todos os anos (card)
+        $totalTodos = Reserva::all()->sum('valor_pago');
+
+        //grafico de pizza
+        $pagamentos['pagos'] = Reserva::all()->where('valor_pendente', '=', 0)->sum('valor_pago'); //soma dos valores pagos por completo (sem dever nada)
+        $quantia['pagos'] = Reserva::all()->where('valor_pendente', '=', 0)->count(); //quantia dos valores pagos por completo (sem dever nada)
+
+        $pagamentos['valor_pago'] = Reserva::all()->where('valor_pendente', '!=', 0)->sum('valor_pendente'); //soma dos valores pendentes
+        $quantia['valor_pago'] = Reserva::all()->where('valor_pendente', '!=', 0)->count(); //quantia dos valores pendentes
+
+        $pagamentos['valor_pendente'] = Reserva::all()->where('valor_pendente', '>', 0)->sum('valor_pago'); //soma dos valores pagos por incompleto (devendo)
+        $quantia['valor_pendente'] = Reserva::all()->where('valor_pendente', '>', 0)->count(); //quantia dos valores pagos por incompleto (devendo)
+
+        
 
         //total de ganhos em cada mes (grafico de barras)
         $mes['janeiro'] = 0; //1
@@ -40,14 +57,7 @@ class ReservaController extends Controller
         }
         
         foreach ($reservas as $reserva) {
-            // Quantidade de datas reservadas
-            if($reserva->primeiro_dia){
-                $datas ++;
-            }
-            if($reserva->ultimo_dia){
-                $datas ++;
-            }
-            
+
             //total de ganhos em cada mes (grafico de barras) //total de ganhos do ano atual
             switch($reserva->primeiro_dia){
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 1) && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
@@ -103,7 +113,7 @@ class ReservaController extends Controller
 
 
 
-        return view('index',compact('totalTodos', 'totalAno','datas','mes','ano'));
+        return view('index',compact('totalTodos', 'totalAno','datas','mes','ano', 'pagamentos', 'quantia'));
     }
 
     public function config(ConfigFormRequest $request){

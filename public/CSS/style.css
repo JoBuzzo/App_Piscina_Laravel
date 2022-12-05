@@ -236,12 +236,7 @@
     box-shadow: 1px 4px 8px 2px rgb(0, 0, 0, 0.08);
 }
 
-.chart h2{
-    margin-bottom: 5px;
-    color: var(--primeiracor);
-    font-weight: bold;
-    font-size: 20px;
-}
+
 /* </charts> */
 
 /* </main> */
@@ -285,10 +280,10 @@
     .chart h2{
         font-size: 14px;
     }
-    #doughnut-chart {
+    #pie-chart {
         padding: 50px;
     }
-    #doughnut {
+    #pie {
         padding: 50px;
     }
     .charts{
@@ -309,7 +304,9 @@
     .search{
         width: 80%;
     }
-    
+    .dads{
+        color: rgb(250, 75, 75);
+    }
     
     /* </topbar> */
 
@@ -320,10 +317,10 @@
     .cards{
         grid-template-columns: 1fr;
     }
-    #doughnut-chart{
+    #pie-chart{
         padding: 10px;
     }
-    #doughnut{
+    #pie{
         padding: 0;
     }
     /* </main> */
