@@ -26,7 +26,6 @@
     width: calc(100% - 100px);
     background: #fff;
     padding: 50px;
-    margin: 90px;
     display: flex;
     justify-content: center;
     border-radius: 5px;
@@ -95,7 +94,6 @@
 
     .form-container{
         width: calc(100% - 10px);
-        margin-top: 0px;
     }
 
     

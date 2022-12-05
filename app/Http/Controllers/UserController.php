@@ -45,7 +45,10 @@ class UserController extends Controller
 
     public function update(UserFormRequest $request, $id){
 
-        $user =  User::find($id);
+        if(!$user =  User::find($id)){
+            return redirect()->back();
+        }
+        
 
         $data = $request->only('name','login');
         if($request->password){
@@ -54,7 +57,7 @@ class UserController extends Controller
 
         $user->update($data);
 
-        return redirect()->route('perfil')->with('mensagem', 'Editado com Sucesso!');
+        return redirect()->route('perfil', $id)->with('mensagem', 'Editado com Sucesso!');
     }
 }
 

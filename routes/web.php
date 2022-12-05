@@ -21,7 +21,7 @@ Route::post('/reservas', [ReservaController::class, 'store'])->name('reservas.st
 Route::get('/reservas/{id}', [ReservaController::class, 'edit'])->name('reservas.ver')->middleware('admin');
 Route::put('/reservas/{id}', [ReservaController::class, 'update'])->name('reservas.update')->middleware('admin');
 Route::get('/reservas', [ReservaController::class, 'reservas'])->name('reservas')->middleware('admin');
-Route::post('/config', [ReservaController::class, 'config'])->name('config')->middleware('admin');
+Route::put('/config', [ReservaController::class, 'config'])->name('config')->middleware('admin');
 Route::get('/config', [ReservaController::class, 'viewConfig'])->name('viewConfig')->middleware('admin');
 Route::get('/', [ReservaController::class, 'index'])->name('index')->middleware('admin');
 Route::get('/perfil/{id}', [UserController::class, 'perfil'])->name('perfil')->middleware('admin');
