@@ -238,6 +238,9 @@
     .search-ano .search-number input{
         width: 170px;
     }
+    .chart{
+        padding: 0px;
+    }
     .chart h2{
         font-size: 14px;
     }
@@ -266,9 +269,7 @@
     .search{
         width: 80%;
     }
-    .dads{
-        color: rgb(250, 75, 75);
-    }
+
     
     /* </topbar> */
 
@@ -281,6 +282,10 @@
     }
     #pie-chart{
         padding: 10px;
+    }
+    #barChart{
+        padding: 20px;
+        height:25vh;
     }
     #pie{
         padding: 0;

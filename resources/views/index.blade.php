@@ -30,7 +30,6 @@
 
 
             <div class="charts">
-
                 <div class="chart space-y-5">
                     <div class="flex space-x-2">
                         <h2><i class="fas fa-chart-bar"></i> Estatísticas</h2>
@@ -41,7 +40,7 @@
                                   <button type="submit"><i class="fas fa-search"></i></button>
                                 </span>
                                 <input type="number" name="ano" placeholder="Pesquisar ano" value="{{ $ano }}" 
-                                    class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 text-xs border-gray-300 p-2.5 ">
+                                    class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 text-xs border-gray-300 w-24 p-2.5 ">
                               </div>
                          
                         </form>
@@ -52,7 +51,7 @@
                         new Chart(document.getElementById("barChart"), {
                             type: 'bar',
                             data: {
-                                labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                                labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
                                 datasets: [{
                                     label: 'Total: R${{ $total['faltam'] }} - Faltam pagar',
                                     data: [
@@ -121,7 +120,7 @@
                                 }]
                             },
                             options: {
-                                responsive: true,
+                                onResize: true
                             }
                         });
                     </script>
@@ -158,9 +157,7 @@
 
                                     }]
                                 },
-                                options: {
-                                    responsive: true,
-                                }
+                               
                             });
                     </script>
 
