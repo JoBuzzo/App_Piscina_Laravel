@@ -22,24 +22,31 @@ class ReservaFactory extends Factory
         $ano = rand(2021, 2023);
         $data = "$ano-$mes-$dia";
         $data = date('Y-m-d', strtotime($data));
-        $valor1 = rand(0,500);
-        $valor2 = rand(200,1000);
+
+        $valor_pago = rand(0,700);
+        $valor_total = rand(400,700);
         
+        while($valor_total < $valor_pago){
+            $aux = $valor_pago;
+            $valor_pago = $valor_total;
+            $valor_total = $aux;
+        }
+
         if($data <= date('Y-m-d')){
             
-            $valor1 = $valor2;
+            $valor_pago = $valor_total;
         }
         
-        $valor3 = $valor2 - $valor1;
+        $valor_pendente = $valor_total - $valor_pago;
 
         
         return [
   
                 'nome' => fake()->name(),
                 'primeiro_dia' => $data,
-                'valor_pago' => $valor1,
-                'valor_total' => $valor2,
-                'valor_pendente' => $valor3,
+                'valor_pago' => $valor_pago,
+                'valor_total' => $valor_total,
+                'valor_pendente' => $valor_pendente,
         ];
     }
 }

@@ -174,50 +174,7 @@
     color: var(--primeiracor);
 }
 
-.search-ano{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
 
-.search-number {
-    position: relative;
-    justify-self: center;
-}
-
-.search-number input{
-    width: 100%;
-    padding-left: 35px;
-    font-size: 16px;
-    outline: none;
-    border: none;
-    border-radius: 10px;
-    background: #ededed;
-}
-
-.search-number input:focus{
-    border: 2px solid black;
-}
-
-.search-number i{
-    position: absolute;
-    right: 100%;
-    top: 5px;
-    cursor: pointer;
-    color: #888;
-}
-
-
-.search-ano .search-number input{
-    width: 200px;
-    height: 40px;
-    padding-left: 30px;
-    font-size: 18px;
-    outline: none;
-    border: none;
-    border-radius: 10px;
-    background: #ededed;
-}
 /* <charts> */
 .charts {
     display: grid;
@@ -235,7 +192,11 @@
     width: 100%;
     box-shadow: 1px 4px 8px 2px rgb(0, 0, 0, 0.08);
 }
-
+.chart h2{
+    font-size: 20px;
+    font-weight: bold;
+    white-space: nowrap;
+}
 
 /* </charts> */
 
@@ -289,6 +250,7 @@
     .charts{
         grid-template-columns: 1fr;
     }
+
     /* </main> */
 
 }

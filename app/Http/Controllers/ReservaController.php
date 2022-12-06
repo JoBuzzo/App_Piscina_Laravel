@@ -35,20 +35,37 @@ class ReservaController extends Controller
         
 
         //total de ganhos em cada mes (grafico de barras)
-        $mes['janeiro'] = 0; //1
-        $mes['fevereiro'] = 0; //2
-        $mes['marco'] = 0; //3
-        $mes['abril'] = 0; //4
-        $mes['maio'] = 0; //5
-        $mes['junho'] = 0; //6
-        $mes['julho'] = 0; //7
-        $mes['agosto'] = 0; //8
-        $mes['setembro'] = 0; //9
-        $mes['outubro'] = 0; //10
-        $mes['novembro'] = 0; //11
-        $mes['dezembro'] = 0; //12
+        $geral['janeiro'] = 0;  $faltam['janeiro'] = 0; //1
+        $geral['fevereiro'] = 0; $faltam['fevereiro'] = 0;//2
+        $geral['marco'] = 0; $faltam['marco'] = 0;//3
+        $geral['abril'] = 0; $faltam['abril'] = 0;//4
+        $geral['maio'] = 0; $faltam['maio'] = 0;//5
+        $geral['junho'] = 0; $faltam['junho'] = 0;//6
+        $geral['julho'] = 0; $faltam['julho'] = 0;//7
+        $geral['agosto'] = 0; $faltam['agosto'] = 0;//8
+        $geral['setembro'] = 0;$faltam['setembro'] = 0; //9
+        $geral['outubro'] = 0; $faltam['outubro'] = 0;//10
+        $geral['novembro'] = 0;$faltam['novembro'] = 0; //11
+        $geral['dezembro'] = 0;$faltam['dezembro'] = 0; //12
+        $geral['janeiro'] = 0;  $faltam['janeiro'] = 0; //1
 
-        $totalAno = 0; //total de ganhos do ano atual
+        $pagos_parte['janeiro'] = 0;  $completo['janeiro'] = 0; //1
+        $pagos_parte['fevereiro'] = 0; $completo['fevereiro'] = 0;//2
+        $pagos_parte['marco'] = 0; $completo['marco'] = 0;//3
+        $pagos_parte['abril'] = 0; $completo['abril'] = 0;//4
+        $pagos_parte['maio'] = 0; $completo['maio'] = 0;//5
+        $pagos_parte['junho'] = 0; $completo['junho'] = 0;//6
+        $pagos_parte['julho'] = 0; $completo['julho'] = 0;//7
+        $pagos_parte['agosto'] = 0; $completo['agosto'] = 0;//8
+        $pagos_parte['setembro'] = 0;$completo['setembro'] = 0; //9
+        $pagos_parte['outubro'] = 0; $completo['outubro'] = 0;//10
+        $pagos_parte['novembro'] = 0;$completo['novembro'] = 0; //11
+        $pagos_parte['dezembro'] = 0;$completo['dezembro'] = 0; //12
+
+        $total['pagos_parte'] = 0; //total de ganhos do ano atual
+        $total['geral'] = 0; //total de ganhos do ano atual
+        $total['faltam'] = 0; //total de ganhos do ano atual
+        $total['completo'] = 0; //total de ganhos do ano atual
 
         $ano = date('Y'); //ano atual
 
@@ -61,59 +78,200 @@ class ReservaController extends Controller
             //total de ganhos em cada mes (grafico de barras) //total de ganhos do ano atual
             switch($reserva->primeiro_dia){
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 1) && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
-                    $mes['janeiro']+= $reserva->valor_pago;
-                    $totalAno+= $reserva->valor_pago;
+                    $geral['janeiro']+= $reserva->valor_pago;
+                    $faltam['janeiro']+= $reserva->valor_pendente;
+                    
+                    if($reserva->valor_pendente > 0){
+                        $pagos_parte['janeiro']+= $reserva->valor_pago;
+                        $total['pagos_parte'] += $reserva->valor_pago;
+                    }else{
+                        $completo['janeiro'] +=  $reserva->valor_pago;
+                        $total['completo'] += $reserva->valor_pago;
+                    }
+
+                    $total['faltam']+= $reserva->valor_pendente;
+                    $total['geral']+= $reserva->valor_pago;
+
                 break;
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 2)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
-                    $mes['fevereiro']+= $reserva->valor_pago;
-                    $totalAno+= $reserva->valor_pago;
+                    $geral['fevereiro']+= $reserva->valor_pago;
+                    $faltam['fevereiro']+= $reserva->valor_pendente;
+                    
+                    if($reserva->valor_pendente > 0){
+                        $pagos_parte['fevereiro']+= $reserva->valor_pago;
+                        $total['pagos_parte'] += $reserva->valor_pago;
+                    }else{
+                        $completo['fevereiro'] +=  $reserva->valor_pago;
+                        $total['completo'] += $reserva->valor_pago;
+                    }
+
+                    $total['faltam']+= $reserva->valor_pendente;
+                    $total['geral']+= $reserva->valor_pago;
+
                 break;
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 3)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
-                    $mes['marco']+= $reserva->valor_pago;
-                    $totalAno+= $reserva->valor_pago;
+                    $geral['marco']+= $reserva->valor_pago;
+                    $faltam['marco']+= $reserva->valor_pendente;
+
+                    if($reserva->valor_pendente > 0){
+                        $pagos_parte['marco']+= $reserva->valor_pago;
+                        $total['pagos_parte'] += $reserva->valor_pago;
+                    }else{
+                        $completo['marco'] +=  $reserva->valor_pago;
+                        $total['completo'] += $reserva->valor_pago;
+                    }
+
+                    $total['faltam']+= $reserva->valor_pendente;
+                    $total['geral']+= $reserva->valor_pago;
+
                 break;
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 4)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
-                    $mes['abril']+= $reserva->valor_pago;
-                    $totalAno+= $reserva->valor_pago;
+                    $geral['abril']+= $reserva->valor_pago;
+                    $faltam['abril']+= $reserva->valor_pendente;
+
+                    if($reserva->valor_pendente > 0){
+                        $pagos_parte['abril']+= $reserva->valor_pago;
+                        $total['pagos_parte'] += $reserva->valor_pago;
+                    }else{
+                        $completo['abril'] +=  $reserva->valor_pago;
+                        $total['completo'] += $reserva->valor_pago;
+                    }
+
+                    $total['faltam']+= $reserva->valor_pendente;
+                    $total['geral']+= $reserva->valor_pago;
                 break;
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 5)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
-                    $mes['maio']+= $reserva->valor_pago;
-                    $totalAno+= $reserva->valor_pago;
+                    $geral['maio']+= $reserva->valor_pago;
+                    $faltam['maio']+= $reserva->valor_pendente;
+
+                    if($reserva->valor_pendente > 0){
+                        $pagos_parte['maio']+= $reserva->valor_pago;
+                        $total['pagos_parte'] += $reserva->valor_pago;
+                    }else{
+                        $completo['maio'] +=  $reserva->valor_pago;
+                        $total['completo'] += $reserva->valor_pago;
+                    }
+
+                    $total['faltam']+= $reserva->valor_pendente;
+                    $total['geral']+= $reserva->valor_pago;
+
                 break;
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 6)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
-                    $mes['junho']+= $reserva->valor_pago;
-                    $totalAno+= $reserva->valor_pago;
+                    $geral['junho']+= $reserva->valor_pago;
+                    $faltam['junho']+= $reserva->valor_pendente;
+
+                    if($reserva->valor_pendente > 0){
+                        $pagos_parte['junho']+= $reserva->valor_pago;
+                        $total['pagos_parte'] += $reserva->valor_pago;
+                    }else{
+                        $completo['junho'] +=  $reserva->valor_pago;
+                        $total['completo'] += $reserva->valor_pago;
+                    }
+                    
+                    $total['faltam']+= $reserva->valor_pendente;
+                    $total['geral']+= $reserva->valor_pago;
+
                 break;
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 7)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
-                    $mes['julho']+= $reserva->valor_pago;
-                    $totalAno+= $reserva->valor_pago;
+                    $geral['julho']+= $reserva->valor_pago;
+                    $faltam['julho']+= $reserva->valor_pendente;
+
+                    if($reserva->valor_pendente > 0){
+                        $pagos_parte['julho']+= $reserva->valor_pago;
+                        $total['pagos_parte'] += $reserva->valor_pago;
+                    }else{
+                        $completo['julho'] +=  $reserva->valor_pago;
+                        $total['completo'] += $reserva->valor_pago;
+                    }
+
+                    $total['faltam']+= $reserva->valor_pendente;
+                    $total['geral']+= $reserva->valor_pago;
                 break;
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 8)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
-                    $mes['agosto']+= $reserva->valor_pago;
-                    $totalAno+= $reserva->valor_pago;
+                    $geral['agosto']+= $reserva->valor_pago;
+                    $faltam['agosto']+= $reserva->valor_pendente;
+
+                    if($reserva->valor_pendente > 0){
+                        $pagos_parte['agosto']+= $reserva->valor_pago;
+                        $total['pagos_parte'] += $reserva->valor_pago;
+                    }else{
+                        $completo['agosto'] +=  $reserva->valor_pago;
+                        $total['completo'] += $reserva->valor_pago;
+                    }
+
+                    $total['faltam']+= $reserva->valor_pendente;
+                    $total['geral']+= $reserva->valor_pago;
+
                 break;
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 9)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
-                    $mes['setembro']+= $reserva->valor_pago;
-                    $totalAno+= $reserva->valor_pago;
+                    $geral['setembro']+= $reserva->valor_pago;
+                    $faltam['setembro']+= $reserva->valor_pendente;
+
+                    if($reserva->valor_pendente > 0){
+                        $pagos_parte['setembro']+= $reserva->valor_pago;
+                        $total['pagos_parte'] += $reserva->valor_pago;
+                    }else{
+                        $completo['setembro'] +=  $reserva->valor_pago;
+                        $total['completo'] += $reserva->valor_pago;
+                    }
+
+                    $total['faltam']+= $reserva->valor_pendente;
+                    $total['geral']+= $reserva->valor_pago;
+
                 break;
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 10)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
-                    $mes['outubro']+= $reserva->valor_pago;
-                    $totalAno+= $reserva->valor_pago;
+                    $geral['outubro']+= $reserva->valor_pago;
+                    $faltam['outubro']+= $reserva->valor_pendente;
+
+                    if($reserva->valor_pendente > 0){
+                        $pagos_parte['outubro']+= $reserva->valor_pago;
+                        $total['pagos_parte'] += $reserva->valor_pago;
+                    }else{
+                        $completo['outubro'] +=  $reserva->valor_pago;
+                        $total['completo'] += $reserva->valor_pago;
+                    }
+
+                    $total['faltam']+= $reserva->valor_pendente;
+                    $total['geral']+= $reserva->valor_pago;
+
                 break;
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 11)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
-                    $mes['novembro']+= $reserva->valor_pago;
-                    $totalAno+= $reserva->valor_pago;
+                    $geral['novembro']+= $reserva->valor_pago;
+                    $faltam['novembro']+= $reserva->valor_pendente;
+
+                    if($reserva->valor_pendente > 0){
+                        $pagos_parte['novembro']+= $reserva->valor_pago;
+                        $total['pagos_parte'] += $reserva->valor_pago;
+                    }else{
+                        $completo['novembro'] +=  $reserva->valor_pago;
+                        $total['completo'] += $reserva->valor_pago;
+                    }
+
+                    $total['faltam']+= $reserva->valor_pendente;
+                    $total['geral']+= $reserva->valor_pago;
+
                 break;
                 case ((date('m', strtotime($reserva->primeiro_dia)) == 12)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
-                    $mes['dezembro']+= $reserva->valor_pago;
-                    $totalAno+= $reserva->valor_pago;
+                    $geral['dezembro']+= $reserva->valor_pago;
+                    $faltam['dezembro']+= $reserva->valor_pendente;
+
+                    if($reserva->valor_pendente > 0){
+                        $pagos_parte['dezembro']+= $reserva->valor_pago;
+                        $total['pagos_parte'] += $reserva->valor_pago;
+                    }else{
+                        $completo['dezembro'] +=  $reserva->valor_pago;
+                        $total['completo'] += $reserva->valor_pago;
+                    }
+
+                    $total['faltam']+= $reserva->valor_pendente;
+                    $total['geral']+= $reserva->valor_pago;
+
                 break;
             }
         }
 
 
-
-        return view('index',compact('totalTodos', 'totalAno','datas','mes','ano', 'pagamentos', 'quantia'));
+        return view('index',compact('totalTodos', 'total','datas','geral','ano', 'pagamentos', 'quantia','faltam','pagos_parte','completo'));
     }
 
     public function config(ConfigFormRequest $request){

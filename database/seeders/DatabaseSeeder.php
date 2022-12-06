@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Reserva::factory(100)->create();
+        \App\Models\Reserva::factory(152)->create();
 
         // \App\Models\Reserva::factory()->create([
         //     'name' => 'Test Reserva',
