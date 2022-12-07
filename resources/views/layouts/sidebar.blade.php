@@ -4,6 +4,11 @@
    $ultimo = Reserva::all()->where('ultimo_dia', '!=', false)->count();
 
    $quantia = $primeiro + $ultimo;
+
+   use App\Models\Despesas;
+
+   $despesas = Despesas::count();
+
 @endphp
 
 
@@ -18,24 +23,41 @@
                     <span class="ml-3">Dashboard</span>
                  </a>
               </li>
+              {{-- Reservas --}}
               <li class="mobile">
                  <a href="{{route('reservas')}}" class="flex items-center p-2 text-base font-normal text-white rounded-lg hover:bg-gray-900">
                     <svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                 </a>
               </li>
+
+              {{-- Adicionar Reservas --}}
               <li class="mobile">
                  <a href="{{route('reservas.adicionar')}}" class="flex items-center p-2 text-base font-normal text-white rounded-lg hover:bg-gray-900">
-                    <svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                     <svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                </a>
+              </li>
+
+              {{-- Despesas --}}
+              <li class="mobile">
+                 <a href="{{route('reservas')}}" class="flex items-center p-2 text-base font-normal text-white rounded-lg hover:bg-gray-900">
+                     <svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path></svg>
+                </a>
+              </li>
+
+              {{-- Adiconar Despesas --}}
+              <li class="mobile">
+                 <a href="{{route('despesas.adicionar')}}" class="flex items-center p-2 text-base font-normal text-white rounded-lg hover:bg-gray-900">
+                     <svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>  
                 </a>
               </li>
             
               <li class="desktop">
-                <button type="button" class="flex items-center p-2 w-full text-base font-normal text-white rounded-lg transition duration-75 " aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+                <button type="button" class="flex items-center p-2 w-full text-base font-normal text-white rounded-lg transition duration-75 " aria-controls="reservas" data-collapse-toggle="reservas">
                       <svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                       <span class="flex-1 ml-3 text-left whitespace-nowrap" sidebar-toggle-item>Reservas</span>
                       <svg sidebar-toggle-item class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                 </button>
-                <ul id="dropdown-example" class="hidden py-2 space-y-2">
+                <ul id="reservas" class="hidden py-2 space-y-2">
                     <li>
                         <a href="{{route('reservas')}}" class="flex items-center p-2 text-base font-normal text-white rounded-lg hover:bg-gray-900">
                            <span class="flex-1 ml-3 whitespace-nowrap"><i class="far fa-calendar-alt text-gray-500 p-2"></i> Lista de Reservas</span>
@@ -45,6 +67,26 @@
                       <li>
                             <a href="{{route('reservas.adicionar')}}" class="flex items-center p-2 text-base font-normal text-white rounded-lg hover:bg-gray-900">
                                 <span class="flex-1 ml-3 whitespace-nowrap"><i class="fas fa-calendar-plus text-gray-500 p-2"></i> Adicionar Reserva</span>
+                            </a>
+                      </li>
+                </ul>
+             </li>
+              <li class="desktop">
+                <button type="button" class="flex items-center p-2 w-full text-base font-normal text-white rounded-lg transition duration-75 " aria-controls="despesas" data-collapse-toggle="despesas">
+                  <svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                      <span class="flex-1 ml-3 text-left whitespace-nowrap" sidebar-toggle-item>Despesas</span>
+                      <svg sidebar-toggle-item class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </button>
+                <ul id="despesas" class="hidden py-2 space-y-2">
+                    <li>
+                        <a href="{{route('despesas')}}" class="flex items-center p-2 text-base font-normal text-white rounded-lg hover:bg-gray-900">
+                           <span class="flex-1 ml-3 whitespace-nowrap"><i class="far fa-file-alt text-gray-500 p-2"></i> Lista de Despesas</span>
+                           <span class="inline-flex justify-center items-center p-3 ml-3 w-3 h-3 text-sm font-medium text-blue-600 bg-blue-200 rounded-full">{{ $despesas }}</span>
+                        </a>
+                     </li>
+                      <li>
+                            <a href="{{route('despesas.adicionar')}}" class="flex items-center p-2 text-base font-normal text-white rounded-lg hover:bg-gray-900">
+                                <span class="flex-1 ml-3 whitespace-nowrap"><i class="fas fa-file-medical text-gray-500 p-2"></i> Adicionar Despesa</span>
                             </a>
                       </li>
                 </ul>
