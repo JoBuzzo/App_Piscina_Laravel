@@ -25,13 +25,6 @@ return new class extends Migration
 
         //Admins
         User::create([
-            'name' => 'Rosimeire Buzzo Camargo',
-            'login' => 'RosiBuzzo',
-            'admin' => 1,
-            'password' => Hash::make('123456'), 
-            'remember_token' => Str::random(10),
-        ]);
-        User::create([
             'name' => 'Wander Camargo dos Santos',
             'login' => 'WanderCamargo',
             'admin' => 1,
@@ -39,8 +32,8 @@ return new class extends Migration
             'remember_token' => Str::random(10),
         ]);
         User::create([
-            'name' => 'Laiza Camargo',
-            'login' => 'LaizaCamargo',
+            'name' => 'Rosimeire Buzzo Camargo',
+            'login' => 'RosiBuzzo',
             'admin' => 1,
             'password' => Hash::make('123456'), 
             'remember_token' => Str::random(10),
@@ -53,8 +46,22 @@ return new class extends Migration
             'remember_token' => Str::random(10),
         ]);
         User::create([
+            'name' => 'Laiza Camargo',
+            'login' => 'LaizaCamargo',
+            'admin' => 1,
+            'password' => Hash::make('123456'), 
+            'remember_token' => Str::random(10),
+        ]);
+        User::create([
             'name' => 'João Lucas Buzzo',
             'login' => 'JoaoBuzzo',
+            'admin' => 1,
+            'password' => Hash::make('123456'), 
+            'remember_token' => Str::random(10),
+        ]); 
+        User::create([
+            'name' => 'Heitor Bergamaschi Camargo',
+            'login' => 'HeitorBergamaschi',
             'admin' => 1,
             'password' => Hash::make('123456'), 
             'remember_token' => Str::random(10),
