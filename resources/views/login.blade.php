@@ -36,15 +36,7 @@
                         
                         
                     <button class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-xl px-5 py-2.5 text-center">Salvar</button>
-
-                    <div>
-                        @if(isset($error))
-                            <div class="is-invalid">
-                                    {{ $error }}
-                            </div>
-                        @endif
-                    </div>
-                    
+                    @include('components.is-invalid')
                 </form>
         </div>
 
