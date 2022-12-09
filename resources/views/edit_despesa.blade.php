@@ -74,11 +74,7 @@
                         type="button" data-modal-toggle="popup-modal">
                         Excluir
                     </button>
-                    @if (session('mensagem'))
-                        <div class="success">
-                            <span class="msg">{{ session('mensagem') }}</span>
-                        </div>
-                    @endif
+                    @include('components.success')
                 </form>
 
 

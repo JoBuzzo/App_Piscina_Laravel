@@ -70,13 +70,7 @@
                     
                     
                     <button type="button" data-modal-toggle="popup-modal" class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-xl px-5 py-2.5 text-center">Salvar</button>
-                    <div>
-                        @if (session('mensagem'))
-                            <div class="success">
-                                {{ session('mensagem') }}
-                            </div>
-                        @endif
-                    </div>
+                    @include('components.success')
                     
                     
                     <div id="popup-modal" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
