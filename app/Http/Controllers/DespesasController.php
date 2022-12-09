@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DespesaFormRequest;
 use App\Models\Despesa;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,7 @@ class DespesasController extends Controller
                 $query->orwhereDate("data",'LIKE', "%{$search}%");
 
             }
-        })->paginate(12)->withQueryString();
+        })->orderBy('data', 'asc')->paginate(12)->withQueryString();
 
         return view('despesas', compact('despesas'));
     }
@@ -26,9 +27,14 @@ class DespesasController extends Controller
         return view('add_despesa');
     }
 
-    public function store(Request $request){
-        $data = $request->all();
-
+    public function store(DespesaFormRequest $request){
+        $data = $request->only('descricao', 'valor');
+        if(!$request->data){
+            $data['data'] = date('Y-m-d');
+        }else{
+            $data['data'] = $request->data;
+        }
+        
         Despesa::create($data);
 
         return redirect()->route('despesas');
@@ -42,7 +48,7 @@ class DespesasController extends Controller
         return view('edit_despesa', compact('despesa'));
     }
     
-    public function update(Request $request, $id){
+    public function update(DespesaFormRequest $request, $id){
 
         if(!$despesa = Despesa::find($id)){
             return redirect()->back();

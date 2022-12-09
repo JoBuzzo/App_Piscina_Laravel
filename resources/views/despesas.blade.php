@@ -23,10 +23,7 @@
                     </form>
                 </div>
                 
-                <div class="flex">
-                    <span class="bg-green-100 text-green-500 text-sm font-bold whitespace-nowrap mx-2 px-2.5 py-1 rounded mobile-table-valor">Pago</span>
-                    <span class="bg-gray-100 text-gray-500 text-sm font-bold whitespace-nowrap mx-2 px-2.5 py-1 rounded mobile-table-valor">Em haver</span>
-                </div>
+                
 
             </div>
             @if (count($despesas) > 0)
