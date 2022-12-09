@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Despesas;
+use App\Models\Despesa;
 use Illuminate\Http\Request;
 
 class DespesasController extends Controller
@@ -10,7 +10,7 @@ class DespesasController extends Controller
     public function despesas(Request $request){
         $search = $request->search;
 
-        $despesas = Despesas::where(function ($query) use ($search) {
+        $despesas = Despesa::where(function ($query) use ($search) {
             if($search){
                 $query->where("descricao",'LIKE', "%{$search}%");
                 $query->orwhere("valor",'LIKE', "%{$search}%");
@@ -29,13 +29,13 @@ class DespesasController extends Controller
     public function store(Request $request){
         $data = $request->all();
 
-        Despesas::create($data);
+        Despesa::create($data);
 
         return redirect()->route('despesas');
     }
 
     public function edit($id){
-        if($despesa = Despesas::find($id)){
+        if($despesa = Despesa::find($id)){
             return redirect()->back();
         }
 
@@ -43,7 +43,7 @@ class DespesasController extends Controller
     }
     
     public function destroy($id){
-        if($despesa = Despesas::find($id)){
+        if($despesa = Despesa::find($id)){
             return redirect()->back();
         }
         $despesa->delete();

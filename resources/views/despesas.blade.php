@@ -12,7 +12,7 @@
                 <div>
                     <a href="{{route('despesas.adicionar')}}"
                     class="bg-gray-100 text-gray-500 text-sm font-bold whitespace-nowrap mr-2 px-2.5 py-2 rounded mobile-table">
-                        <i class="fas fa-calendar-plus"></i> Adicionar
+                        <i class="fas fa-file-medical"></i> Adicionar
                     </a>
                 </div>
                 <div class="search">

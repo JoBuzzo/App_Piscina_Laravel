@@ -5,9 +5,9 @@
 
    $quantia = $primeiro + $ultimo;
 
-   use App\Models\Despesas;
+   use App\Models\Despesa;
 
-   $despesas = Despesas::count();
+   $despesas = Despesa::count();
 
 @endphp
 
