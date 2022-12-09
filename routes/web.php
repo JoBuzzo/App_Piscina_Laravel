@@ -28,6 +28,11 @@ Route::get('/admins', [UserController::class, 'admins'])->name('admins')->middle
 Route::get('/despesas', [DespesasController::class, 'despesas'])->name('despesas')->middleware('admin');
 Route::get('/despesas/adicionar', [DespesasController::class, 'adicionar'])->name('despesas.adicionar')->middleware('admin');
 Route::post('/despesas', [DespesasController::class, 'store'])->name('despesas.store')->middleware('admin');
+Route::get('/despesas/{id}', [DespesasController::class, 'edit'])->name('despesas.edit')->middleware('admin');
+Route::put('/despesas/{id}', [DespesasController::class, 'update'])->name('despesas.update')->middleware('admin');
+Route::delete('/despesas/{id}', [DespesasController::class, 'destroy'])->name('despesas.destroy')->middleware('admin');
+
+
 
 //                                      AUTH
 Route::get('/login', [UserController::class, 'login'])->name('login');

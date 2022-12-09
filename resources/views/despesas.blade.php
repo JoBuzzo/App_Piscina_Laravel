@@ -68,7 +68,7 @@
                      
                     
                         <td class="py-4 px-2 text-center">
-                            <a href="{{ route('reservas.ver', ['id' => $despesa->id]) }}" class="font-medium text-blue-600">Ver</a>
+                            <a href="{{ route('despesas.edit', ['id' => $despesa->id]) }}" class="font-medium text-blue-600">Ver</a>
                         </td>
                     </tr>
                     @endforeach

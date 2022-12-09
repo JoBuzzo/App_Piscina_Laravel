@@ -35,20 +35,33 @@ class DespesasController extends Controller
     }
 
     public function edit($id){
-        if($despesa = Despesa::find($id)){
+        if(!$despesa = Despesa::find($id)){
             return redirect()->back();
         }
 
         return view('edit_despesa', compact('despesa'));
     }
     
+    public function update(Request $request, $id){
+
+        if(!$despesa = Despesa::find($id)){
+            return redirect()->back();
+        }
+
+        $data = $request->all();
+
+        $despesa->update($data);
+
+        return redirect()->route('despesas.edit', ['id'=> $id]  )->with('mensagem', 'Editado com Sucesso!');   
+    }
+
     public function destroy($id){
-        if($despesa = Despesa::find($id)){
+        if(!$despesa = Despesa::find($id)){
             return redirect()->back();
         }
         $despesa->delete();
 
-        return view('edit_despesa', compact('despesa'));
+        return redirect()->route('despesas');
     }
 
 }
