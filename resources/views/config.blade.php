@@ -14,81 +14,21 @@
                     @csrf
                     @method('PUT')
                     <div class="relative z-0 mb-8 w-full group">
-                        <input name="entrada_um" id="entrada_um" type="text" value="{{ $config->entrada_um }}" placeholder=" "
-                            class="block py-2.5 px-0 w-full text-xl bg-transparent border-0 border-b-2 border-gray-300 focus:outline-none focus:border-gray-600 peer
-                            @if ($errors->has('entrada_um')) text-red-500 border-red-300  @endif"/>
-                        <label for="entrada_um" class="whitespace-nowrap peer-focus:font-medium absolute text-xl duration-300 transform -translate-y-8 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8
-                            @if ($errors->has('entrada_um')) text-red-500 border-red-300  @endif">
-                            Preço de entrada (1 dia)
-                        </label>
-                        <div>
-                            @if ($errors->has('entrada_um'))
-                                <div class="is-invalid">
-                                    @foreach ($errors->get('entrada_um') as $error)
-                                        {{ $error }}
-                                    @endforeach
-                                </div>
-                            @endif
-                        </div>
+                        <x-inputs.text name="entrada_um" value="{{ $config->entrada_um }}" label="Preço de entrada (1 dia)" />
                     </div>
                     <div class="relative z-0 mb-8 w-full group">
-                        <input name="entrada_dois" id="entrada_dois" type="text" value="{{ $config->entrada_dois }}" placeholder=" "
-                            class="block py-2.5 px-0 w-full text-xl bg-transparent border-0 border-b-2 border-gray-300 focus:outline-none focus:border-gray-600 peer
-                            @if ($errors->has('entrada_dois')) text-red-500 border-red-300  @endif"/>
-                        <label for="entrada_dois" class="whitespace-nowrap peer-focus:font-medium absolute text-xl duration-300 transform -translate-y-8 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8
-                            @if ($errors->has('entrada_dois')) text-red-500 border-red-300  @endif">
-                            Preço de entrada (2 dias)
-                        </label>
-                        <div>
-                            @if ($errors->has('entrada_dois'))
-                                <div class="is-invalid">
-                                    @foreach ($errors->get('entrada_dois') as $error)
-                                        {{ $error }}
-                                    @endforeach
-                                </div>
-                            @endif
-                        </div>
+                        <x-inputs.text name="entrada_dois" value="{{ $config->entrada_dois }}" label="Preço de entrada (2 dias)" />
                     </div>
                     <div class="relative z-0 mb-8 w-full group">
-                        <input name="completo_um" id="completo_um" type="text" value="{{ $config->completo_um }}" placeholder=" "
-                            class="block py-2.5 px-0 w-full text-xl bg-transparent border-0 border-b-2 border-gray-300 focus:outline-none focus:border-gray-600 peer
-                            @if ($errors->has('completo_um')) text-red-500 border-red-300  @endif"/>
-                        <label for="completo_um" class="whitespace-nowrap peer-focus:font-medium absolute text-xl duration-300 transform -translate-y-8 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8
-                            @if ($errors->has('completo_um')) text-red-500 border-red-300  @endif">
-                            Preço completo (1 dia)
-                        </label>
-                        <div>
-                            @if ($errors->has('completo_um'))
-                                <div class="is-invalid">
-                                    @foreach ($errors->get('completo_um') as $error)
-                                        {{ $error }}
-                                    @endforeach
-                                </div>
-                            @endif
-                        </div>
+                        <x-inputs.text name="completo_um" value="{{ $config->completo_um }}" label="Preço completo (1 dia)" />
                     </div>
                     <div class="relative z-0 mb-8 w-full group">
-                        <input name="completo_dois" id="completo_dois" type="text" value="{{ $config->completo_dois }}" placeholder=" "
-                            class="block py-2.5 px-0 w-full text-xl bg-transparent border-0 border-b-2 border-gray-300 focus:outline-none focus:border-gray-600 peer
-                            @if ($errors->has('completo_dois')) text-red-500 border-red-300  @endif"/>
-                        <label for="completo_dois" class="whitespace-nowrap peer-focus:font-medium absolute text-xl duration-300 transform -translate-y-8 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8
-                            @if ($errors->has('completo_dois')) text-red-500 border-red-300  @endif">
-                            Preço completo (2 dias)
-                        </label>
-                        <div>
-                            @if ($errors->has('completo_dois'))
-                                <div class="is-invalid">
-                                    @foreach ($errors->get('completo_dois') as $error)
-                                        {{ $error }}
-                                    @endforeach
-                                </div>
-                            @endif
-                        </div>
+                        <x-inputs.text name="completo_dois" value="{{ $config->completo_dois }}" label="Preço completo (2 dias)" />
                     </div>
-                    <div class="input-label">
-                        <button type="button" data-modal-toggle="popup-modal" class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-xl px-5 py-2.5 text-center">Salvar</button>
-                        @include('components.success')
-                    </div>
+                    
+                    <button type="button" data-modal-toggle="popup-modal" class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-xl px-5 py-2.5 text-center">Salvar</button>
+                    @include('components.success')
+                    
             
                     <div id="popup-modal" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
                         <div class="relative w-full h-full max-w-md md:h-auto">

@@ -12,59 +12,14 @@
                 <form action="{{ route('reservas.store') }}" method="POST">
                     @csrf
                     <div class="relative z-0 mb-8 w-full group">
-                        <input name="nome" id="nome" type="text" value="{{ old('nome') }}" placeholder=" "
-                        class="block py-2.5 px-0 w-full text-xl bg-transparent border-0 border-b-2 border-gray-300 focus:outline-none focus:border-gray-600 peer
-                        @if ($errors->has('nome')) text-red-500 border-red-300  @endif"/>
-                        <label for="nome" class="whitespace-nowrap peer-focus:font-medium absolute text-xl duration-300 transform -translate-y-8 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8
-                        @if ($errors->has('nome')) text-red-500 border-red-300  @endif">
-                            Nome do Cliente
-                        </label>
-                        <div>
-                            @if ($errors->has('nome'))
-                                <div class="is-invalid">
-                                    @foreach ($errors->get('nome') as $error)
-                                        {{ $error }}
-                                    @endforeach
-                                </div>
-                            @endif
-                        </div>
+                        <x-inputs.text name="nome" value="{{ old('nome') }}" label="Nome do Cliente" />
                     </div>
                     <div class="grid md:grid-cols-2 md:gap-6">
                         <div class="relative z-0 mb-8 w-full group">
-                            <input type="date" name="primeiro_dia"  value="{{ old('primeiro_dia') }}" placeholder=" "
-                            class="block py-2.5 px-0 w-full text-xl bg-transparent border-0 border-b-2 border-gray-300 focus:outline-none focus:border-gray-600 peer
-                            @if ($errors->has('primeiro_dia')) text-red-500 border-red-300 @endif"/>
-                            <label class="whitespace-nowrap peer-focus:font-medium absolute text-xl duration-300 transform -translate-y-8 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8
-                            @if ($errors->has('primeiro_dia')) text-red-500 border-red-300 @endif">
-                                Primeiro Dia de Reserva
-                            </label>
-                            <div>
-                                @if ($errors->has('primeiro_dia'))
-                                    <div class="is-invalid">
-                                        @foreach ($errors->get('primeiro_dia') as $error)
-                                            {{ $error }}
-                                        @endforeach
-                                    </div>
-                                @endif
-                            </div>
+                            <x-inputs.date name="primeiro_dia" value="{{ old('primeiro_dia') }}" label="Primeiro dia de Reserva" />
                         </div>
                         <div class="relative z-0 mb-8 w-full group">
-                            <input type="date" name="ultimo_dia"  value="{{ old('ultimo_dia') }}" placeholder=" "
-                            class="block py-2.5 px-0 w-full text-xl bg-transparent border-0 border-b-2 border-gray-300 focus:outline-none focus:border-gray-600 peer
-                            @if ($errors->has('ultimo_dia')) text-red-500 border-red-300 @endif"/>
-                            <label class="whitespace-nowrap peer-focus:font-medium absolute text-xl duration-300 transform -translate-y-8 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8
-                            @if ($errors->has('ultimo_dia')) text-red-500 border-red-300 @endif">
-                                Último Dia de Reserva
-                            </label>
-                            <div>
-                                @if ($errors->has('ultimo_dia'))
-                                    <div class="is-invalid">
-                                        @foreach ($errors->get('ultimo_dia') as $error)
-                                            {{ $error }}
-                                        @endforeach
-                                    </div>
-                                @endif
-                            </div>
+                            <x-inputs.date name="ultimo_dia" value="{{ old('ultimo_dia') }}" label="Último dia de Reserva" />
                         </div>
                     </div>
                     <div class="grid md:grid-cols-2 md:gap-6">
@@ -183,9 +138,8 @@
                         </div>
                         
                     </div>
-                    <button type="submit" class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-xl w-full sm:w-auto px-5 py-2.5 text-center">
-                        Enviar
-                    </button>
+                    
+                    <x-buttons.submit value="Enviar" />
                 </form>
             </div>
             

@@ -14,58 +14,13 @@
                     @method('PUT')
                     @csrf
                     <div class="relative z-0 mb-8 w-full group">
-                        <input name="name" id="name" type="text" value="{{ $user->name }}" placeholder=" "
-                        class="block py-2.5 px-0 w-full text-xl bg-transparent border-0 border-b-2 border-gray-300 focus:outline-none focus:border-gray-600 peer
-                        @if ($errors->has('name')) text-red-500 border-red-300  @endif"/>
-                        <label for="name" class="whitespace-nowrap peer-focus:font-medium absolute text-xl duration-300 transform -translate-y-8 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8
-                        @if ($errors->has('name')) text-red-500 border-red-300  @endif">
-                            Nome
-                        </label>
-                        <div>
-                            @if ($errors->has('name'))
-                                <div class="is-invalid">
-                                    @foreach ($errors->get('name') as $error)
-                                        {{ $error }}
-                                    @endforeach
-                                </div>
-                            @endif
-                        </div>
+                        <x-inputs.text name="name" value="{{ $user->name }}" label="Nome" />
                     </div>
                     <div class="relative z-0 mb-8 w-full group">
-                        <input name="login" id="login" type="text" value="{{ $user->login }}" placeholder=" "
-                        class="block py-2.5 px-0 w-full text-xl bg-transparent border-0 border-b-2 border-gray-300 focus:outline-none focus:border-gray-600 peer
-                        @if ($errors->has('login')) text-red-500 border-red-300  @endif"/>
-                        <label for="login" class="whitespace-nowrap peer-focus:font-medium absolute text-xl duration-300 transform -translate-y-8 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8
-                        @if ($errors->has('login')) text-red-500 border-red-300  @endif">
-                        Login
-                        </label>
-                        <div>
-                            @if ($errors->has('login'))
-                                <div class="is-invalid">
-                                    @foreach ($errors->get('login') as $error)
-                                        {{ $error }}
-                                    @endforeach
-                                </div>
-                            @endif
-                        </div>
+                        <x-inputs.text name="login" value="{{ $user->login }}" label="Login" />
                     </div>
                     <div class="relative z-0 mb-8 w-full group">
-                        <input name="password" id="password" type="password" placeholder=" "
-                        class="block py-2.5 px-0 w-full text-xl bg-transparent border-0 border-b-2 border-gray-300 focus:outline-none focus:border-gray-600 peer
-                        @if ($errors->has('password')) text-red-500 border-red-300  @endif"/>
-                        <label for="password" class="whitespace-nowrap peer-focus:font-medium absolute text-xl duration-300 transform -translate-y-8 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8
-                        @if ($errors->has('password')) text-red-500 border-red-300  @endif">
-                        Senha
-                        </label>
-                        <div>
-                            @if ($errors->has('password'))
-                            <div class="is-invalid">
-                                @foreach ($errors->get('password') as $error)
-                                        {{ $error }}
-                                        @endforeach
-                                </div>
-                                @endif
-                            </div>
+                        <x-inputs.password name="password" label="Senha" />
                     </div>
                     
                     
