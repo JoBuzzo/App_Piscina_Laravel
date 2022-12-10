@@ -30,21 +30,10 @@
                 </div>
                 <div class="grid md:grid-cols-2 md:gap-6">
                     <div class="relative z-0 mb-8 w-full group">
-                        <script>
-                            function mostraCampo1(obj) {
-                                var select = document.getElementById('valor');
-                                var txt = document.getElementById("outrainst");
-                                txt.style.visibility = (select.value == 'OUTRO') 
-                                    ? "visible" 
-                                    : "hidden";  
-                            }
-                        </script>
                         
-                        <label class="whitespace-nowrap block mb-2 text-xl font-medium @if ($errors->has('valor_pago'))text-red-500 border-red-300 @endif">Valor pago:</label>
-                        <select name="valor_pago" id="valor" onchange="mostraCampo1(this);"
-                        class="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:border-gray-200
-                        @if ($errors->has('valor_pago'))text-red-500 border-red-300 @endif">
+                        <x-selects.label  name="valor_pago" value="Valor pago:" for="valor"/>
 
+                        <x-selects.select name="valor_pago" id="valor" onchange="mostraCampo1(this);" >
                             <option value="{{ null }}" {{ old('valor_pago') == null ? "selected" : "" }}>
                                 Selecione aqui
                             </option>
@@ -59,46 +48,16 @@
                             <option value="OUTRO" {{ old('valor_pago') == "OUTRO" ? "selected" : "" }}>
                                 Outro
                             </option>
-
-                        </select>
-                        <div>
-                            @if ($errors->has('valor_pago'))
-                                <div class="is-invalid">
-                                    @foreach ($errors->get('valor_pago') as $error)
-                                        {{ $error }}
-                                    @endforeach
-                                </div>
-                            @endif
-                        </div>
-
-                        <input type="text" name="outrainst" id="outrainst" style="visibility: hidden;" value="{{ old('outrainst')}}" 
-                        class="block py-2.5 px-0 w-full text-xl bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:border-gray-600
-                        @if ($errors->has('outrainst')) text-red-500 border-red-300  @endif">
-                        <div>
-                            @if ($errors->has('outrainst'))
-                            <div class="is-invalid">
-                                @foreach ($errors->get('outrainst') as $error)
-                                {{ $error }}
-                                @endforeach
-                            </div>
-                            @endif
-                        </div>
+                        </x-selects.select>
+                        
+                        <x-selects.input name="outrainst" value="{{ old('outrainst')}}"/>
+                        
                     </div>
                     <div class="relative z-0 mb-8 w-full group">
-                        <script>
-                            function mostraCampo2(obj) {
-                                var select = document.getElementById('valor_total');
-                                var txt = document.getElementById("outraopcao");
-                                txt.style.visibility = (select.value == 'OUTRO') 
-                                    ? "visible" 
-                                    : "hidden";  
-                            }
-                        </script>
-                        <label class="whitespace-nowrap block mb-2 text-xl font-medium @if ($errors->has('valor_total'))text-red-500 border-red-300 @endif">Valor total:</label>
-                        <select name="valor_total" id="valor_total" onchange="mostraCampo2(this);"
-                        class="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:border-gray-200
-                        @if ($errors->has('valor_total'))text-red-500 border-red-300 @endif">
 
+                        <x-selects.label  name="valor_total" value="Valor total:" for="valor_total"/>
+
+                        <x-selects.select name="valor_total" id="valor_total" onchange="mostraCampo2(this)" >
                             <option value="{{ null }}" {{ old('valor_total') == null ? "selected" : "" }}>
                                 Selecione aqui
                             </option>
@@ -108,30 +67,10 @@
                             <option value="OUTRO"{{ old('valor_total') == "OUTRO" ? "selected" : "" }}>
                                 Outro
                             </option>
+                        </x-selects.select>
 
-                        </select>
-                        <div>
-                            @if ($errors->has('valor_total'))
-                                <div class="is-invalid">
-                                    @foreach ($errors->get('valor_total') as $error)
-                                        {{ $error }}
-                                    @endforeach
-                                </div>
-                            @endif
-                        </div>
+                        <x-selects.input name="outraopcao" value="{{ old('outraopcao')}}"/>
 
-                        <input type="text" name="outraopcao" id="outraopcao" style="visibility: hidden;" value="{{ old('outraopcao')}}" 
-                        class="block py-2.5 px-0 w-full text-xl bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:border-gray-600
-                        @if ($errors->has('outrainst')) text-red-500 border-red-300  @endif">
-                        <div>
-                            @if ($errors->has('outraopcao'))
-                            <div class="is-invalid">
-                                @foreach ($errors->get('outraopcao') as $error)
-                                {{ $error }}
-                                @endforeach
-                            </div>
-                            @endif
-                        </div>
                     </div> 
                 </div>
                 
