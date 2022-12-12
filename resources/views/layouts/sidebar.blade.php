@@ -1,17 +1,3 @@
-@php
-   use App\Models\Reserva;
-   $primeiro = Reserva::all()->where('primeiro_dia', '!=', false)->count();
-   $ultimo = Reserva::all()->where('ultimo_dia', '!=', false)->count();
-
-   $quantia = $primeiro + $ultimo;
-
-   use App\Models\Despesa;
-
-   $despesas = Despesa::count();
-
-@endphp
-
-
 <div class="sidebar">
 
     <aside class="w-64" aria-label="Sidebar">
@@ -61,7 +47,7 @@
                     <li>
                         <a href="{{route('reservas')}}" class="flex items-center p-2 text-base font-normal text-white rounded-lg hover:bg-gray-900">
                            <span class="flex-1 ml-3 whitespace-nowrap"><i class="far fa-calendar-alt text-gray-500 p-2"></i> Lista de Reservas</span>
-                           <span class="inline-flex justify-center items-center p-3 ml-3 w-3 h-3 text-sm font-medium text-blue-600 bg-blue-200 rounded-full">{{ $quantia }}</span>
+                           <x-count/>
                         </a>
                      </li>
                       <li>
@@ -81,7 +67,6 @@
                     <li>
                         <a href="{{route('despesas')}}" class="flex items-center p-2 text-base font-normal text-white rounded-lg hover:bg-gray-900">
                            <span class="flex-1 ml-3 whitespace-nowrap"><i class="far fa-file-alt text-gray-500 p-2"></i> Lista de Despesas</span>
-                           <span class="inline-flex justify-center items-center p-3 ml-3 w-3 h-3 text-sm font-medium text-blue-600 bg-blue-200 rounded-full">{{ $despesas }}</span>
                         </a>
                      </li>
                       <li>
