@@ -28,6 +28,7 @@ return new class extends Migration
             'name' => 'Wander Camargo dos Santos',
             'login' => 'WanderCamargo',
             'admin' => 1,
+            'cor' => 'bg-blue-200',
             'password' => Hash::make('123456'), 
             'remember_token' => Str::random(10),
         ]);
@@ -35,6 +36,7 @@ return new class extends Migration
             'name' => 'Rosimeire Buzzo Camargo',
             'login' => 'RosiBuzzo',
             'admin' => 1,
+            'cor' => 'bg-red-200',
             'password' => Hash::make('123456'), 
             'remember_token' => Str::random(10),
         ]);
@@ -42,6 +44,7 @@ return new class extends Migration
             'name' => 'Pedro Augusto Buzzo',
             'login' => 'PedroBuzzo',
             'admin' => 1,
+            'cor' => 'bg-green-200',
             'password' => Hash::make('123456'), 
             'remember_token' => Str::random(10),
         ]);
@@ -49,6 +52,7 @@ return new class extends Migration
             'name' => 'Laiza Camargo',
             'login' => 'LaizaCamargo',
             'admin' => 1,
+            'cor' => 'bg-pink-200',
             'password' => Hash::make('123456'), 
             'remember_token' => Str::random(10),
         ]);
@@ -56,6 +60,7 @@ return new class extends Migration
             'name' => 'João Lucas Buzzo',
             'login' => 'JoaoBuzzo',
             'admin' => 1,
+            'cor' => 'bg-blue-200',
             'password' => Hash::make('123456'), 
             'remember_token' => Str::random(10),
         ]); 
@@ -63,6 +68,7 @@ return new class extends Migration
             'name' => 'Heitor Bergamaschi Camargo',
             'login' => 'HeitorBergamaschi',
             'admin' => 1,
+            'cor' => 'bg-yellow-200',
             'password' => Hash::make('123456'), 
             'remember_token' => Str::random(10),
         ]); 

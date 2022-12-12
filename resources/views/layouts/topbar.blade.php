@@ -1,20 +1,11 @@
-@auth
-    @php
-    $nome = explode(' ', Auth::user()->name);
-    $segundo_nome = (isset($nome)) ? $nome[0] . ' ' . end($nome) : $nome[0];
-    $iniciais = strstr($segundo_nome, ' ', true)[0] . trim(strstr($segundo_nome, ' ')[1])
-    @endphp
-@endauth
-
 <div class="topbar">
     <div class="logo">
         <i class="fas fa-swimming-pool"></i>
         <h2>Dashboard</h2>
     </div>
     @Auth
-        <button id="dropdownUserAvatarButton" data-dropdown-toggle="dropdownAvatar" class="inline-flex overflow-hidden relative justify-center items-center w-10 h-10 bg-blue-200 rounded-full" type="button">
-            <span class="font-medium text-gray-600 uppercase">{{ $iniciais }}</span>
-        </button>
+        <x-avatar value="{{ Auth::user()->name }}" color="{{ Auth::user()->cor }}"/> 
+            {{-- {{ dd(Auth::user()->cor) }} --}}
         <!-- Dropdown menu -->
         <div id="dropdownAvatar" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow">
             <div class="py-3 px-4 text-sm">

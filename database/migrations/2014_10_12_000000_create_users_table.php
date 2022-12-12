@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('login');
+            $table->string('cor');
             $table->boolean('admin')->nullable();
             $table->string('password');
             $table->rememberToken();
