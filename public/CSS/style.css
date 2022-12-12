@@ -10,7 +10,10 @@
     --segundacor:#fff;
 }
 
-
+input:-webkit-autofill {
+    -webkit-box-shadow:0 0 0 50px rgb(250, 248, 248) inset; /* aqui muda sua cor do fundo */
+    -webkit-text-fill-color: black; /* Cor do texto */
+}
 /* <topbar> */
 .topbar{
     position: fixed;

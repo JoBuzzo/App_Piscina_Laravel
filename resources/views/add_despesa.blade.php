@@ -12,7 +12,7 @@
                 <form action="{{ route('despesas.store') }}" method="POST">
                     @csrf
                     <div class="relative z-0 mb-8 w-full group">
-                        <x-inputs.text name="descricao" value="{{ old('descricao') }}" label="Descrição" />
+                        <x-textareas.textarea name="descricao" value="{{ old('descricao') }}" label="Descrição" />
                     </div>
                     <div class="relative z-0 mb-8 w-full group">
                         <x-inputs.text name="valor" value="{{ old('valor') }}" label="Preço" />
