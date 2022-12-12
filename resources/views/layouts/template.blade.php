@@ -10,24 +10,25 @@
     <link rel="stylesheet" href="/CSS/style.css">
     <link rel="stylesheet" href="/CSS/main.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script type="text/javascript" src='https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js'referrerpolicy="origin"></script>
+    
+    <script type="text/javascript" src='https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js'
+        referrerpolicy="origin"></script>
     <script>
         tinymce.init({
-            selector: '#descricao',
+            selector: 'textarea',
             width: 600,
             height: 300,
             plugins: [
-                'advlist', 'autolink', 'link', 'image', 'lists', 'charmap', 'preview', 'anchor', 'pagebreak',
-                'searchreplace', 'wordcount', 'visualblocks', 'visualchars', 'code', 'fullscreen',
-                'insertdatetime',
-                'media', 'table', 'emoticons', 'template', 'help'
+                'advlist', 'autolink', 'link', 'lists', 'charmap', 'preview', 'anchor', 'pagebreak',
+                'searchreplace', 'wordcount', 'visualblocks', 'visualchars', 'code',
+                'insertdatetime', 'table', 'emoticons', 'help'
             ],
             toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | ' +
                 'bullist numlist outdent indent | link image | print preview media fullscreen | ' +
                 'forecolor backcolor emoticons | help',
             menu: {
                 favs: {
-                    title: 'My Favorites',
+                    title: 'Descrição',
                     items: 'code visualaid | searchreplace | emoticons'
                 }
             },

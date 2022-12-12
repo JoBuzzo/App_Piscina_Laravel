@@ -13,7 +13,7 @@
                     @method('PUT')
                     @csrf
                     <div class="relative z-0 mb-8 w-full group">
-                        <x-textareas.textarea name="descricao" value="{{ $despesa->descricao }}" label="Descrição" />
+                        <x-textareas.textarea name="descricao" value="{{ $despesa->descricao }}"/>
                     </div>
                     <div class="relative z-0 mb-8 w-full group">
                         <x-inputs.text name="valor" value="{{ $despesa->valor }}" label="Preço" />
