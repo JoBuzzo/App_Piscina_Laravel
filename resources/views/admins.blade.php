@@ -15,6 +15,9 @@
                 <thead class="text-white uppercase bg-gray-800">
                     <tr>
                         <th scope="col" class="py-3 px-6">
+                            Perfil
+                        </th>
+                        <th scope="col" class="py-3 px-6">
                             Nome
                         </th>
                         <th scope="col" class="nao-importante py-3 px-6">
@@ -29,6 +32,9 @@
                     @foreach ($admins as $admin)
                         <tr class="border-b bg-white hover:bg-gray-50">
 
+                            <td class="py-4 px-6">
+                                <x-avatar value="{{ $admin->name }}" color="{{ $admin->cor }}"/> 
+                            </td>
                             <td class="py-4 px-6">
                                 {{$admin->name}}
                             </td>

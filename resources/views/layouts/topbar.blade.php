@@ -4,8 +4,7 @@
         <h2>Dashboard</h2>
     </div>
     @Auth
-        <x-avatar value="{{ Auth::user()->name }}" color="{{ Auth::user()->cor }}"/> 
-            {{-- {{ dd(Auth::user()->cor) }} --}}
+        <x-avatar value="{{ Auth::user()->name }}" color="{{ Auth::user()->cor }}" data-dropdown-toggle="dropdownAvatar"/> 
         <!-- Dropdown menu -->
         <div id="dropdownAvatar" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow">
             <div class="py-3 px-4 text-sm">

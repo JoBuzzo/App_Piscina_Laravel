@@ -24,7 +24,7 @@ class avatar extends Component
     }
 
 
-    public function iniciais()
+    public function avatar()
     {
         
         $nome = explode(' ', $this->value);
