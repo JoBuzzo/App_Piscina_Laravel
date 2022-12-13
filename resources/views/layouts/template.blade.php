@@ -10,9 +10,8 @@
     <link rel="stylesheet" href="/CSS/style.css">
     <link rel="stylesheet" href="/CSS/main.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/JS/tinymce/tinymce.min.js"></script>
     
-    <script type="text/javascript" src='https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js'
-        referrerpolicy="origin"></script>
     <script>
         tinymce.init({
             selector: 'textarea',

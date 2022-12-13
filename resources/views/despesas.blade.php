@@ -56,7 +56,7 @@
                             
                         </td>
                         <td class="mobile-table py-4 px-6">
-                            {{$despesa->descricao}}
+                            {!!$despesa->descricao!!}
                         </td>
                         <td class="mobile-table-valor py-4 px-6">
                             R${{$despesa->valor}}
