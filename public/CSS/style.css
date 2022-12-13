@@ -4,11 +4,25 @@
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
 }
-
 :root{
     --primeiracor:#23232e;
     --segundacor:#fff;
 }
+
+.sidebar::-webkit-scrollbar {
+    width: 12px; /* tamanho do scroll */
+  }
+  
+.sidebar::-webkit-scrollbar-track {
+    background: var(--primeiracor); /* cor do fundo */
+}
+  
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: var(--primeiracor); /* cor do scroll */
+    border: none;
+}
+
+
 
 input:-webkit-autofill {
     -webkit-box-shadow:0 0 0 50px rgb(250, 248, 248) inset; /* aqui muda sua cor do fundo */

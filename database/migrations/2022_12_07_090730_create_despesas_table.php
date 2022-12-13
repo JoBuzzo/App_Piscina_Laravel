@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('despesas', function (Blueprint $table) {
             $table->id();
-            $table->string('descricao')->nullable();
+            $table->longText('descricao')->nullable();
             $table->string('data');
             $table->float('valor');
             $table->timestamps();

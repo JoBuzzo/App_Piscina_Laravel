@@ -12,7 +12,7 @@
 }
 
 
-.main-login{
+.main-login {
     position: absolute;
     top: 100px;
     display: flex;
@@ -22,7 +22,7 @@
 }
 
 
-.form-container{
+.form-container {
     width: calc(100% - 100px);
     background: #fff;
     padding: 50px;
@@ -34,7 +34,7 @@
 
 /* <mensagens> */
 
-.success{
+.success {
     display: flex;
     align-items: center;
     color: green;
@@ -44,7 +44,7 @@
 }
 
 
-.is-invalid{
+.is-invalid {
     display: flex;
     align-items: center;
     color: red;
@@ -58,43 +58,52 @@
 
 
 
-@media (max-width:1115px){
-    .main-secundaria {  
+@media (max-width:1115px) {
+    .main-secundaria {
         left: 80px;
         top: 100px;
         width: calc(100% - 80px);
         height: 550px;
     }
-    .form-container{
+
+    .form-container {
         width: calc(100% - 60px);
+    }
+
+    .mobile-table-descricao {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 10px;
     }
 }
 
 
-@media (max-width:880px){
+@media (max-width:880px) {
 
-    .mobile-table{
+    .mobile-table {
         display: none;
     }
 
-    .is-invalid{
+    .is-invalid {
         font-size: 12px;
         margin-top: 0px;
 
     }
 }
 
-@media (max-width:600px){
-    .mobile-table-nome{
-        display: none;
-    }
-    .mobile-table-valor{
+@media (max-width:600px) {
+    .mobile-table-nome {
         display: none;
     }
 
-    .form-container{
+    .mobile-table-valor {
+        display: none;
+    }
+
+    .form-container {
         width: calc(100% - 10px);
     }
 
-    
+
 }

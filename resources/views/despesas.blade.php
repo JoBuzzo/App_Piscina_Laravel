@@ -55,7 +55,7 @@
                             {{ date('d/m/Y', strtotime($despesa->data)) }}
                             
                         </td>
-                        <td class="mobile-table py-4 px-6">
+                        <td class="mobile-table mobile-table-descricao py-4 px-6">
                             {!!$despesa->descricao!!}
                         </td>
                         <td class="mobile-table-valor py-4 px-6">
