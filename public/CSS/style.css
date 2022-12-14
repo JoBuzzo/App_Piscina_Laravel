@@ -141,29 +141,12 @@ input:-webkit-autofill {
     text-decoration: none;
     color: black;
 }
-#cards{
-    width: 100%;
-    padding: 35px 20px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 20px;
-}
-
-#card{
-    padding: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: var(--segundacor);
-    border-radius: 10px;
-    box-shadow: 1px 4px 8px 2px rgb(0, 0, 0, 0.08);
-}
 
 .cards{
     width: 100%;
     padding: 35px 20px;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-gap: 20px;
 }
 .card{
@@ -185,12 +168,15 @@ input:-webkit-autofill {
 .card-name {
     color: #888;
     font-weight: 600;
+    white-space: nowrap;
 }
 .icon-box i {
-    font-size: 45px;
+    font-size: 40px;
     color: var(--primeiracor);
 }
-
+.icon-box{
+    margin-bottom: 20px;
+}
 
 /* <charts> */
 .charts {
@@ -224,10 +210,20 @@ input:-webkit-autofill {
     .main {
         overflow-x: hidden;
     }
+
+    .card-name {
+        font-size: 13px;
+    }
+
 }
 
 
+
 @media (max-width:1115px){
+    .cards{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
     .sidebar{
         width: 55px;
     }
@@ -270,7 +266,7 @@ input:-webkit-autofill {
     .charts{
         grid-template-columns: 1fr;
     }
-
+    
     /* </main> */
 
 }
@@ -291,11 +287,11 @@ input:-webkit-autofill {
     /* </topbar> */
 
     /* <main> */
-    #cards{
-        grid-template-columns: 1fr;
-    }
     .cards{
         grid-template-columns: 1fr;
+    }
+    .card-name {
+        white-space: unset;
     }
     #pie-chart{
         padding: 10px;

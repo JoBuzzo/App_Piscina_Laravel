@@ -26,6 +26,24 @@
                     <i class="fas fa-dollar-sign"></i>
                 </div>
             </div>
+            <div class="card">
+                <div class="card-content">
+                    <div class="number">{{ $despesas['quantia'] }}</div>
+                    <div class="card-name">Quantia de despesas</div>
+                </div>
+                <div class="icon-box">
+                    <i class="far fa-file-alt"></i>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <div class="number">${{ $despesas['total'] }}</div>
+                    <div class="card-name">Total de despesas</div>
+                </div>
+                <div class="icon-box">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                </div>
+            </div>
         </div>
 
 

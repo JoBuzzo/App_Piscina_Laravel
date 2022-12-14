@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ConfigFormRequest;
 use App\Http\Requests\ReservaFormRequest;
 use App\Models\Config;
+use App\Models\Despesa;
 use App\Models\Reserva;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,8 @@ class ReservaController extends Controller
 
         $primeiro = Reserva::all()->where('primeiro_dia', '!=', false)->count();
         $ultimo = Reserva::all()->where('ultimo_dia', '!=', false)->count();
-
+        $despesas['quantia'] = Despesa::all()->count();
+        $despesas['total'] = Despesa::all()->sum('valor');
         $datas = $primeiro + $ultimo; //todas datas reservadas (card)
 
         //total de ganhos de todos os anos (card)
@@ -271,7 +273,7 @@ class ReservaController extends Controller
         }
 
 
-        return view('index',compact('totalTodos', 'total','datas','geral','ano', 'pagamentos', 'quantia','faltam','pagos_parte','completo'));
+        return view('index',compact('totalTodos', 'total','datas','geral','ano', 'pagamentos', 'quantia','faltam','pagos_parte','completo', 'despesas'));
     }
 
     public function config(ConfigFormRequest $request){
