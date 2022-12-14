@@ -30,7 +30,9 @@
     justify-content: center;
     border-radius: 5px;
 }
-
+textarea{
+    height: 600;
+}
 
 /* <mensagens> */
 

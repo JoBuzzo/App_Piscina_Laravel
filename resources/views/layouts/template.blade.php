@@ -15,20 +15,18 @@
     <script>
         tinymce.init({
             selector: 'textarea',
-            width: 600,
-            height: 300,
+            height: 500,
             plugins: [
-                'advlist', 'autolink', 'link', 'lists', 'charmap', 'preview', 'anchor', 'pagebreak',
-                'searchreplace', 'wordcount', 'visualblocks', 'visualchars', 'code',
-                'insertdatetime', 'table', 'emoticons', 'help'
+                'advlist', 'lists',
+                'searchreplace', 
+                'insertdatetime', 'table',
             ],
             toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | ' +
-                'bullist numlist outdent indent | link image | print preview media fullscreen | ' +
-                'forecolor backcolor emoticons | help',
+                'bullist numlist outdent indent | link image ' ,
             menu: {
                 favs: {
                     title: 'Descrição',
-                    items: 'code visualaid | searchreplace | emoticons'
+                    items: 'code visualaid'
                 }
             },
             menubar: 'favs file edit view insert format tools table help',
