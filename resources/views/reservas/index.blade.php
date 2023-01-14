@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', 'Início')
+@section('title', 'Reservas')
 
 @section('head')
     <style>
@@ -98,7 +98,7 @@
         @if (count($reservas) > 0)
 
             <table class="w-full text-lg font-semibold text-left">
-                <thead class="font-bold uppercase bg-gray-50 dark:bg-gray-700">
+                <thead class="font-bold border uppercase bg-gray-50 dark:bg-gray-700">
                     <tr>
                         <th scope="col" class="py-3 px-6">
                             Datas
@@ -123,7 +123,7 @@
                 <tbody>
                     @foreach ($reservas as $reserva)
                         <tr
-                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            class="bg-white border dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
 
                             <td class="py-4 px-6">
                                 @if ($reserva->ultimo_dia)
@@ -162,7 +162,7 @@
                 {{ $reservas->links() }}
             </div>
         @else
-            <div class="p-4 mb-4 text-ls text-blue-700 bg-blue-100 rounded-lg" role="alert">
+            <div class="p-4 text-ls text-blue-700 bg-blue-100 rounded-lg" role="alert">
                 <span class="font-bold">404! </span> Não foram encontrados nenhuma reserva.
             </div>
 

@@ -34,7 +34,7 @@ class ReservaController extends Controller
     //     $pagamentos['valor_pendente'] = Reserva::all()->where('valor_pendente', '>', 0)->sum('valor_pago'); //soma dos valores pagos por incompleto (devendo)
     //     $quantia['valor_pendente'] = Reserva::all()->where('valor_pendente', '>', 0)->count(); //quantia dos valores pagos por incompleto (devendo)
 
-        
+
 
     //     //total de ganhos em cada mes (grafico de barras)
     //     $geral['janeiro'] = 0;  $faltam['janeiro'] = 0; //1
@@ -74,7 +74,7 @@ class ReservaController extends Controller
     //     if($request->ano){
     //         $ano = $request->ano;
     //     }
-        
+
     //     foreach ($reservas as $reserva) {
 
     //         //total de ganhos em cada mes (grafico de barras) //total de ganhos do ano atual
@@ -82,7 +82,7 @@ class ReservaController extends Controller
     //             case ((date('m', strtotime($reserva->primeiro_dia)) == 1) && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
     //                 $geral['janeiro']+= $reserva->valor_pago;
     //                 $faltam['janeiro']+= $reserva->valor_pendente;
-                    
+
     //                 if($reserva->valor_pendente > 0){
     //                     $pagos_parte['janeiro']+= $reserva->valor_pago;
     //                     $total['pagos_parte'] += $reserva->valor_pago;
@@ -98,7 +98,7 @@ class ReservaController extends Controller
     //             case ((date('m', strtotime($reserva->primeiro_dia)) == 2)  && (date('Y', strtotime($reserva->primeiro_dia)) == $ano)) :
     //                 $geral['fevereiro']+= $reserva->valor_pago;
     //                 $faltam['fevereiro']+= $reserva->valor_pendente;
-                    
+
     //                 if($reserva->valor_pendente > 0){
     //                     $pagos_parte['fevereiro']+= $reserva->valor_pago;
     //                     $total['pagos_parte'] += $reserva->valor_pago;
@@ -169,7 +169,7 @@ class ReservaController extends Controller
     //                     $completo['junho'] +=  $reserva->valor_pago;
     //                     $total['completo'] += $reserva->valor_pago;
     //                 }
-                    
+
     //                 $total['faltam']+= $reserva->valor_pendente;
     //                 $total['geral']+= $reserva->valor_pago;
 
@@ -278,7 +278,7 @@ class ReservaController extends Controller
 
     // public function config(ConfigFormRequest $request){
     //     $config = Config::find(1);
-            
+
     //     $config->update([
     //         'nao_pago' => $request->nao_pago = 0,
     //         'entrada_um' => $request->entrada_um,
@@ -292,23 +292,24 @@ class ReservaController extends Controller
 
     // public function viewConfig(){
     //     $config = Config::find(1);
-        
+
     //     return view('config' ,compact('config'));
     // }
 
-    public function index(Request $request){
-        
+    public function index(Request $request)
+    {
+
 
         $search = $request->search;
         $filter = $request->filter;
         $reservas = Reserva::where(function ($query) use ($search) {
-            if($search){
-                $query->where("nome",'LIKE', "%{$search}%");
-                $query->orwhere("valor_pago",'LIKE', "%{$search}%");
-                $query->orwhere("valor_pendente",'LIKE', "%{$search}%");
-                $query->orwhere("valor_total",'LIKE', "%{$search}%");
-                $query->orwhereDate("primeiro_dia",'LIKE', "%{$search}%");
-                $query->orwhereDate("ultimo_dia",'LIKE', "%{$search}%");
+            if ($search) {
+                $query->where("nome", 'LIKE', "%{$search}%");
+                $query->orwhere("valor_pago", 'LIKE', "%{$search}%");
+                $query->orwhere("valor_pendente", 'LIKE', "%{$search}%");
+                $query->orwhere("valor_total", 'LIKE', "%{$search}%");
+                $query->orwhereDate("primeiro_dia", 'LIKE', "%{$search}%");
+                $query->orwhereDate("ultimo_dia", 'LIKE', "%{$search}%");
             }
         })->paginate(12)->withQueryString();
 
@@ -328,57 +329,57 @@ class ReservaController extends Controller
         }
 
 
-        return view('reservas.index', compact('reservas','search', 'filter'));
+        return view('reservas.index', compact('reservas', 'search', 'filter'));
     }
 
 
-    public function adicionar(){
-        $config = Config::find(1);
-        return view('adicionar', compact('config'));
+    public function create()
+    {
+
+        return view('reservas.create');
     }
 
-    public function store(ReservaFormRequest $request){
+    public function store(ReservaFormRequest $request)
+    {
 
         $data = $request->only('nome', 'primeiro_dia', 'ultimo_dia', 'valor_pago', 'valor_total');
-
-        if($request->valor_pago === "OUTRO"){
-            $data['valor_pago'] = $request->outrainst;
-        }
-
-        if($request->valor_total === "OUTRO"){
-            $data['valor_total'] = $request->outraopcao;
-        }
-
+        
+        $data['primeiro_dia'] = date("Y-m-d", strtotime($data['primeiro_dia']));
+        $data['ultimo_dia'] = date("Y-m-d", strtotime($data['ultimo_dia']));
 
         $pendente = $data['valor_total'] - $data['valor_pago'];
+
         $data['valor_pendente'] = $pendente;
+
         Reserva::create($data);
-        
 
 
-        return redirect()->route('reservas');
+
+        return redirect()->route('reservas.index');
     }
 
-    public function edit($id){
-        if(!$reserva =  Reserva::find($id)){
+    public function edit($id)
+    {
+        if (!$reserva =  Reserva::find($id)) {
             return redirect()->back('reservas');
         }
-        return view('ver' ,compact('reserva'));
+        return view('ver', compact('reserva'));
     }
 
-    public function update(ReservaFormRequest $request, $id){
+    public function update(ReservaFormRequest $request, $id)
+    {
 
-        if(!$reserva = Reserva::find($id)){
+        if (!$reserva = Reserva::find($id)) {
             return redirect()->route('reservas');
         }
 
         $data = $request->only('nome', 'primeiro_dia', 'ultimo_dia', 'valor_pago', 'valor_total');
 
-        if($request->valor_pago === "OUTRO"){
+        if ($request->valor_pago === "OUTRO") {
             $data['valor_pago'] = $request->outrainst;
         }
 
-        if($request->valor_total === "OUTRO"){
+        if ($request->valor_total === "OUTRO") {
             $data['valor_total'] = $request->outraopcao;
         }
 
@@ -387,17 +388,18 @@ class ReservaController extends Controller
 
         $reserva->update($data);
 
-        return redirect()->route('reservas.ver', ['id'=> $id]  )->with('mensagem', 'Editado com Sucesso!');   
+        return redirect()->route('reservas.ver', ['id' => $id])->with('mensagem', 'Editado com Sucesso!');
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
 
-        if(!$reserva = Reserva::find($id)){
+        if (!$reserva = Reserva::find($id)) {
             return redirect()->route('reservas');
         }
-    
+
         $reserva->delete();
-    
+
         return redirect()->route('reservas');
     }
 }
