@@ -1,8 +1,7 @@
-@extends('layouts.template')
+@extends('app')
 
 @section('content')
 
-    @include('layouts.topbar')
 
     <div class="main-login">
 
@@ -36,7 +35,7 @@
                         
                         
                     <button class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-xl px-5 py-2.5 text-center">Salvar</button>
-                    @include('components.is-invalid')
+                    
                 </form>
         </div>
 
