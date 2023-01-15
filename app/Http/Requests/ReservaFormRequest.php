@@ -26,8 +26,8 @@ class ReservaFormRequest extends FormRequest
         $id = $this->id ?? '';
         return [
                 'nome' => 'required|string|min:4|max:30',        
-                'primeiro_dia' => "required|date|unique:reservas,primeiro_dia,{$id},id|unique:reservas,ultimo_dia,{$id},id",        
-                'ultimo_dia' => "required|date|unique:reservas,primeiro_dia,{$id},id|unique:reservas,ultimo_dia,{$id},id",           
+                'primeiro_dia' => "required|unique:reservas,primeiro_dia,{$id},id|unique:reservas,ultimo_dia,{$id},id",        
+                'ultimo_dia' => "required|unique:reservas,primeiro_dia,{$id},id|unique:reservas,ultimo_dia,{$id},id",           
                 'valor_pago' => 'required',
                 'valor_total' => 'required|gte:valor_pago',    
         ];

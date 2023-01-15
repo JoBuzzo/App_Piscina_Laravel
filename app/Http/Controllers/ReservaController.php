@@ -299,7 +299,6 @@ class ReservaController extends Controller
     public function index(Request $request)
     {
 
-
         $search = $request->search;
         $filter = $request->filter;
         $reservas = Reserva::where(function ($query) use ($search) {
@@ -314,18 +313,18 @@ class ReservaController extends Controller
         })->paginate(12)->withQueryString();
 
         $date = date('Y-m-d');
-        if(!$search){
+        if (!$search) {
             $reservas = Reserva::orderBy('primeiro_dia', 'asc')->where('primeiro_dia', '>=', "$date")->paginate(12)->withQueryString();
         }
 
-        if( $filter === "Vencidas"){
+        if ($filter === "Vencidas") {
             $reservas = Reserva::orderBy('primeiro_dia', 'asc')->where('primeiro_dia', '<', "$date")->paginate(12)->withQueryString();
         }
-        if( $filter === "Todas"){
+        if ($filter === "Todas") {
             $reservas = Reserva::orderBy('primeiro_dia', 'asc')->paginate(12)->withQueryString();
         }
-        if( $filter === "Hoje"){
-            $reservas = Reserva::where('primeiro_dia', '=', "$date")->orWhere('ultimo_dia', '=', "$date")->paginate() ;
+        if ($filter === "Hoje") {
+            $reservas = Reserva::where('primeiro_dia', '=', "$date")->orWhere('ultimo_dia', '=', "$date")->paginate();
         }
 
 
@@ -343,8 +342,11 @@ class ReservaController extends Controller
     {
 
         $data = $request->only('nome', 'primeiro_dia', 'ultimo_dia', 'valor_pago', 'valor_total');
-        
+
+        $data['primeiro_dia'] = str_replace('/', '-', $data['primeiro_dia']);
         $data['primeiro_dia'] = date("Y-m-d", strtotime($data['primeiro_dia']));
+        
+        $data['ultimo_dia'] = str_replace('/', '-', $data['ultimo_dia']);
         $data['ultimo_dia'] = date("Y-m-d", strtotime($data['ultimo_dia']));
 
         $pendente = $data['valor_total'] - $data['valor_pago'];
@@ -353,17 +355,20 @@ class ReservaController extends Controller
 
         Reserva::create($data);
 
+        
 
-
-        return redirect()->route('reservas.index');
+        return redirect()->route('reservas.index')->with('sucesso', "A reserva de {$data['nome']} foi cadastrada com Sucesso!");
     }
 
     public function edit($id)
     {
         if (!$reserva =  Reserva::find($id)) {
-            return redirect()->back('reservas');
+            return redirect()->route('reservas.index')->with('erro', 'Reserva não encontrada.');
         }
-        return view('ver', compact('reserva'));
+        $reserva->primeiro_dia = date("d/m/Y", strtotime($reserva->primeiro_dia));
+        $reserva->ultimo_dia = date("d/m/Y", strtotime($reserva->ultimo_dia));
+
+        return view('reservas.edit', compact('reserva'));
     }
 
     public function update(ReservaFormRequest $request, $id)
@@ -373,22 +378,22 @@ class ReservaController extends Controller
             return redirect()->route('reservas');
         }
 
+
         $data = $request->only('nome', 'primeiro_dia', 'ultimo_dia', 'valor_pago', 'valor_total');
 
-        if ($request->valor_pago === "OUTRO") {
-            $data['valor_pago'] = $request->outrainst;
-        }
+        $data['primeiro_dia'] = str_replace('/', '-', $data['primeiro_dia']);
+        $data['primeiro_dia'] = date('Y-m-d', strtotime($data['primeiro_dia']));
 
-        if ($request->valor_total === "OUTRO") {
-            $data['valor_total'] = $request->outraopcao;
-        }
+        $data['ultimo_dia'] = str_replace('/', '-', $data['ultimo_dia']);
+        $data['ultimo_dia'] = date("Y-m-d", strtotime($data['ultimo_dia']));
 
         $pendente = $data['valor_total'] - $data['valor_pago'];
+
         $data['valor_pendente'] = $pendente;
 
         $reserva->update($data);
 
-        return redirect()->route('reservas.ver', ['id' => $id])->with('mensagem', 'Editado com Sucesso!');
+        return redirect()->route('reservas.edit', ['id' => $id])->with('sucesso', 'Editado com Sucesso!');
     }
 
     public function destroy($id)
@@ -397,9 +402,9 @@ class ReservaController extends Controller
         if (!$reserva = Reserva::find($id)) {
             return redirect()->route('reservas');
         }
-
+        $nome = $reserva->nome;
         $reserva->delete();
 
-        return redirect()->route('reservas');
+        return redirect()->route('reservas.index')->with('sucesso', "A Reserva de $nome foi excluído com Sucesso!");
     }
 }
