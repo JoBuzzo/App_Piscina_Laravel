@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class DespesasController extends Controller
 {
-    public function despesas(Request $request){
+    public function index(Request $request){
         $search = $request->search;
 
         $despesas = Despesa::where(function ($query) use ($search) {
@@ -20,24 +20,21 @@ class DespesasController extends Controller
             }
         })->orderBy('data', 'asc')->paginate(12)->withQueryString();
 
-        return view('despesas', compact('despesas'));
+        return view('despesas.index', compact('despesas'));
     }
 
-    public function adicionar(){
-        return view('add_despesa');
+    public function create(){
+        return view('despesas.create');
     }
 
     public function store(DespesaFormRequest $request){
-        $data = $request->only('descricao', 'valor');
-        if(!$request->data){
-            $data['data'] = date('Y-m-d');
-        }else{
-            $data['data'] = $request->data;
-        }
+        $data = $request->only('descricao', 'valor', 'data');
+        $data['data'] = str_replace('/', '-', $data['data']);
+        $data['data'] = date('Y-m-d', strtotime($data['data']));
         
         Despesa::create($data);
 
-        return redirect()->route('despesas');
+        return redirect()->route('despesas.index');
     }
 
     public function edit($id){
