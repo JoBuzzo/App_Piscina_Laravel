@@ -9,14 +9,15 @@
 
 
 @section('content')
+    <x-toast.alert />
     <x-alert.error />
-    <x-form action="{{ route('despesas.store') }}">
+    <x-form action="{{ route('despesas.update', $despesa->id) }}" method="PUT">
         <div class="mb-6">
-            <x-input.textarea name="descricao" label="Descrição" value="{{ old('descricao') }}"
+            <x-input.textarea name="descricao" label="Descrição" value="{{ $despesa->descricao }}"
                 placeholder="Ex: Com o que gastou.." />
         </div>
         <div class="mb-6">
-            <x-input.text name="valor" label="Preço" placeholder="Valor gasto..." value="{{ old('valor') }}" />
+            <x-input.text name="valor" label="Preço" placeholder="Valor gasto..." value="{{ $despesa->valor }}" />
         </div>
         <div class="mb-6">
             <div class="p-2">
@@ -29,13 +30,20 @@
                                 clip-rule="evenodd"></path>
                         </svg>
                     </div>
-                    <input datepicker datepicker-autohide datepicker-title="Data da despesa" type="text" name="data" value="{{ old('data') }}" placeholder="Selecione a data" autocomplete="off" datepicker-format="dd/mm/yyyy"
+                    <input datepicker datepicker-autohide datepicker-title="Data da despesa" type="text" name="data"
+                        value="{{ $despesa->data }}" placeholder="Selecione a data" autocomplete="off"
+                        datepicker-format="dd/mm/yyyy"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
             </div>
         </div>
-        <x-button.submit>Enviar</x-button.submit>
+        <div class="flex">
+            <x-button.submit>Enviar</x-button.submit>
+            <x-button.delete>Excluir</x-button.delete>
+        </div>
     </x-form>
+
+    <x-modal.delete action="{{ route('despesas.destroy', $despesa->id) }}" />
 
 
 

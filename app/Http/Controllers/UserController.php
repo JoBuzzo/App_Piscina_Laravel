@@ -22,7 +22,7 @@ class UserController extends Controller
 
 
     public function auth(Request $request){
-        if(Auth::attempt(['login' => $request->login, 'password' => $request->password])){
+        if(Auth::attempt(['login' => $request->login, 'password' => $request->password],$request->remember)){
             return redirect()->route('home');
         }
         return redirect()->back()->withInput()->withErrors('Os dados informados não conferem');   

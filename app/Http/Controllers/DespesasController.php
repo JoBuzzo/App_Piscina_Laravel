@@ -34,15 +34,16 @@ class DespesasController extends Controller
         
         Despesa::create($data);
 
-        return redirect()->route('despesas.index');
+        return redirect()->route('despesas.index')->with('sucesso', "Despesa adicionada com Sucesso!");
     }
 
     public function edit($id){
         if(!$despesa = Despesa::find($id)){
             return redirect()->back();
         }
+        $despesa->data = date("d/m/Y", strtotime($despesa->data));
 
-        return view('edit_despesa', compact('despesa'));
+        return view('despesas.edit', compact('despesa'));
     }
     
     public function update(DespesaFormRequest $request, $id){
@@ -53,9 +54,11 @@ class DespesasController extends Controller
 
         $data = $request->all();
 
+        $data['data'] = str_replace('/', '-', $data['data']);
+        $data['data'] = date('Y-m-d', strtotime($data['data']));
         $despesa->update($data);
 
-        return redirect()->route('despesas.edit', ['id'=> $id]  )->with('mensagem', 'Editado com Sucesso!');   
+        return redirect()->route('despesas.edit', ['id'=> $id]  )->with('sucesso', 'Editado com Sucesso!');   
     }
 
     public function destroy($id){
@@ -64,7 +67,7 @@ class DespesasController extends Controller
         }
         $despesa->delete();
 
-        return redirect()->route('despesas');
+        return redirect()->route('despesas.index')->with('sucesso', "Despesa excluída com Sucesso!");
     }
 
 }
