@@ -1,10 +1,10 @@
 @extends('app')
 
-@section('title', '')
+@section('title', "Editar $user->login")
 
 @section('navbar')
-    <x-navbar  />
-    <x-sidebar />
+    <x-navbar/>
+    <x-sidebar/>
 @endsection
 
 

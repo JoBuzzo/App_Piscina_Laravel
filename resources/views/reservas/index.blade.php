@@ -107,6 +107,9 @@
                         <th scope="col" class="py-3 px-6">
                             Nomes
                         </th>
+                        <th scope="col" class="py-3 px-6">
+                            Número
+                        </th>
                         <th scope="col" class="mobile-table py-3 px-6">
                             Preço
                         </th>
@@ -138,6 +141,9 @@
                             </td>
                             <td class="py-4 px-6">
                                 {{ $reserva->nome }}
+                            </td>
+                            <td class="py-4 px-6">
+                                {{ $reserva->numero }}
                             </td>
                             <td class="mobile-table py-4 px-6 text-green-400 dark:text-green-300">
                                 R${{ $reserva->valor_total }}

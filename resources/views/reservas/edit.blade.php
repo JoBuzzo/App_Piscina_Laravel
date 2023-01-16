@@ -17,6 +17,10 @@
                 placeholder="Nome do cliente..." />
         </div>
         <div class="mb-6">
+            <x-input.text name="numero" label="Número do cliente" value="{{ $reserva->numero }}"
+                placeholder="Número do cliente..." />
+        </div>
+        <div class="mb-6">
             <x-input.date value1="{{ $reserva->primeiro_dia }}" value2="{{ $reserva->ultimo_dia }}" />
         </div>
         <div class="grid gap-6 mb-6 md:grid-cols-2">

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('reservas', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
+            $table->string('numero')->nullable();
             $table->string('primeiro_dia');
             $table->string('ultimo_dia')->nullable();
             $table->float('valor_pago');

@@ -341,7 +341,7 @@ class ReservaController extends Controller
     public function store(ReservaFormRequest $request)
     {
 
-        $data = $request->only('nome', 'primeiro_dia', 'ultimo_dia', 'valor_pago', 'valor_total');
+        $data = $request->only('nome', 'numero', 'primeiro_dia', 'ultimo_dia', 'valor_pago', 'valor_total');
 
         $data['primeiro_dia'] = str_replace('/', '-', $data['primeiro_dia']);
         $data['primeiro_dia'] = date("Y-m-d", strtotime($data['primeiro_dia']));
@@ -379,7 +379,7 @@ class ReservaController extends Controller
         }
 
 
-        $data = $request->only('nome', 'primeiro_dia', 'ultimo_dia', 'valor_pago', 'valor_total');
+        $data = $request->only('nome', 'numero', 'primeiro_dia', 'ultimo_dia', 'valor_pago', 'valor_total');
 
         $data['primeiro_dia'] = str_replace('/', '-', $data['primeiro_dia']);
         $data['primeiro_dia'] = date('Y-m-d', strtotime($data['primeiro_dia']));
