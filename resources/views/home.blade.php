@@ -10,7 +10,7 @@
 @section('content')
 
     <div class="flex flex-col justify-center items-center gap-4">
-        <div class="flex flex-wrap justify-center items-center gap-2 w-full">
+        <div class="flex flex-wrap justify-center items-center gap-2">
             <x-card.preco title="Reservas em R$" value="R$200.50" />
             <x-card.preco title="Despesas em R$" value="-R$150.00" />
             <x-card.total title="Total de reservas" value="50" icon="fas fa-file-alt" />
@@ -32,25 +32,24 @@
         var barChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
                 datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
+                    label: 'Ganhos',
+                    data: [12, 19, 3, 5, 10, 3, 12, 19, 3, 5, 10, 3],
+                    
                     borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
+                        'rgba(135, 206, 250, 1)',
+                        'rgba(135, 206, 250, 1)',
+                        'rgba(135, 206, 250, 1)',
+                        'rgba(135, 206, 250, 1)',
+                        'rgba(135, 206, 250, 1)',
+                        'rgba(135, 206, 250, 1)',
+                        'rgba(135, 206, 250, 1)',
+                        'rgba(135, 206, 250, 1)',
+                        'rgba(135, 206, 250, 1)',
+                        'rgba(135, 206, 250, 1)',
+                        'rgba(135, 206, 250, 1)',
+                        'rgba(135, 206, 250, 1)'
                     ],
                     borderWidth: 1
                 }]
@@ -69,25 +68,16 @@
         var pieChart = new Chart(ctx, {
             type: 'pie',
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: ['Red', 'Blue',  'Green', 'Purple'],
                 datasets: [{
                     label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
+                    data: [12, 19, 3, 5],
+
                     borderColor: [
                         'rgba(255, 99, 132, 1)',
                         'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
                         'rgba(75, 192, 192, 1)',
                         'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
                     ],
                     borderWidth: 1
                 }]

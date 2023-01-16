@@ -25,7 +25,7 @@ class DespesaFormRequest extends FormRequest
     {
         return [   
             'descricao' => 'required|string',        
-            'data' => 'nullable|date',        
+            'data' => 'nullable|string',        
             'valor' => 'required|numeric',        
     ];
     }

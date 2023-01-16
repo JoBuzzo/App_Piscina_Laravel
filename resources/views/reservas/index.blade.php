@@ -21,11 +21,11 @@
 @endsection
 
 @section('content')
-    <div class="space-y-5">
+    <div class="space-y-5 p-1">
         <x-toast.alert />
         <div>
             <button id="dropdownRadioButton" data-dropdown-toggle="dropdownRadio"
-                class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:bg-gray-100 hover:bg-gray-100 font-medium rounded-lg text-sm px-3 py-1.5"
+                class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600"
                 type="button">
                 <svg class="mr-2 w-4 h-4 text-gray-400" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg">
@@ -45,49 +45,49 @@
             </button>
             <!-- Dropdown menu -->
             <form action="{{ route('reservas.index') }}" method="GET">
-                <div id="dropdownRadio" class="hidden z-10 w-48 bg-white rounded divide-y divide-gray-100 shadow"
+                <div id="dropdownRadio" class="z-10 hidden w-48 bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
                     data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top"
                     style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(522.5px, 3847.5px, 0px);">
                     <ul class="p-3 space-y-1 text-sm text-gray-700" aria-labelledby="dropdownRadioButton">
                         <li>
-                            <div class="flex items-center p-2 rounded hover:bg-gray-100">
+                            <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
                                 <input @if ($filter === 'Proximas') checked="" @endif id="filter-radio-1"
                                     type="radio" value="Proximas" name="filter"
-                                    class="w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 focus:ring-gray-500">
+                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 <label for="filter-radio-1"
-                                    class="ml-2 w-full text-sm font-medium text-gray-900 rounded">Proximas Datas</label>
+                                    class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">Proximas Datas</label>
                             </div>
                         </li>
                         <li>
-                            <div class="flex items-center p-2 rounded hover:bg-gray-100">
+                            <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
                                 <input @if ($filter === 'Vencidas') checked="" @endif id="filter-radio-2"
                                     type="radio" value="Vencidas" name="filter"
-                                    class="w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 focus:ring-gray-500">
+                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 <label for="filter-radio-2"
-                                    class="ml-2 w-full text-sm font-medium text-gray-900 rounded">Datas Vencidas</label>
+                                    class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">Datas Vencidas</label>
                             </div>
                         </li>
                         <li>
-                            <div class="flex items-center p-2 rounded hover:bg-gray-100">
+                            <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
                                 <input @if ($filter === 'Todas') checked="" @endif id="filter-radio-3"
                                     type="radio" value="Todas" name="filter"
-                                    class="w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 focus:ring-gray-500">
+                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 <label for="filter-radio-3"
-                                    class="ml-2 w-full text-sm font-medium text-gray-900 rounded">Todas Datas</label>
+                                    class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">Todas Datas</label>
                             </div>
                         </li>
                         <li>
-                            <div class="flex items-center p-2 rounded hover:bg-gray-100">
+                            <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
                                 <input @if ($filter === 'Hoje') checked="" @endif id="filter-radio-4"
                                     type="radio" value="Hoje" name="filter"
-                                    class="w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 focus:ring-gray-500">
+                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 <label for="filter-radio-4"
-                                    class="ml-2 w-full text-sm font-medium text-gray-900 rounded">Hoje</label>
+                                    class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">Hoje</label>
                             </div>
                         </li>
                         <li>
-                            <div class="flex items-center p-2 rounded bg-gray-100 hover:bg-gray-200">
-                                <button type="submit">Pesquisar</button>
+                            <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                                <button type="submit" class="dark:text-gray-200 w-full text-left">Pesquisar</button>
                             </div>
                         </li>
                     </ul>
@@ -97,13 +97,14 @@
 
         @if (count($reservas) > 0)
 
-            <table class="w-full text-lg font-semibold text-left">
-                <thead class="font-bold border uppercase bg-gray-50 dark:bg-gray-700">
+        <div class="overflow-x-auto rounded">
+            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <thead class="text-xs uppercase text-gray-700 bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="py-3 px-6">
                             Datas
                         </th>
-                        <th scope="col" class="mobile-table py-3 px-6">
+                        <th scope="col" class="py-3 px-6">
                             Nomes
                         </th>
                         <th scope="col" class="mobile-table py-3 px-6">
@@ -123,11 +124,11 @@
                 <tbody>
                     @foreach ($reservas as $reserva)
                         <tr
-                            class="bg-white border dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
 
                             <td class="py-4 px-6">
                                 @if ($reserva->ultimo_dia)
-                                <div class="flex flex-col">
+                                <div class="flex flex-col items-center justify-center">
                                     <span>{{ date('d/m/Y', strtotime($reserva->primeiro_dia)) }}</span>
                                     <span>{{ date('d/m/Y', strtotime($reserva->ultimo_dia)) }}</span>
                                 </div>
@@ -135,18 +136,18 @@
                                     {{ date('d/m/Y', strtotime($reserva->primeiro_dia)) }}
                                 @endif
                             </td>
-                            <td class="mobile-table py-4 px-6">
+                            <td class="py-4 px-6">
                                 {{ $reserva->nome }}
                             </td>
-                            <td class="mobile-table py-4 px-6 text-green-500">
+                            <td class="mobile-table py-4 px-6 text-green-400 dark:text-green-300">
                                 R${{ $reserva->valor_total }}
                             </td>
                             <td
-                                class="mobile-table py-4 px-6 @if ($reserva->valor_pago === $reserva->valor_total) text-green-500 @else text-orange-500 @endif">
+                                class="mobile-table py-4 px-6 @if ($reserva->valor_pago === $reserva->valor_total) text-green-400 dark:text-green-300 @else text-orange-500 dark:text-orange-300 @endif">
                                 R${{ $reserva->valor_pago }}
                             </td>
                             <td
-                                class="mobile-table py-4 px-6 @if ($reserva->valor_pendente > 0) text-red-500 @else text-green-500 @endif">
+                                class="mobile-table py-4 px-6 @if ($reserva->valor_pendente > 0) text-red-500 dark:text-red-700 @else text-green-400 dark:text-green-300   @endif">
                                 R${{ $reserva->valor_pendente }}
                             </td>
 
@@ -158,6 +159,7 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
             <div class="p-5">
                 {{ $reservas->links() }}
             </div>
