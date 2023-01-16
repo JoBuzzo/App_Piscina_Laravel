@@ -10,41 +10,42 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function admins(){
-        $admins = User::all();
-        return view('admins', compact('admins'));
-    }
-
+    
     public function login(){
-
+        
         return view('login');
     }
-
-
+    
+    
     public function auth(Request $request){
         if(Auth::attempt(['login' => $request->login, 'password' => $request->password],$request->remember)){
             return redirect()->route('home');
         }
         return redirect()->back()->withInput()->withErrors('Os dados informados não conferem');   
     }
-
-
+    
+    
     public function logout(){
         if(Auth::check()){
             Auth::logout();
             return redirect()->back();
         } 
     }
-
-    public function perfil($id){
-
+    
+    
+    public function index(){
+        $users = User::all();
+        return view('users.index', compact('users'));
+    }
+    
+    public function edit($login, $id){
+        
         $user =  User::find($id);
-        return view('perfil', compact('user'));
+        return view('users.edit', compact('user'));
         
     }
-
     public function update(UserFormRequest $request, $id){
-
+        
         if(!$user =  User::find($id)){
             return redirect()->back();
         }
@@ -57,7 +58,7 @@ class UserController extends Controller
 
         $user->update($data);
 
-        return redirect()->route('perfil', $id)->with('mensagem', 'Editado com Sucesso!');
+        return redirect()->route('users.edit',['login' => $user->login ,'id' => $id])->with('sucesso', "$user->login foi editado com Sucesso!");
     }
 }
 
