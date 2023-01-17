@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('nome');
             $table->string('numero')->nullable();
-            $table->string('primeiro_dia');
-            $table->string('ultimo_dia')->nullable();
+            $table->date('primeiro_dia');
+            $table->date('ultimo_dia');
             $table->float('valor_pago');
             $table->float('valor_pendente');
             $table->float('valor_total');

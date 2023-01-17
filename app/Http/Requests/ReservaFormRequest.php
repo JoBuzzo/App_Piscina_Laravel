@@ -23,20 +23,25 @@ class ReservaFormRequest extends FormRequest
      */
     public function rules()
     {
-        $id = $this->id ?? '';
-        return [
+
+        $rules = [
                 'nome' => 'required|string|min:4|max:30',        
-                'numero' => 'nullable|string',        
-                'primeiro_dia' => "required|unique:reservas,primeiro_dia,{$id},id|unique:reservas,ultimo_dia,{$id},id",        
-                'ultimo_dia' => "required|unique:reservas,primeiro_dia,{$id},id|unique:reservas,ultimo_dia,{$id},id",           
+                'numero' => 'nullable|string|min:15',        
+                'primeiro_dia' => "required|unique_primeiro",        
+                'ultimo_dia' => "required|unique_ultimo",           
                 'valor_pago' => 'required',
                 'valor_total' => 'required|gte:valor_pago',    
         ];
+
+        if($this->method('PUT')){
+            $rules['primeiro_dia'] = [
+                'nullable',
+            ];
+            $rules['ultimo_dia'] = [
+                'nullable',
+            ];
+        }
+        return $rules;
     }
-    public function messages()
-    {
-        return [
-            'required_if' => 'O campo :attribute é obrigatório.',
-        ];
-    }
+
 }

@@ -9,7 +9,6 @@
 
 
 @section('content')
-    <x-alert.error />
     <x-form action="{{ route('despesas.store') }}">
         <div class="mb-6">
             <x-input.textarea name="descricao" label="Descrição" value="{{ old('descricao') }}"

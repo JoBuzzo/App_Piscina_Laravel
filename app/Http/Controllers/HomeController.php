@@ -21,7 +21,7 @@ class HomeController extends Controller
         ];
 
         $data['despesa'] = [
-            'quantia' => $reservas->count(),
+            'quantia' => $despesas->count(),
             'gasto' => $despesas->sum('valor'),
         ];
 

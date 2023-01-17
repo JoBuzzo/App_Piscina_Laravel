@@ -11,10 +11,10 @@
 
     <div class="flex flex-col justify-center items-center gap-4">
         <div class="flex flex-wrap justify-center items-center gap-2">
-            <x-card.preco title="Reservas em R$" value="R$" />
-            <x-card.preco title="Despesas em R$" value="-R$" />
-            <x-card.total title="Total de reservas" value="" icon="fas fa-file-alt" />
-            <x-card.total title="Total de despesas" value="" />
+            <x-card.preco title="Reservas em R$" value="R${{ $reserva['recebido'] }}" />
+            <x-card.preco title="Despesas em R$" value="-R${{ $despesa['gasto'] }}" />
+            <x-card.total title="Total de reservas" value="{{ $reserva['quantia'] }}" icon="fas fa-file-alt" />
+            <x-card.total title="Total de despesas" value="{{ $despesa['quantia'] }}" />
         </div>
 
         <div class="flex flex-wrap justify-center items-center rounded-lg p-4 w-full">
@@ -44,11 +44,7 @@
                         }                           
                         ?>
                     ],
-
-                    borderColor: [
-                        'rgba(135, 206, 250, 1)',
-                    ],
-                    borderWidth: 1
+                    backgroundColor:['#9BD0F5'],
                 }]
             },
             options: {
@@ -69,13 +65,9 @@
                 datasets: [{
                     label: 'Reservas',
                     data: [ {{$reserva['receber']}}, {{$reserva['recebido']}}, {{$reserva['falta']}} ],
-
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(75, 192, 192, 1)',
+                    backgroundColor:[
+                        'rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(75, 192, 192, 1)'
                     ],
-                    borderWidth: 1
                 }]
             },
 

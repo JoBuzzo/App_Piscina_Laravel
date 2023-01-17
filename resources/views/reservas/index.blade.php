@@ -22,7 +22,6 @@
 
 @section('content')
     <div class="space-y-5 p-1">
-        <x-toast.alert />
         <div>
             <button id="dropdownRadioButton" data-dropdown-toggle="dropdownRadio"
                 class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600"

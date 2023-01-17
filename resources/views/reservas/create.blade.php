@@ -9,7 +9,6 @@
 
 
 @section('content')
-    <x-alert.error />
     <x-form action="{{ route('reservas.store') }}">
         <div class="mb-6">
             <x-input.text name="nome" label="Nome do cliente" value="{{ old('nome') }}" placeholder="Nome do cliente..." />

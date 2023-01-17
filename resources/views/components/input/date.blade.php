@@ -12,8 +12,18 @@
                 </svg>
             </div>
             <input name="primeiro_dia" value="{{ $value1 }}" type="text" datepicker-format="dd/mm/yyyy" autocomplete="off"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
+                @if ($errors->has("primeiro_dia")) border border-red-500 dark:border-red-500 dark:text-red-600 focus:ring-red-500 focus:border-red-500 dark:focus:ring-red-500 dark:focus:border-red-500 @endif"
                 placeholder="Data de início">
+                <div>
+                    @if ($errors->has("primeiro_dia"))
+                        <div class="absolute text-red-500 border-red-300 text-sm">
+                            @foreach ($errors->get("primeiro_dia") as $error)
+                                {{ $error }}
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
         </div>
         <span class="mx-4 text-gray-500 dark:text-gray-200">até</span>
         <div class="relative">
@@ -26,8 +36,18 @@
                 </svg>
             </div>
             <input name="ultimo_dia" value="{{ $value2 }}" type="text" datepicker-format="dd/mm/yyyy" autocomplete="off" 
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
+                @if ($errors->has("ultimo_dia")) border border-red-500 dark:border-red-500 dark:text-red-600 focus:ring-red-500 focus:border-red-500 dark:focus:ring-red-500 dark:focus:border-red-500 @endif"
                 placeholder="Data final">
+                <div>
+                    @if ($errors->has("ultimo_dia"))
+                        <div class="absolute text-red-500 border-red-300 text-sm">
+                            @foreach ($errors->get("ultimo_dia") as $error)
+                                {{ $error }}
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
         </div>
     </div>
 </div>

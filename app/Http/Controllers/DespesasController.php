@@ -39,7 +39,7 @@ class DespesasController extends Controller
 
     public function edit($id){
         if(!$despesa = Despesa::find($id)){
-            return redirect()->back();
+            return redirect()->route('despesas.index')->with('erro', 'Despesa não encontrada.');
         }
         $despesa->data = date("d/m/Y", strtotime($despesa->data));
 

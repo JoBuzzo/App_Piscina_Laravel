@@ -19,7 +19,7 @@
 @endsection
 
 @section('content')
-    <x-toast.alert />
+    
 
     @if (count($despesas) > 0)
 

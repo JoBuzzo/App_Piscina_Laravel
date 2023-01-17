@@ -1,16 +1,15 @@
 @extends('app')
 
-@section('title', 'Adicionar Reserva')
+@section('title', 'Editar Despesa')
 
 @section('navbar')
-    <x-navbar view="reserva" />
+    <x-navbar view="despesa" />
     <x-sidebar />
 @endsection
 
 
 @section('content')
-    <x-toast.alert />
-    <x-alert.error />
+    
     <x-form action="{{ route('despesas.update', $despesa->id) }}" method="PUT">
         <div class="mb-6">
             <x-input.textarea name="descricao" label="Descrição" value="{{ $despesa->descricao }}"
@@ -44,7 +43,7 @@
     </x-form>
 
     <x-modal.delete action="{{ route('despesas.destroy', $despesa->id) }}" />
-
+    <x-toast.alert />
 
 
 @endsection

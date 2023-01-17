@@ -23,6 +23,7 @@
 
 <body class="bg-white dark:bg-gray-800">
     @yield('navbar')
+    <x-toast.alert />
     <div class="flex flex-col justify-center items-center gap-4 mt-10 overflow-x-hidden">
         @yield('content')
     </div>
