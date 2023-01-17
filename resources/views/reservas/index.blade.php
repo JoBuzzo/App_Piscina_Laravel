@@ -107,7 +107,7 @@
                         <th scope="col" class="py-3 px-6">
                             Nomes
                         </th>
-                        <th scope="col" class="py-3 px-6">
+                        <th scope="col" class="mobile-table py-3 px-6">
                             Número
                         </th>
                         <th scope="col" class="mobile-table py-3 px-6">
@@ -130,7 +130,7 @@
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
 
                             <td class="py-4 px-6">
-                                @if ($reserva->ultimo_dia)
+                                @if ($reserva->ultimo_dia != $reserva->primeiro_dia)
                                 <div class="flex flex-col items-center justify-center">
                                     <span>{{ date('d/m/Y', strtotime($reserva->primeiro_dia)) }}</span>
                                     <span>{{ date('d/m/Y', strtotime($reserva->ultimo_dia)) }}</span>
@@ -142,7 +142,7 @@
                             <td class="py-4 px-6">
                                 {{ $reserva->nome }}
                             </td>
-                            <td class="py-4 px-6">
+                            <td class="mobile-table py-4 px-6">
                                 {{ $reserva->numero }}
                             </td>
                             <td class="mobile-table py-4 px-6 text-green-400 dark:text-green-300">

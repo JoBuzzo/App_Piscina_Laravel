@@ -61,8 +61,7 @@
                         <a href="{{ route('reservas.index') }}"
                             class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                             <span class="flex-1 ml-3 whitespace-nowrap">Lista de Reservas</span>
-                            <span
-                                class="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-600 bg-blue-200 rounded-full dark:bg-blue-900 dark:text-blue-200">3</span>
+                            <x-count.reservas />
                         </a>
                     </li>
                 </ul>
@@ -98,8 +97,7 @@
                         <a href="{{ route('despesas.index') }}"
                             class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                             <span class="flex-1 ml-3 whitespace-nowrap">Lista de Despesas</span>
-                            <span
-                                class="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-600 bg-blue-200 rounded-full dark:bg-blue-900 dark:text-blue-200">3</span>
+                            <x-count.despesas />
                         </a>
                     </li>
 
@@ -115,9 +113,7 @@
                             clip-rule="evenodd"></path>
                     </svg>
                     <span class="flex-1 ml-3 whitespace-nowrap">Contas de acesso</span>
-                    <span
-                        class="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-600 bg-blue-200 rounded-full dark:bg-blue-900 dark:text-blue-200">4</span>
-
+                    <x-count.users />
                 </a>
             </li>
             <li>
