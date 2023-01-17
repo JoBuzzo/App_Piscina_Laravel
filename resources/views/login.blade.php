@@ -9,10 +9,8 @@
     <x-sidebar />
 @endsection
 
-    @if ($errors->all())
-        @foreach ($errors->all() as $error)
-        @endforeach
-    @endif
+
+    
 
 
 <div class="w-full max-w-xs">
@@ -46,6 +44,13 @@
                                 Manter-me conectado
                             </label>
                         </div>
+                    </div>
+                    <div class="relative">
+                        @if ($errors->all())
+                            @foreach ($errors->all() as $error)
+                            <span class="absolute text-red-500">{{ $error }}</span>
+                            @endforeach
+                        @endif
                     </div>
                     <button type="submit"
                         class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
