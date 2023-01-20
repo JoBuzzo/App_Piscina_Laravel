@@ -1,41 +1,18 @@
 <?php
 
-use App\Http\Controllers\DespesasController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ReservaController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-//                                      RESERVAS
-Route::delete('/reservas/{id}', [ReservaController::class, 'destroy'])->name('reservas.destroy')->middleware('admin');
-Route::get('/reservas/adicionar', [ReservaController::class, 'create'])->name('reservas.create')->middleware('admin');
-Route::post('/reservas', [ReservaController::class, 'store'])->name('reservas.store')->middleware('admin');
-Route::get('/reservas/{id}', [ReservaController::class, 'edit'])->name('reservas.edit')->middleware('admin');
-Route::put('/reservas/{id}', [ReservaController::class, 'update'])->name('reservas.update')->middleware('admin');
-Route::get('/reservas', [ReservaController::class, 'index'])->name('reservas.index')->middleware('admin');
+Route::resource('reservas', 'App\Http\Controllers\ReservaController');
+Route::resource('despesas', 'App\Http\Controllers\DespesasController');
 
-//                                      CONFIG
-Route::put('/config', [ReservaController::class, 'config'])->name('config')->middleware('admin');
-Route::get('/config', [ReservaController::class, 'viewConfig'])->name('viewConfig')->middleware('admin');
+Route::get('/', [HomeController::class, 'home'])->name('home');
 
-Route::get('/', [HomeController::class, 'home'])->name('home')->middleware('admin');
+Route::get('/usuarios/{login}/{id}', [UserController::class, 'edit'])->name('users.edit');
+Route::put('/usuarios/{id}', [UserController::class, 'update'])->name('users.update');
+Route::get('/usuarios', [UserController::class, 'index'])->name('users.index');
 
-//                                      PERFIL/ADMIN
-Route::get('/usuarios/{login}/{id}', [UserController::class, 'edit'])->name('users.edit')->middleware('admin');
-Route::put('/usuarios/{id}', [UserController::class, 'update'])->name('users.update')->middleware('admin');
-Route::get('/usuarios', [UserController::class, 'index'])->name('users.index')->middleware('admin');
-
-//                                      DESPESAS
-Route::delete('/despesas/{id}', [DespesasController::class, 'destroy'])->name('despesas.destroy')->middleware('admin');
-Route::get('/despesas/adicionar', [DespesasController::class, 'create'])->name('despesas.create')->middleware('admin');
-Route::post('/despesas', [DespesasController::class, 'store'])->name('despesas.store')->middleware('admin');
-Route::get('/despesas/{id}', [DespesasController::class, 'edit'])->name('despesas.edit')->middleware('admin');
-Route::put('/despesas/{id}', [DespesasController::class, 'update'])->name('despesas.update')->middleware('admin');
-Route::get('/despesas', [DespesasController::class, 'index'])->name('despesas.index')->middleware('admin');
-
-
-
-//                                      AUTH
 Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::post('/auth', [UserController::class, 'auth'])->name('auth');
-Route::get('/logout', [UserController::class, 'logout'])->name('logout')->middleware('admin');
+Route::get('/logout', [UserController::class, 'logout'])->name('logout');

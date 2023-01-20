@@ -33,12 +33,15 @@ class ReservaFormRequest extends FormRequest
                 'valor_total' => 'required|gte:valor_pago',    
         ];
 
-        if($this->method('PUT')){
+        
+        if($this->method() == 'PUT'){
             $rules['primeiro_dia'] = [
                 'nullable',
+                'unique_primeiro'
             ];
             $rules['ultimo_dia'] = [
                 'nullable',
+                'unique_ultimo'
             ];
         }
         return $rules;

@@ -57,7 +57,7 @@
                             </td>
 
                             <td class="py-4 px-2 text-center">
-                                <a href="{{ route('despesas.edit', ['id' => $despesa->id]) }}"
+                                <a href="{{ route('despesas.edit', $despesa->id) }}"
                                     class="font-medium text-blue-600">Ver</a>
                             </td>
                         </tr>

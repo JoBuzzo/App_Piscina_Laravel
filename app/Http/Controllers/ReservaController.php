@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ConfigFormRequest;
 use App\Http\Requests\ReservaFormRequest;
-use App\Models\Config;
-use App\Models\Despesa;
 use App\Models\Reserva;
 use Illuminate\Http\Request;
 
 class ReservaController extends Controller
 {
  
-
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
+    
     public function index(Request $request)
     {
 
@@ -110,7 +111,7 @@ class ReservaController extends Controller
 
         $reserva->update($data);
 
-        return redirect()->route('reservas.edit', ['id' => $id])->with('sucesso', 'Editado com Sucesso!');
+        return redirect()->route('reservas.edit', $id)->with('sucesso', 'Editado com Sucesso!');
     }
 
     public function destroy($id)

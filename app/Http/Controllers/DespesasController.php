@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class DespesasController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
+    
     public function index(Request $request){
         $search = $request->search;
 

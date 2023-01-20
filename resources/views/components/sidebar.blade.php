@@ -2,7 +2,9 @@
     class="fixed z-40 h-screen p-4 overflow-y-auto bg-white w-80 dark:bg-gray-800 transition-transform left-0 top-0 -translate-x-full"
     tabindex="-1" aria-labelledby="drawer-disable-body-scrolling-label">
     <h5 id="drawer-disable-body-scrolling-label"
-        class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">Menu</h5>
+        class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">
+        @auth{{ auth()->user()->name }}@endauth @guest Faça seu Login @endguest
+    </h5>
     <button type="button" data-drawer-hide="drawer-disable-body-scrolling" aria-controls="drawer-disable-body-scrolling"
         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
         <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"

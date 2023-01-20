@@ -10,7 +10,11 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    
+    public function __construct()
+    {
+        $this->middleware('admin')->only('edit', 'edit', 'index', 'logout');
+    }
+
     public function login(){
         
         return view('login');

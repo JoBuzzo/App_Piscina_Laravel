@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
+
     function home()
     {
         $reservas = Reserva::all();

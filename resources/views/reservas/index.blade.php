@@ -161,7 +161,7 @@
                                 </td>
 
                                 <td class="py-4 px-2 text-center">
-                                    <a href="{{ route('reservas.edit', ['id' => $reserva->id]) }}"
+                                    <a href="{{ route('reservas.edit', $reserva->id) }}"
                                         class="font-medium text-blue-600">Ver</a>
                                 </td>
                             </tr>

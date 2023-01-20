@@ -30,7 +30,7 @@ class UserFormRequest extends FormRequest
             'password' => 'required|min:6|max:20',
         ];
 
-        if($this->method('PUT')){
+        if($this->method() == 'PUT'){
             $rules['password'] = [
                 'nullable',
                 'min:6',
