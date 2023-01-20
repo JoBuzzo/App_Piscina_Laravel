@@ -23,14 +23,14 @@
             <x-input.select name="valor_pago" label="Valor Pago pelo cliente">
                 
                 <option value="" selected>Selecione o valor pago</option>
-                @for ($i = 0; $i < 2600; $i += 100)
+                @for ($i = 0; $i <= 2600; $i += 50)
                     <option value="{{ $i }}">R${{ $i }}</option>
                 @endfor
             </x-input.select>
 
             <x-input.select name="valor_total" label="Valor cobrado">
                 <option value="" selected>Selecione o valor cobrado</option>
-                @for ($i = 400; $i < 2600; $i += 100)
+                @for ($i = 0; $i <= 2600; $i += 50)
                     <option value="{{ $i }}">R${{ $i }}</option>
                 @endfor
             </x-input.select>

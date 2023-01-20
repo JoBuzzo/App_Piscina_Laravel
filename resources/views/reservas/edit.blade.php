@@ -23,14 +23,14 @@
         </div>
         <div class="grid gap-6 mb-6 md:grid-cols-2">
             <x-input.select name="valor_pago" label="Valor Pago pelo cliente">
-                @for ($i = 0; $i < 2600; $i += 100)
+                @for ($i = 0; $i <= 2600; $i += 50)
                     <option value="{{ $i }}" {{ $i == $reserva->valor_pago ? 'selected' : '' }}>
                         R${{ $i }}</option>
                 @endfor
             </x-input.select>
 
             <x-input.select name="valor_total" label="Valor cobrado">
-                @for ($i = 400; $i < 2600; $i += 100)
+                @for ($i = 0; $i <= 2600; $i += 50)
                     <option value="{{ $i }}" {{ $i == $reserva->valor_total ? 'selected' : '' }}>
                         R${{ $i }}</option>
                 @endfor

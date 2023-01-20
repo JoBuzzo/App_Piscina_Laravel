@@ -66,7 +66,7 @@
             </table>
         </div>
         <div class="p-5">
-            {{ $despesas->links() }}
+            <x-pagination :link="$despesas" />
         </div>
     @else
         <div class="p-4 text-ls text-blue-700 bg-blue-100 rounded-lg" role="alert">

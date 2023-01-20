@@ -44,7 +44,8 @@
             </button>
             <!-- Dropdown menu -->
             <form action="{{ route('reservas.index') }}" method="GET">
-                <div id="dropdownRadio" class="z-10 hidden w-48 bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
+                <div id="dropdownRadio"
+                    class="z-10 hidden w-48 bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
                     data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top"
                     style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(522.5px, 3847.5px, 0px);">
                     <ul class="p-3 space-y-1 text-sm text-gray-700" aria-labelledby="dropdownRadioButton">
@@ -54,7 +55,8 @@
                                     type="radio" value="Proximas" name="filter"
                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 <label for="filter-radio-1"
-                                    class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">Proximas Datas</label>
+                                    class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">Proximas
+                                    Datas</label>
                             </div>
                         </li>
                         <li>
@@ -63,7 +65,8 @@
                                     type="radio" value="Vencidas" name="filter"
                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 <label for="filter-radio-2"
-                                    class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">Datas Vencidas</label>
+                                    class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">Datas
+                                    Vencidas</label>
                             </div>
                         </li>
                         <li>
@@ -72,7 +75,8 @@
                                     type="radio" value="Todas" name="filter"
                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 <label for="filter-radio-3"
-                                    class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">Todas Datas</label>
+                                    class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">Todas
+                                    Datas</label>
                             </div>
                         </li>
                         <li>
@@ -96,77 +100,77 @@
 
         @if (count($reservas) > 0)
 
-        <div class="overflow-x-auto rounded">
-            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead class="text-xs uppercase text-gray-700 bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
-                    <tr>
-                        <th scope="col" class="py-3 px-6">
-                            Datas
-                        </th>
-                        <th scope="col" class="py-3 px-6">
-                            Nomes
-                        </th>
-                        <th scope="col" class="mobile-table py-3 px-6">
-                            Número
-                        </th>
-                        <th scope="col" class="mobile-table py-3 px-6">
-                            Preço
-                        </th>
-                        <th scope="col" class="mobile-table py-3 px-6">
-                            Pagou
-                        </th>
-                        <th scope="col" class="mobile-table py-3 px-6">
-                            Faltam
-                        </th>
-                        <th scope="col" class="py-3 px-2 text-center">
-                            Consultar
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($reservas as $reserva)
-                        <tr
-                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
-                            <td class="py-4 px-6">
-                                @if ($reserva->ultimo_dia != $reserva->primeiro_dia)
-                                <div class="flex flex-col items-center justify-center">
-                                    <span>{{ date('d/m/Y', strtotime($reserva->primeiro_dia)) }}</span>
-                                    <span>{{ date('d/m/Y', strtotime($reserva->ultimo_dia)) }}</span>
-                                </div>
-                                @else
-                                    {{ date('d/m/Y', strtotime($reserva->primeiro_dia)) }}
-                                @endif
-                            </td>
-                            <td class="py-4 px-6">
-                                {{ $reserva->nome }}
-                            </td>
-                            <td class="mobile-table py-4 px-6">
-                                {{ $reserva->numero }}
-                            </td>
-                            <td class="mobile-table py-4 px-6 text-green-400 dark:text-green-300">
-                                R${{ $reserva->valor_total }}
-                            </td>
-                            <td
-                                class="mobile-table py-4 px-6 @if ($reserva->valor_pago === $reserva->valor_total) text-green-400 dark:text-green-300 @else text-orange-500 dark:text-orange-300 @endif">
-                                R${{ $reserva->valor_pago }}
-                            </td>
-                            <td
-                                class="mobile-table py-4 px-6 @if ($reserva->valor_pendente > 0) text-red-500 dark:text-red-700 @else text-green-400 dark:text-green-300   @endif">
-                                R${{ $reserva->valor_pendente }}
-                            </td>
-
-                            <td class="py-4 px-2 text-center">
-                                <a href="{{ route('reservas.edit', ['id' => $reserva->id]) }}"
-                                    class="font-medium text-blue-600">Ver</a>
-                            </td>
+            <div class="overflow-x-auto rounded">
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs uppercase text-gray-700 bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="py-3 px-6">
+                                Datas
+                            </th>
+                            <th scope="col" class="py-3 px-6">
+                                Nomes
+                            </th>
+                            <th scope="col" class="mobile-table py-3 px-6">
+                                Número
+                            </th>
+                            <th scope="col" class="mobile-table py-3 px-6">
+                                Preço
+                            </th>
+                            <th scope="col" class="mobile-table py-3 px-6">
+                                Pagou
+                            </th>
+                            <th scope="col" class="mobile-table py-3 px-6">
+                                Faltam
+                            </th>
+                            <th scope="col" class="py-3 px-2 text-center">
+                                Consultar
+                            </th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+                    </thead>
+                    <tbody>
+                        @foreach ($reservas as $reserva)
+                            <tr
+                                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+
+                                <td class="py-4 px-6">
+                                    @if ($reserva->ultimo_dia != $reserva->primeiro_dia)
+                                        <div class="flex flex-col items-center justify-center">
+                                            <span>{{ date('d/m/Y', strtotime($reserva->primeiro_dia)) }}</span>
+                                            <span>{{ date('d/m/Y', strtotime($reserva->ultimo_dia)) }}</span>
+                                        </div>
+                                    @else
+                                        {{ date('d/m/Y', strtotime($reserva->primeiro_dia)) }}
+                                    @endif
+                                </td>
+                                <td class="py-4 px-6">
+                                    {{ $reserva->nome }}
+                                </td>
+                                <td class="mobile-table py-4 px-6">
+                                    {{ $reserva->numero }}
+                                </td>
+                                <td class="mobile-table py-4 px-6 text-green-400 dark:text-green-300">
+                                    R${{ $reserva->valor_total }}
+                                </td>
+                                <td
+                                    class="mobile-table py-4 px-6 @if ($reserva->valor_pago === $reserva->valor_total) text-green-400 dark:text-green-300 @else text-orange-500 dark:text-orange-300 @endif">
+                                    R${{ $reserva->valor_pago }}
+                                </td>
+                                <td
+                                    class="mobile-table py-4 px-6 @if ($reserva->valor_pendente > 0) text-red-500 dark:text-red-700 @else text-green-400 dark:text-green-300 @endif">
+                                    R${{ $reserva->valor_pendente }}
+                                </td>
+
+                                <td class="py-4 px-2 text-center">
+                                    <a href="{{ route('reservas.edit', ['id' => $reserva->id]) }}"
+                                        class="font-medium text-blue-600">Ver</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
             <div class="p-5">
-                {{ $reservas->links() }}
+                <x-pagination :link="$reservas" />
             </div>
         @else
             <div class="p-4 text-ls text-blue-700 bg-blue-100 rounded-lg" role="alert">

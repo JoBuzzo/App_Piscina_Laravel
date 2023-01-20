@@ -9,17 +9,15 @@
 
 
 @section('content')
-    <x-toast.alert />
-    <x-alert.error />
     <x-form action="{{ route('users.update', $user->id) }}" method="PUT">
         
-        <div class="mb-6">
+        <div class="mb-1">
             <x-input.text name="name" label="Nome" placeholder="Nome do usuário..." value="{{ $user->name }}" />
         </div>
-        <div class="mb-6">
+        <div class="mb-1">
             <x-input.text name="login" label="Login" placeholder="Login do usuário..." value="{{ $user->login }}" />
         </div>
-        <div class="mb-6">
+        <div class="mb-1">
             <x-input.password name="password" label="Senha" placeholder="••••••••" />
         </div>
         

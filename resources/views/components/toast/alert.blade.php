@@ -1,4 +1,4 @@
- <div class="absolute top-14 left-0 flex justify-center items-center w-full">
+ <div class="absolute top-14 left-0 flex justify-center items-center w-full z-50">
     @if (session('sucesso'))
     <div id="toast-success" class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
         <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
