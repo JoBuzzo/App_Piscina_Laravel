@@ -146,7 +146,7 @@
                                     {{ $reserva->nome }}
                                 </td>
                                 <td class="mobile-table py-4 px-6">
-                                    {{ $reserva->numero }}
+                                    <x-whatsapp :value="$reserva->numero"/>
                                 </td>
                                 <td class="mobile-table py-4 px-6 text-green-400 dark:text-green-300">
                                     R${{ $reserva->valor_total }}

@@ -1,0 +1,1 @@
+<a href="https://wa.me/{{ $formatar }}" target="_blank">{{ $value }}</a>
