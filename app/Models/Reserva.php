@@ -11,6 +11,7 @@ class Reserva extends Model
 
     protected $fillable = [
         'nome',
+        'numero',
         'primeiro_dia',
         'ultimo_dia',
         'valor_pago',

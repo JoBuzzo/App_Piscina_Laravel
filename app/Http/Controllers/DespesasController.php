@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class DespesasController extends Controller
 {
-    public function despesas(Request $request){
+    public function index(Request $request){
         $search = $request->search;
 
         $despesas = Despesa::where(function ($query) use ($search) {
@@ -20,32 +20,30 @@ class DespesasController extends Controller
             }
         })->orderBy('data', 'asc')->paginate(12)->withQueryString();
 
-        return view('despesas', compact('despesas'));
+        return view('despesas.index', compact('despesas'));
     }
 
-    public function adicionar(){
-        return view('add_despesa');
+    public function create(){
+        return view('despesas.create');
     }
 
     public function store(DespesaFormRequest $request){
-        $data = $request->only('descricao', 'valor');
-        if(!$request->data){
-            $data['data'] = date('Y-m-d');
-        }else{
-            $data['data'] = $request->data;
-        }
+        $data = $request->only('descricao', 'valor', 'data');
+        $data['data'] = str_replace('/', '-', $data['data']);
+        $data['data'] = date('Y-m-d', strtotime($data['data']));
         
         Despesa::create($data);
 
-        return redirect()->route('despesas');
+        return redirect()->route('despesas.index')->with('sucesso', "Despesa adicionada com Sucesso!");
     }
 
     public function edit($id){
         if(!$despesa = Despesa::find($id)){
-            return redirect()->back();
+            return redirect()->route('despesas.index')->with('erro', 'Despesa não encontrada.');
         }
+        $despesa->data = date("d/m/Y", strtotime($despesa->data));
 
-        return view('edit_despesa', compact('despesa'));
+        return view('despesas.edit', compact('despesa'));
     }
     
     public function update(DespesaFormRequest $request, $id){
@@ -56,9 +54,11 @@ class DespesasController extends Controller
 
         $data = $request->all();
 
+        $data['data'] = str_replace('/', '-', $data['data']);
+        $data['data'] = date('Y-m-d', strtotime($data['data']));
         $despesa->update($data);
 
-        return redirect()->route('despesas.edit', ['id'=> $id]  )->with('mensagem', 'Editado com Sucesso!');   
+        return redirect()->route('despesas.edit', ['id'=> $id]  )->with('sucesso', 'Editado com Sucesso!');   
     }
 
     public function destroy($id){
@@ -67,7 +67,7 @@ class DespesasController extends Controller
         }
         $despesa->delete();
 
-        return redirect()->route('despesas');
+        return redirect()->route('despesas.index')->with('sucesso', "Despesa excluída com Sucesso!");
     }
 
 }

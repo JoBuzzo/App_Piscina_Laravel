@@ -1,45 +1,65 @@
-@extends('layouts.template')
+@extends('app')
+
+@section('title', 'Login')
 
 @section('content')
 
-    @include('layouts.topbar')
+@section('navbar')
+    <x-navbar view="login" />
+    <x-sidebar />
+@endsection
 
-    <div class="main-login">
 
-        <div class="form-container">
-            
-                @if ($errors->all())
-                    @foreach ($errors->all() as $error)@endforeach 
-                @endif
+    
 
-                <form action="{{ route('auth') }}" method="POST">
-                    @csrf
-                    
-                    <div class="relative z-0 mb-8 w-full group">
-                        <input name="login" id="login" type="text" placeholder=" " value="{{ old('login') }}"
-                            class="block py-2.5 px-0 w-full text-xl bg-transparent border-0 border-b-2 border-gray-300 focus:outline-none focus:border-gray-600 peer
-                            @if (isset($error)) text-red-500 border-red-300  @endif"/>
-                            <label for="login" class="whitespace-nowrap peer-focus:font-medium absolute text-xl duration-300 transform -translate-y-8 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8
-                                @if (isset($error)) text-red-500 border-red-300  @endif">
-                                Nome
-                            </label>
+
+<div class="w-full max-w-xs">
+    <div class="bg-white rounded-lg shadow dark:bg-gray-700">
+        <div class="px-6 py-6 lg:px-8">
+            <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Faça seu Login</h3>
+            <x-form action="{{ route('auth') }}">
+                <div class="space-y-6">
+                    <div>
+                        <label for="login" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            Seu Login
+                        </label>
+                        <input type="text" name="login" id="login" value="{{ old('login') }}"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                            placeholder="Login...">
                     </div>
-                    <div class="relative z-0 mb-8 w-full group">
-                        <input name="password" id="password" type="password" placeholder=" "
-                            class="block py-2.5 px-0 w-full text-xl bg-transparent border-0 border-b-2 border-gray-300 focus:outline-none focus:border-gray-600 peer
-                            @if (isset($error)) text-red-500 border-red-300  @endif"/>
-                            <label for="password" class="whitespace-nowrap peer-focus:font-medium absolute text-xl duration-300 transform -translate-y-8 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8
-                                @if (isset($error)) text-red-500 border-red-300  @endif">
-                                Senha
-                            </label>
+                    <div>
+                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            Sua Senha
+                        </label>
+                        <input type="password" name="password" id="password" placeholder="••••••••"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
                     </div>
-                        
-                        
-                    <button class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-xl px-5 py-2.5 text-center">Salvar</button>
-                    @include('components.is-invalid')
-                </form>
+                    <div class="flex justify-between">
+                        <div class="flex items-start">
+                            <div class="flex items-center h-5">
+                                <input id="remember" name="remember" type="checkbox"
+                                    class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800">
+                            </div>
+                            <label for="remember" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                Manter-me conectado
+                            </label>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        @if ($errors->all())
+                            @foreach ($errors->all() as $error)
+                            <span class="absolute text-red-500">{{ $error }}</span>
+                            @endforeach
+                        @endif
+                    </div>
+                    <button type="submit"
+                        class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        Entrar
+                    </button>
+                </div>
+            </x-form>
         </div>
-
     </div>
+</div>
 
 @endsection
