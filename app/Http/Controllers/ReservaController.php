@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ReservaFormRequest;
 use App\Models\Reserva;
+use Barryvdh\DomPDF\Facade\Pdf;
+use DateTime;
 use Illuminate\Http\Request;
 
 class ReservaController extends Controller
@@ -124,5 +126,36 @@ class ReservaController extends Controller
         $reserva->delete();
 
         return redirect()->route('reservas.index')->with('sucesso', "A Reserva de $nome foi excluído com Sucesso!");
+    }
+
+    public function exportar(Request $request)
+    {
+
+        $mes = $request->mes;
+
+        $reservados = Reserva::where('primeiro_dia', 'LIKE', "%$mes%")->orWhere('ultimo_dia', 'LIKE', "%$mes%")->get();
+
+        $dataInicio = new DateTime("$mes-1");
+        $dataFim = new DateTime("$mes-31");
+
+        $dias = array();
+        //cria um array do dia 1 ao dia 31 do mês da $request
+        while($dataInicio <= $dataFim){
+            $dias[] = $dataInicio->format('Y-m-d');
+            $dataInicio = $dataInicio->modify('+1day');
+        }
+
+        //remove os dias ja reservado do array
+        foreach ($dias as $key => $dia) {
+            foreach ($reservados as $reservado) {
+                if ($dia == $reservado->primeiro_dia || $dia == $reservado->ultimo_dia) {
+                    unset($dias[$key]);
+                }
+            }
+        }
+
+        $pdf = Pdf::loadView('reservas.pdf', ['dias' => $dias, 'mes' => $mes]);
+
+        return $pdf->stream('dias_livres.pdf');
     }
 }
