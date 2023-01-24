@@ -1,11 +1,21 @@
+@php
+    setlocale(LC_TIME, 'pt_BR', 'pt_BR.iso-8859', 'pt_BR.utf-8', 'portuguese');
+    date_default_timezone_set('America/Sao_Paulo');
+@endphp
 <html>
 
 <head>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-    <title>Dias Livres</title>
+    <title>Lista de datas</title>
     <style>
+        .logo {
+            text-align: center;
+            margin-bottom: 50px;
+            width: 100%;
+        }
+
         .titulo {
             padding: 5px;
             background-color: black;
@@ -15,6 +25,11 @@
             text-transform: uppercase;
             font-weight: bold;
             margin-bottom: 50px;
+        }
+
+        .informacao {
+            margin-top: 100px;
+            margin-bottom: 100px;
         }
 
         table {
@@ -33,6 +48,7 @@
             text-align: left;
             padding: 2px;
         }
+
         table td {
             text-align: center;
             padding: 2px;
@@ -45,24 +61,51 @@
 
 <body>
 
+    <div class="logo">
+        <img src="IMG/logo.png" alt="Recanto Vô Pedro" width="60">
+    </div>
+
     <div class="titulo">
-        Dias livres para serem reservados
+        # Recanto Vô Pedro #
+    </div>
+
+    <div class="informacao">
+        <p>
+            O Recanto Vô Perdro é um otimo lugar para aqueles que desejam passar um final de semana com a família em um
+            lugar aconchegante com muito espaço para o lazer.
+            <br>
+            O espaço é composto por uma grande piscina e uma area ainda maior, possui fogão a gás, fogão a lenha,
+            churrasqueira, duas cozinhas e um quarto com 2 camas de casal e um sofá.
+            <br>
+            Para aqueles que buscam um lugar para passar com a família uma data especial o Recanto Vô Pedro é sua melhor
+            opção.
+        </p>
+    </div>
+
+    <div class="informacao">
+        <p> - Contato: (18) 99704-4724, (18) 99603-4724 ou <a
+                href="https://instagram.com/recantodovopedro?igshid=OGQ2MjdiOTE="target="_blank">@recantodovopedro</a>
+        </p>
+        <p> - Endereço: R. Serigpe, 155 - Tarumã-SP,</p>
     </div>
 
     <table>
         <thead>
-            <th colspan="{{ count($dias) - 1 }}">Dias</th>
-            <th>{{ date('M', strtotime($mes)) }}</th>
+            <th colspan="{{ count($dias) }}">{{ strftime('%B', strtotime($mes)) }} - Dias livres para serem reservados </th>
         </thead>
         <tbody>
-            @foreach ($dias as $key => $dia)
-                <td>{{ date('d', strtotime($dia)) }}</td>
-            @endforeach
+            <tr>
+                @foreach ($dias as $key => $dia)
+                <td>{{ date('d', strtotime($dia)) }}</td>               
+                @endforeach
+            </tr>
+            <tr>
+                @foreach ($dias as $key => $dia)
+                <td>{{ strftime('%a', strtotime($dia)) }}</td>               
+                @endforeach
+            </tr>
         </tbody>
     </table>
-
-
-
 
 
 </body>
