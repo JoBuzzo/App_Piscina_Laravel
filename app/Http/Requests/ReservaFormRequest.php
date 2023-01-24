@@ -23,11 +23,11 @@ class ReservaFormRequest extends FormRequest
      */
     public function rules()
     {
-
+    
         $rules = [
                 'nome' => 'required|string|min:4|max:30',        
                 'numero' => 'nullable|string|min:15',        
-                'primeiro_dia' => "required|unique_primeiro",        
+                'primeiro_dia' => "required|unique:reservas,primeiro_dia,id",        
                 'ultimo_dia' => "required|unique_ultimo",           
                 'valor_pago' => 'required',
                 'valor_total' => 'required|gte:valor_pago',    

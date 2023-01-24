@@ -10,12 +10,12 @@ use Illuminate\Http\Request;
 
 class ReservaController extends Controller
 {
- 
+
     public function __construct()
     {
         $this->middleware('admin');
     }
-    
+
     public function index(Request $request)
     {
 
@@ -58,16 +58,31 @@ class ReservaController extends Controller
         return view('reservas.create');
     }
 
-    public function store(ReservaFormRequest $request)
+    public function store(Request $request)
     {
 
-        $data = $request->only('nome', 'numero', 'primeiro_dia', 'ultimo_dia', 'valor_pago', 'valor_total');
+        $rules = [
+            'nome' => 'required|string|min:4|max:30',
+            'numero' => 'nullable|string|min:15',
+            'primeiro_dia' => "required|unique:reservas,primeiro_dia|unique:reservas,ultimo_dia",
+            'ultimo_dia' => "required|unique:reservas,primeiro_dia|unique:reservas,ultimo_dia",
+            'valor_pago' => 'required',
+            'valor_total' => 'required|gte:valor_pago',
+        ];
 
-        $data['primeiro_dia'] = str_replace('/', '-', $data['primeiro_dia']);
+        $data = $request->except('primeiro_dia', 'ultimo_dia');
+
+        $data['primeiro_dia'] = str_replace('/', '-', $request->primeiro_dia);
         $data['primeiro_dia'] = date("Y-m-d", strtotime($data['primeiro_dia']));
-        
-        $data['ultimo_dia'] = str_replace('/', '-', $data['ultimo_dia']);
+
+        $data['ultimo_dia'] = str_replace('/', '-', $request->ultimo_dia);
         $data['ultimo_dia'] = date("Y-m-d", strtotime($data['ultimo_dia']));
+
+        $validator = validator()->make($data, $rules);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
 
         $pendente = $data['valor_total'] - $data['valor_pago'];
 
@@ -75,7 +90,7 @@ class ReservaController extends Controller
 
         Reserva::create($data);
 
-        
+
 
         return redirect()->route('reservas.index')->with('sucesso', "A reserva de {$data['nome']} foi cadastrada com Sucesso!");
     }
@@ -98,6 +113,14 @@ class ReservaController extends Controller
             return redirect()->route('reservas');
         }
 
+        $rules = [
+            'nome' => 'required|string|min:4|max:30',
+            'numero' => 'nullable|string|min:15',
+            'primeiro_dia' => "required|unique:reservas,primeiro_dia,".$id."|unique:reservas,ultimo_dia,".$id,
+            'ultimo_dia' =>  "required|unique:reservas,primeiro_dia,".$id."|unique:reservas,ultimo_dia,".$id,
+            'valor_pago' => 'required',
+            'valor_total' => 'required|gte:valor_pago',
+        ];
 
         $data = $request->only('nome', 'numero', 'primeiro_dia', 'ultimo_dia', 'valor_pago', 'valor_total');
 
@@ -106,6 +129,12 @@ class ReservaController extends Controller
 
         $data['ultimo_dia'] = str_replace('/', '-', $data['ultimo_dia']);
         $data['ultimo_dia'] = date("Y-m-d", strtotime($data['ultimo_dia']));
+
+        $validator = validator()->make($data, $rules);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
 
         $pendente = $data['valor_total'] - $data['valor_pago'];
 
@@ -140,7 +169,7 @@ class ReservaController extends Controller
 
         $dias = array();
         //cria um array do dia 1 ao dia 31 do mês da $request
-        while($dataInicio <= $dataFim){
+        while ($dataInicio <= $dataFim) {
             $dias[] = $dataInicio->format('Y-m-d');
             $dataInicio = $dataInicio->modify('+1day');
         }
