@@ -194,7 +194,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\UniqueDateServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
 
     ],

@@ -106,7 +106,7 @@ class ReservaController extends Controller
         return view('reservas.edit', compact('reserva'));
     }
 
-    public function update(ReservaFormRequest $request, $id)
+    public function update(Request $request, $id)
     {
 
         if (!$reserva = Reserva::find($id)) {
@@ -116,18 +116,18 @@ class ReservaController extends Controller
         $rules = [
             'nome' => 'required|string|min:4|max:30',
             'numero' => 'nullable|string|min:15',
-            'primeiro_dia' => "required|unique:reservas,primeiro_dia,".$id."|unique:reservas,ultimo_dia,".$id,
-            'ultimo_dia' =>  "required|unique:reservas,primeiro_dia,".$id."|unique:reservas,ultimo_dia,".$id,
+            'primeiro_dia' => "required|unique:reservas,primeiro_dia,$id,id|required|unique:reservas,ultimo_dia,$id,id",
+            'ultimo_dia' =>  "required|unique:reservas,primeiro_dia,$id,id|required|unique:reservas,ultimo_dia,$id,id",
             'valor_pago' => 'required',
             'valor_total' => 'required|gte:valor_pago',
         ];
 
-        $data = $request->only('nome', 'numero', 'primeiro_dia', 'ultimo_dia', 'valor_pago', 'valor_total');
+        $data = $request->except('primeiro_dia', 'ultimo_dia');
 
-        $data['primeiro_dia'] = str_replace('/', '-', $data['primeiro_dia']);
-        $data['primeiro_dia'] = date('Y-m-d', strtotime($data['primeiro_dia']));
+        $data['primeiro_dia'] = str_replace('/', '-', $request->primeiro_dia);
+        $data['primeiro_dia'] = date("Y-m-d", strtotime($data['primeiro_dia']));
 
-        $data['ultimo_dia'] = str_replace('/', '-', $data['ultimo_dia']);
+        $data['ultimo_dia'] = str_replace('/', '-', $request->ultimo_dia);
         $data['ultimo_dia'] = date("Y-m-d", strtotime($data['ultimo_dia']));
 
         $validator = validator()->make($data, $rules);
