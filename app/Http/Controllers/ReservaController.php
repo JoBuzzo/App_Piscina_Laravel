@@ -153,6 +153,7 @@ class ReservaController extends Controller
                 }
             }
         }
+        $dias = array_values($dias);
 
         $pdf = Pdf::loadView('reservas.pdf', ['dias' => $dias, 'mes' => $mes]);
 

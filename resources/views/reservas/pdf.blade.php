@@ -1,5 +1,5 @@
 @php
-    setlocale(LC_TIME, 'pt_BR', 'pt_BR.iso-8859', 'pt_BR.utf-8', 'portuguese');
+    setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
     date_default_timezone_set('America/Sao_Paulo');
 @endphp
 <html>
@@ -45,13 +45,12 @@
         }
 
         table th {
-            text-align: left;
-            padding: 2px;
+            text-align: center;
+            border: 0.5px solid black;
         }
 
         table td {
             text-align: center;
-            padding: 2px;
             border: 0.5px solid black;
 
         }
@@ -91,19 +90,47 @@
 
     <table>
         <thead>
-            <th colspan="{{ count($dias) }}">{{ strftime('%B', strtotime($mes)) }} - Dias livres para serem reservados </th>
+            <th colspan="{{ count($dias) > 16 ? 16 :  count($dias) }}">Mês de {{ ucwords(strftime('%B', strtotime($mes))) }}</th>
         </thead>
         <tbody>
             <tr>
-                @foreach ($dias as $key => $dia)
-                <td>{{ date('d', strtotime($dia)) }}</td>               
-                @endforeach
+                @for ($i = 0; $i < count($dias); $i++)
+                    @isset($dias[$i])
+                        <td>{{ date('d', strtotime($dias[$i])) }}</td>
+                    @endisset
+                    @break($i == 15)
+                @endfor
+
             </tr>
             <tr>
-                @foreach ($dias as $key => $dia)
-                <td>{{ strftime('%a', strtotime($dia)) }}</td>               
-                @endforeach
+                @for ($i = 0; $i < count($dias); $i++)
+                    @isset($dias[$i])
+                        <td>{{ utf8_encode(strftime('%a', strtotime($dias[$i]))) }}</td>
+                    @endisset
+                    @break($i == 15)
+                @endfor
             </tr>
+            <tr>
+                <td colspan="{{ count($dias) > 16 ? 16 :  count($dias) }}"><br></td>
+            </tr>
+
+            @if (count($dias) > 15)
+                <tr>
+                    @for ($i = 16; $i < count($dias); $i++)
+                        @isset($dias[$i])
+                            <td>{{ date('d', strtotime($dias[$i])) }}</td>
+                        @endisset
+                    @endfor
+                </tr>
+                <tr>
+                    @for ($i = 16; $i < count($dias); $i++)
+                        @isset($dias[$i])
+                            <td>{{ utf8_encode(strftime('%a', strtotime($dias[$i]))) }}</td>
+                        @endisset
+                    @endfor
+                </tr>
+            @endif
+            
         </tbody>
     </table>
 
