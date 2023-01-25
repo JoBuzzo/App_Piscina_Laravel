@@ -18,9 +18,25 @@ class ReservaController extends Controller
 
     public function index(Request $request)
     {
+        
+        $filter = $request->filter;
 
         $search = $request->search;
-        $filter = $request->filter;
+        
+        $data = explode('/', $search);
+        //garante que o array possue tres elementos (dia, mes e ano)
+        if (count($data) == 3) {
+            $dia = (int)$data[0];
+            $mes = (int)$data[1];
+            $ano = (int)$data[2];
+
+            //testa se a data é válida
+            if (checkdate($mes, $dia, $ano)) {
+                $search = str_replace('/', '-', $search);
+                $search = date("Y-m-d", strtotime($search));
+            }
+        }
+
         $reservas = Reserva::where(function ($query) use ($search) {
             if ($search) {
                 $query->where("nome", 'LIKE', "%{$search}%");
@@ -30,21 +46,22 @@ class ReservaController extends Controller
                 $query->orwhereDate("primeiro_dia", 'LIKE', "%{$search}%");
                 $query->orwhereDate("ultimo_dia", 'LIKE', "%{$search}%");
             }
-        })->paginate(12)->withQueryString();
-
-        $date = date('Y-m-d');
-        if (!$search) {
-            $reservas = Reserva::orderBy('primeiro_dia', 'asc')->where('primeiro_dia', '>=', "$date")->paginate(12)->withQueryString();
-        }
+        })->orderBy('primeiro_dia', 'asc')
+        ->where('primeiro_dia', '>=', date('Y-m-d'))
+        ->paginate(12)->withQueryString();
 
         if ($filter === "Vencidas") {
-            $reservas = Reserva::orderBy('primeiro_dia', 'asc')->where('primeiro_dia', '<', "$date")->paginate(12)->withQueryString();
+            $reservas = Reserva::orderBy('primeiro_dia', 'asc')
+            ->where('ultimo_dia', '<', date('Y-m-d'))
+            ->paginate(12)->withQueryString();
         }
         if ($filter === "Todas") {
-            $reservas = Reserva::orderBy('primeiro_dia', 'asc')->paginate(12)->withQueryString();
+            $reservas = Reserva::orderBy('primeiro_dia', 'asc')
+            ->paginate(12)->withQueryString();
         }
         if ($filter === "Hoje") {
-            $reservas = Reserva::where('primeiro_dia', '=', "$date")->orWhere('ultimo_dia', '=', "$date")->paginate();
+            $reservas = Reserva::where('primeiro_dia', '=', date('Y-m-d'))
+            ->orWhere('ultimo_dia', '=', date('Y-m-d'))->paginate();
         }
 
 
