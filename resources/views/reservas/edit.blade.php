@@ -32,7 +32,8 @@
             <x-input.select name="valor_total" label="Valor cobrado">
                 @for ($i = 0; $i <= 2600; $i += 50)
                     <option value="{{ $i }}" {{ $i == $reserva->valor_total ? 'selected' : '' }}>
-                        R${{ $i }}</option>
+                        R${{ $i }}
+                    </option>
                 @endfor
             </x-input.select>
 

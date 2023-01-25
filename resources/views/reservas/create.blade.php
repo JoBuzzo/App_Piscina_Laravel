@@ -21,17 +21,14 @@
         </div>
         <div class="grid gap-6 mb-6 md:grid-cols-2">
             <x-input.select name="valor_pago" label="Valor Pago pelo cliente">
-                
-                <option value="" selected>Selecione o valor pago</option>
                 @for ($i = 0; $i <= 2600; $i += 50)
-                    <option value="{{ $i }}">R${{ $i }}</option>
+                    <option value="{{ $i }}" {{ $i == old('valor_pago') ? 'selected' : '' }}>R${{ $i }}</option>
                 @endfor
             </x-input.select>
 
             <x-input.select name="valor_total" label="Valor cobrado">
-                <option value="" selected>Selecione o valor cobrado</option>
                 @for ($i = 0; $i <= 2600; $i += 50)
-                    <option value="{{ $i }}">R${{ $i }}</option>
+                    <option value="{{ $i }}" {{ $i == old('valor_total') ? 'selected' : '' }}>R${{ $i }}</option>
                 @endfor
             </x-input.select>
         </div>

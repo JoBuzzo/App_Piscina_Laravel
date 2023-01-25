@@ -1,5 +1,4 @@
 
-@if ($link->count() > 1)
 <nav>
     <ul class="inline-flex space-x-px">
         <li>
@@ -24,4 +23,3 @@
         </li>
     </ul>
 </nav>
-@endif
