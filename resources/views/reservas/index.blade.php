@@ -4,6 +4,11 @@
 
 @section('head')
     <style>
+        input[type="month"]::-webkit-calendar-picker-indicator {
+            cursor: pointer;
+            filter: invert(0.8) brightness(100%) sepia(0%) saturate(1000%) hue-rotate(240deg);
+        }
+
         @media (max-width:880px) {
             .mobile-table {
                 display: none;
@@ -26,7 +31,7 @@
         <div class="flex items-center justify-between pb-4">
             <x-search.filter :filter="$filter" />
 
-            <x-search.pdf />           
+            <x-search.pdf />
         </div>
 
         @if (count($reservas) > 0)
@@ -77,7 +82,7 @@
                                     {{ $reserva->nome }}
                                 </td>
                                 <td class="mobile-table py-4 px-6">
-                                    <x-whatsapp :value="$reserva->numero"/>
+                                    <x-whatsapp :value="$reserva->numero" />
                                 </td>
                                 <td class="mobile-table py-4 px-6 text-green-400 dark:text-green-300">
                                     R${{ $reserva->valor_total }}

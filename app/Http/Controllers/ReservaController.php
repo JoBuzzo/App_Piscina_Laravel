@@ -46,10 +46,11 @@ class ReservaController extends Controller
                 $query->orwhereDate("primeiro_dia", 'LIKE', "%{$search}%");
                 $query->orwhereDate("ultimo_dia", 'LIKE', "%{$search}%");
             }
-        })->orderBy('primeiro_dia', 'asc')
-        ->where('primeiro_dia', '>=', date('Y-m-d'))
-        ->paginate(12)->withQueryString();
+        })->orderBy('primeiro_dia', 'asc')->paginate(12)->withQueryString();
 
+        if (!$search) {
+            $reservas = Reserva::orderBy('primeiro_dia', 'asc')->where('primeiro_dia', '>=', date('Y-m-d'))->paginate(12)->withQueryString();
+        }
         if ($filter === "Vencidas") {
             $reservas = Reserva::orderBy('primeiro_dia', 'asc')
             ->where('ultimo_dia', '<', date('Y-m-d'))
