@@ -11,9 +11,8 @@ Route::resource('despesas', 'App\Http\Controllers\DespesasController');
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
-Route::get('/usuarios/{login}/{id}', [UserController::class, 'edit'])->name('users.edit');
-Route::put('/usuarios/{id}', [UserController::class, 'update'])->name('users.update');
-Route::get('/usuarios', [UserController::class, 'index'])->name('users.index');
+Route::get('/perfil/editar', [UserController::class, 'edit'])->name('users.edit');
+Route::put('/perfil/editar/{id}', [UserController::class, 'update'])->name('users.update');
 
 Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::post('/auth', [UserController::class, 'auth'])->name('auth');

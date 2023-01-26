@@ -21,7 +21,6 @@ class User extends Authenticatable
         'name',
         'login',
         'admin',
-        'cor',
         'password',
     ];
 

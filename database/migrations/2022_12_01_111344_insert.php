@@ -16,47 +16,11 @@ return new class extends Migration
     public function up()
     {
 
-        //Admins
         User::create([
-            'name' => 'Wander Camargo dos Santos',
-            'login' => 'WanderCamargo',
+            'name' => 'João Lucas',
+            'login' => 'Administrador',
             'admin' => 1,
-            'password' => Hash::make('123456'), 
-            'remember_token' => Str::random(10),
-        ]);
-        User::create([
-            'name' => 'Rosimeire Buzzo Camargo',
-            'login' => 'RosiBuzzo',
-            'admin' => 1,
-            'password' => Hash::make('123456'), 
-            'remember_token' => Str::random(10),
-        ]);
-        User::create([
-            'name' => 'Pedro Augusto Buzzo',
-            'login' => 'PedroBuzzo',
-            'admin' => 1,
-            'password' => Hash::make('123456'), 
-            'remember_token' => Str::random(10),
-        ]);
-        User::create([
-            'name' => 'Laiza Camargo',
-            'login' => 'LaizaCamargo',
-            'admin' => 1,
-            'password' => Hash::make('123456'), 
-            'remember_token' => Str::random(10),
-        ]);
-        User::create([
-            'name' => 'João Lucas Buzzo',
-            'login' => 'JoaoBuzzo',
-            'admin' => 1,
-            'password' => Hash::make('123456'), 
-            'remember_token' => Str::random(10),
-        ]); 
-        User::create([
-            'name' => 'Heitor Bergamaschi Camargo',
-            'login' => 'HeitorBergamaschi',
-            'admin' => 1,
-            'password' => Hash::make('123456'), 
+            'password' => Hash::make('admin'), 
             'remember_token' => Str::random(10),
         ]); 
     }

@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin')->only('edit', 'edit', 'index', 'logout');
+        $this->middleware('admin')->only('update', 'logout');
     }
 
     public function login(){
@@ -36,18 +36,7 @@ class UserController extends Controller
         } 
     }
     
-    
-    public function index(){
-        $users = User::all();
-        return view('users.index', compact('users'));
-    }
-    
-    public function edit($login, $id){
-        
-        $user =  User::find($id);
-        return view('users.edit', compact('user'));
-        
-    }
+
     public function update(UserFormRequest $request, $id){
         
         if(!$user =  User::find($id)){
@@ -62,7 +51,7 @@ class UserController extends Controller
 
         $user->update($data);
 
-        return redirect()->route('users.edit',['login' => $user->login ,'id' => $id])->with('sucesso', "$user->login foi editado com Sucesso!");
+        return redirect()->back()->with('sucesso', "$user->login foi editado com Sucesso!");
     }
 }
 
